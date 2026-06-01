@@ -5,12 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kodex Publishing | Издателство за книги със смисъл</title>
   <meta name="description" content="Kodex Publishing е българско издателство за истории, детски книги и смислени издания с ясна мисъл, добра форма и трайна стойност." />
-  <meta name="keywords" content="Kodex Publishing, издателство, българско издателство, детски книги, книги със смисъл, истории, книгоиздаване" />
+  <meta name="keywords" content="Kodex Publishing, издателство, българско издателство, детски книги, книги със смисъл, Чудовището без уши" />
   <meta name="author" content="Kodex Publishing" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://kodexbg.com/" />
   <meta name="theme-color" content="#18211f" />
-
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="bg_BG" />
   <meta property="og:site_name" content="Kodex Publishing" />
@@ -20,524 +19,49 @@
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Kodex Publishing | Издателство за книги със смисъл" />
   <meta name="twitter:description" content="Българско издателство за книги с ясна мисъл, добра форма и дълъг живот." />
-
-  <link rel="icon" type="image/svg+xml" href="assets/kodex-icon.svg" />
-
+  <link rel="icon" type="image/svg+xml" href="/assets/kodex-icon.svg" />
+  <link rel="stylesheet" href="/assets/site.css" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "Kodex Publishing",
       "url": "https://kodexbg.com/",
-      "description": "Българско издателство за истории, детски книги и смислени издания с ясна мисъл, добра форма и трайна стойност.",
-      "sameAs": []
+      "email": "kodex@blackrockcapital.bg",
+      "description": "Българско издателство за истории, детски книги и смислени издания с ясна мисъл, добра форма и трайна стойност."
     }
   </script>
-
-  <style>
-    :root {
-      --paper: #f6f0e4;
-      --paper-strong: #fffaf0;
-      --ink: #18211f;
-      --ink-soft: #39423f;
-      --muted: #6e7067;
-      --line: rgba(24, 33, 31, 0.16);
-      --copper: #c35b3a;
-      --sage: #6f8d7a;
-      --blue: #24536b;
-      --shadow: 0 24px 70px rgba(24, 33, 31, 0.14);
-      --max: 1120px;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        linear-gradient(90deg, rgba(24, 33, 31, 0.035) 1px, transparent 1px),
-        linear-gradient(180deg, rgba(24, 33, 31, 0.035) 1px, transparent 1px),
-        var(--paper);
-      background-size: 42px 42px;
-      color: var(--ink);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .page {
-      min-height: 100vh;
-    }
-
-    .shell {
-      width: min(var(--max), calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 24px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-      flex: 0 0 auto;
-      filter: drop-shadow(0 10px 18px rgba(24, 33, 31, 0.18));
-    }
-
-    .brand-name {
-      display: block;
-      font-size: 15px;
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      line-height: 1;
-      text-transform: uppercase;
-    }
-
-    .brand-note {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      color: var(--ink-soft);
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .nav a {
-      text-decoration: none;
-    }
-
-    .hero {
-      max-width: 900px;
-      padding: 96px 0 86px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin: 0 0 22px;
-      color: var(--copper);
-      font-size: 13px;
-      font-weight: 800;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 34px;
-      height: 2px;
-      background: currentColor;
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
-    }
-
-    h1 {
-      max-width: 780px;
-      margin-bottom: 24px;
-      font-size: clamp(48px, 8vw, 112px);
-      line-height: 0.9;
-      letter-spacing: 0;
-    }
-
-    .lead {
-      max-width: 670px;
-      margin-bottom: 30px;
-      color: var(--ink-soft);
-      font-size: clamp(20px, 2.4vw, 28px);
-      line-height: 1.35;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 18px;
-      border: 1px solid var(--ink);
-      border-radius: 999px;
-      background: var(--ink);
-      color: var(--paper-strong);
-      font-size: 14px;
-      font-weight: 800;
-      text-decoration: none;
-    }
-
-    .button.secondary {
-      background: transparent;
-      color: var(--ink);
-    }
-
-    .intro {
-      display: grid;
-      grid-template-columns: 0.72fr 1fr;
-      gap: 42px;
-      align-items: start;
-      padding: 64px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .section-label {
-      color: var(--copper);
-      font-size: 13px;
-      font-weight: 900;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    h2 {
-      margin-bottom: 18px;
-      font-size: clamp(30px, 4.6vw, 58px);
-      line-height: 1;
-      letter-spacing: 0;
-    }
-
-    .copy p {
-      margin-bottom: 16px;
-      color: var(--ink-soft);
-      font-size: 19px;
-    }
-
-    .publishing {
-      padding: 66px 0;
-    }
-
-    .split-panel {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      background: var(--paper-strong);
-      box-shadow: 0 18px 48px rgba(24, 33, 31, 0.08);
-    }
-
-    .panel-copy {
-      padding: clamp(28px, 5vw, 58px);
-    }
-
-    .panel-copy p {
-      color: var(--ink-soft);
-      font-size: 19px;
-    }
-
-    .panel-list {
-      display: grid;
-      align-content: stretch;
-      border-left: 1px solid var(--line);
-    }
-
-    .list-item {
-      display: grid;
-      grid-template-columns: 42px 1fr;
-      gap: 16px;
-      padding: 28px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 250, 240, 0.58);
-    }
-
-    .list-item:last-child {
-      border-bottom: 0;
-    }
-
-    .item-number {
-      display: inline-grid;
-      place-items: center;
-      width: 42px;
-      height: 42px;
-      border-radius: 50%;
-      background: var(--sage);
-      color: #ffffff;
-      font-size: 13px;
-      font-weight: 900;
-    }
-
-    .list-item h3 {
-      margin-bottom: 4px;
-      font-size: 20px;
-      line-height: 1.2;
-    }
-
-    .list-item p {
-      margin-bottom: 0;
-      color: var(--muted);
-      font-size: 16px;
-    }
-
-    .principles {
-      padding: 64px 0;
-    }
-
-    .principles-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 32px;
-      margin-bottom: 24px;
-    }
-
-    .principles-head h2 {
-      max-width: 680px;
-      margin-bottom: 0;
-    }
-
-    .principles-head p {
-      max-width: 280px;
-      margin-bottom: 0;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-    }
-
-    .card {
-      min-height: 220px;
-      padding: 22px;
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      background: rgba(255, 250, 240, 0.76);
-    }
-
-    .card:nth-child(2) {
-      background: rgba(111, 141, 122, 0.18);
-    }
-
-    .card:nth-child(3) {
-      background: rgba(36, 83, 107, 0.13);
-    }
-
-    .card:nth-child(4) {
-      background: rgba(195, 91, 58, 0.13);
-    }
-
-    .card h3 {
-      margin-bottom: 56px;
-      font-size: 22px;
-    }
-
-    .card p {
-      margin-bottom: 0;
-      color: var(--ink-soft);
-      font-size: 16px;
-    }
-
-    .name-block {
-      padding: 64px 0;
-    }
-
-    .name-inner {
-      display: grid;
-      grid-template-columns: 0.92fr 1.08fr;
-      gap: 42px;
-      align-items: center;
-      padding: clamp(30px, 5vw, 64px);
-      border-radius: 30px;
-      background: var(--ink);
-      color: var(--paper-strong);
-    }
-
-    .name-inner h2 {
-      margin-bottom: 0;
-    }
-
-    .name-inner p {
-      margin-bottom: 0;
-      color: rgba(255, 250, 240, 0.78);
-      font-size: 20px;
-    }
-
-    .quote {
-      padding: 70px 0 84px;
-      text-align: center;
-    }
-
-    .quote p {
-      max-width: 860px;
-      margin: 0 auto;
-      font-size: clamp(30px, 5vw, 64px);
-      font-weight: 900;
-      line-height: 1;
-      letter-spacing: 0;
-    }
-
-    .quote span {
-      color: var(--copper);
-    }
-
-    .footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 26px 0 42px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    @media (max-width: 900px) {
-      .nav {
-        display: none;
-      }
-
-      .intro,
-      .split-panel,
-      .name-inner {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 42px;
-      }
-
-      .panel-list {
-        border-left: 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .principles-head {
-        display: block;
-      }
-
-      .principles-head p {
-        margin-top: 14px;
-      }
-
-      .grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 620px) {
-      .shell {
-        width: min(100% - 28px, var(--max));
-      }
-
-      .topbar {
-        padding-top: 18px;
-      }
-
-      .brand-note {
-        display: none;
-      }
-
-      h1 {
-        font-size: clamp(44px, 17vw, 72px);
-      }
-
-      .hero-actions {
-        display: grid;
-      }
-
-      .button {
-        width: 100%;
-      }
-
-      .intro,
-      .publishing,
-      .principles,
-      .name-block {
-        padding: 44px 0;
-      }
-
-      .panel-copy,
-      .list-item {
-        padding: 22px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .card {
-        min-height: 0;
-      }
-
-      .card h3 {
-        margin-bottom: 28px;
-      }
-
-      .footer {
-        display: block;
-      }
-    }
-  </style>
 </head>
 <body>
   <div class="page">
     <div class="shell">
       <header class="topbar" aria-label="Основна навигация">
-        <a class="brand" href="#" aria-label="Kodex Publishing начало">
-          <img class="brand-mark" src="assets/kodex-icon.svg" alt="Икона Kodex Publishing" />
+        <a class="brand" href="/" aria-label="Kodex Publishing начало">
+          <img class="brand-mark" src="/assets/kodex-icon.svg" alt="Икона Kodex Publishing" />
           <span>
             <span class="brand-name">Kodex</span>
             <span class="brand-note">Publishing House</span>
           </span>
         </a>
         <nav class="nav" aria-label="Секции">
-          <a href="#about">За нас</a>
-          <a href="#books">Книги</a>
-          <a href="#principles">Принципи</a>
-          <a href="#name">Име</a>
+          <a href="/books.html">Книги</a>
+          <a href="/books/chudovishtoto-bez-ushi.html">Чудовището без уши</a>
+          <a href="/contact.html">Контакт</a>
+          <a href="/terms.html">Условия</a>
         </nav>
       </header>
 
       <main>
         <section class="hero" aria-labelledby="hero-title">
-          <div>
-            <p class="eyebrow">Българско издателство • 2026</p>
-            <h1 id="hero-title">Kodex Publishing</h1>
-            <p class="lead">
-              Книги с ясна мисъл, внимателна форма и стойност, която остава.
-            </p>
-            <div class="hero-actions" aria-label="Бързи връзки">
-              <a class="button" href="#books">Какво издаваме</a>
-              <a class="button secondary" href="#name">Защо Kodex</a>
-            </div>
+          <p class="eyebrow">Българско издателство • 2026</p>
+          <h1 id="hero-title">Kodex Publishing</h1>
+          <p class="lead">
+            Книги с ясна мисъл, внимателна форма и стойност, която остава.
+          </p>
+          <div class="hero-actions" aria-label="Бързи връзки">
+            <a class="button" href="/books.html">Виж книгите</a>
+            <a class="button secondary" href="/books/chudovishtoto-bez-ushi.html">Първа книга</a>
           </div>
-
         </section>
 
         <section class="intro" id="about">
@@ -555,7 +79,26 @@
           </div>
         </section>
 
-        <section class="publishing" id="books">
+        <section class="section" aria-labelledby="featured-book">
+          <span class="section-label">Нова книга</span>
+          <h2 id="featured-book">Чудовището без уши</h2>
+          <a class="book-card" href="/books/chudovishtoto-bez-ushi.html">
+            <div class="cover small" aria-hidden="true">
+              <span class="monster-mark"></span>
+              <p class="cover-title">Чудовището без уши</p>
+              <p class="cover-author">Костантин Стамболов</p>
+            </div>
+            <div>
+              <span class="badge">Първо издание</span>
+              <h3>Приказка за малки и пораснали деца</h3>
+              <p>
+                История за доброта, различност и силата на приказките да стигат до онзи, който има най-голяма нужда от тях.
+              </p>
+            </div>
+          </a>
+        </section>
+
+        <section class="publishing">
           <div class="split-panel">
             <div class="panel-copy">
               <span class="section-label">Какво издаваме</span>
@@ -593,7 +136,7 @@
           </div>
         </section>
 
-        <section class="principles" id="principles">
+        <section class="principles">
           <div class="principles-head">
             <div>
               <span class="section-label">Принципи</span>
@@ -621,7 +164,7 @@
           </div>
         </section>
 
-        <section class="name-block" id="name">
+        <section class="name-block">
           <div class="name-inner">
             <h2>Защо „Kodex“</h2>
             <p>
@@ -629,15 +172,15 @@
             </p>
           </div>
         </section>
-
-        <section class="quote" aria-label="Обобщение">
-          <p>Kodex Publishing издава книги със <span>смисъл</span>, ясна форма и дълъг живот.</p>
-        </section>
       </main>
 
       <footer class="footer">
         <span>Kodex Publishing • kodexbg.com • 2026</span>
-        <span>Книги със смисъл и форма.</span>
+        <span class="footer-links">
+          <a href="/contact.html">Контакт</a>
+          <a href="/terms.html">Общи условия</a>
+          <a href="/privacy.html">Поверителност</a>
+        </span>
       </footer>
     </div>
   </div>
