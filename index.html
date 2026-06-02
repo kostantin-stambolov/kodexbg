@@ -16,11 +16,16 @@
   <meta property="og:title" content="Kodex Publishing | Издателство за книги със смисъл" />
   <meta property="og:description" content="Истории, детски книги и смислени издания, създадени с уважение към текста, формата и читателя." />
   <meta property="og:url" content="https://kodexbg.com/" />
-  <meta name="twitter:card" content="summary" />
+  <meta property="og:image" content="https://kodexbg.com/assets/og-image.jpg" />
+  <meta property="og:image:alt" content="Корица на детската книга Чудовището без уши от Костантин Стамболов" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Kodex Publishing | Издателство за книги със смисъл" />
   <meta name="twitter:description" content="Българско издателство за книги с ясна мисъл, добра форма и дълъг живот." />
+  <meta name="twitter:image" content="https://kodexbg.com/assets/og-image.jpg" />
   <link rel="icon" type="image/svg+xml" href="assets/kodex-icon.svg" />
-  <link rel="stylesheet" href="assets/site.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="assets/site.css?v=20260602-launch1" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -44,10 +49,8 @@
           </span>
         </a>
         <nav class="nav" aria-label="Секции">
-          <a href="books.html">Книги</a>
-          <a href="books/chudovishtoto-bez-ushi.html">Чудовището без уши</a>
-          <a href="contact.html">Контакт</a>
-          <a href="terms.html">Условия</a>
+          <a href="books.html">Каталог</a>
+          <a class="nav-cta" href="contact.html">Запитвания</a>
         </nav>
       </header>
 
@@ -58,10 +61,21 @@
           <p class="lead">
             Книги с ясна мисъл, внимателна форма и стойност, която остава.
           </p>
-          <div class="hero-actions" aria-label="Бързи връзки">
-            <a class="button" href="books.html">Виж книгите</a>
-            <a class="button secondary" href="books/chudovishtoto-bez-ushi.html">Първа книга</a>
-          </div>
+        </section>
+
+        <section class="section" aria-labelledby="featured-book">
+          <a class="book-card" href="books/chudovishtoto-bez-ushi.html">
+            <img class="book-cover-thumb" src="assets/books/chudovishtoto-bez-ushi/previews/monster-without-ears-cover.jpg" alt="Корица на детската книга Чудовището без уши от Костантин Стамболов" />
+            <div>
+              <span class="section-label">Нова книга</span>
+              <h2 class="book-title" id="featured-book">Чудовището без уши</h2>
+              <p class="book-author">Костантин Стамболов</p>
+              <p class="book-summary">
+                Първо издание. Приказка за малки и пораснали деца, за доброта, различност и силата на историите да стигат до онзи, който има най-голяма нужда от тях.
+              </p>
+              <span class="text-link">Виж книгата</span>
+            </div>
+          </a>
         </section>
 
         <section class="intro" id="about">
@@ -77,25 +91,6 @@
               За нас книгата не е просто продукт. Тя е подредена мисъл, памет и култура, които могат да останат живи след момента на издаване.
             </p>
           </div>
-        </section>
-
-        <section class="section" aria-labelledby="featured-book">
-          <span class="section-label">Нова книга</span>
-          <h2 id="featured-book">Чудовището без уши</h2>
-          <a class="book-card" href="books/chudovishtoto-bez-ushi.html">
-            <div class="cover small" aria-hidden="true">
-              <span class="monster-mark"></span>
-              <p class="cover-title">Чудовището без уши</p>
-              <p class="cover-author">Костантин Стамболов</p>
-            </div>
-            <div>
-              <span class="badge">Първо издание</span>
-              <h3>Приказка за малки и пораснали деца</h3>
-              <p>
-                История за доброта, различност и силата на приказките да стигат до онзи, който има най-голяма нужда от тях.
-              </p>
-            </div>
-          </a>
         </section>
 
         <section class="publishing">
