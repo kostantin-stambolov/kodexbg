@@ -81,12 +81,12 @@
     banner.innerHTML = '' +
       '<div class="cookie-banner__content">' +
         '<h2>Използваме cookies</h2>' +
-        '<p>Те ни помагат да разберем кои страници са полезни и да подобряваме сайта. Ако продължите с „ОК“, ще включим тази аналитика.</p>' +
+        '<p>Те ни помагат да разберем кои страници са полезни и как да подобряваме сайта.</p>' +
         '<a class="cookie-banner__link" href="' + privacyHref() + '">Повече информация</a>' +
       '</div>' +
       '<div class="cookie-banner__actions">' +
-        '<button type="button" class="button secondary" data-cookie-choice="reject">Не сега</button>' +
         '<button type="button" class="button copper" data-cookie-choice="accept">ОК</button>' +
+        '<button type="button" class="cookie-link-button" data-cookie-choice="reject">Не сега</button>' +
       '</div>';
 
     document.body.appendChild(banner);
