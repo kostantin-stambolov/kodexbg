@@ -797,6 +797,45 @@ h3 {
   margin-top: 8px;
 }
 
+
+.cookie-choice-popover {
+  position: fixed;
+  right: clamp(14px, 2.4vw, 28px);
+  bottom: clamp(14px, 2.4vw, 28px);
+  z-index: 60;
+  width: min(390px, calc(100vw - 28px));
+  padding: 18px;
+  border: 1px solid rgba(24, 33, 31, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 250, 240, 0.99);
+  box-shadow: 0 22px 58px rgba(24, 33, 31, 0.22);
+}
+
+.cookie-choice-popover h2 {
+  margin: 0 0 8px;
+  font-size: 21px;
+  line-height: 1.15;
+}
+
+.cookie-choice-popover p {
+  margin: 0 0 14px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.cookie-choice-popover__actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.cookie-choice-popover__actions .button {
+  min-height: 40px;
+  padding: 0 16px;
+  cursor: pointer;
+}
+
 .page-hero {
   padding: 72px 0 46px;
 }
@@ -922,14 +961,16 @@ h3 {
     width: 100%;
   }
 
-  .cookie-banner {
+  .cookie-banner,
+  .cookie-choice-popover {
     right: 14px;
     bottom: 14px;
     left: 14px;
     width: auto;
   }
 
-  .cookie-banner__actions {
+  .cookie-banner__actions,
+  .cookie-choice-popover__actions {
     display: grid;
     justify-content: stretch;
   }

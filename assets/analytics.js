@@ -27,6 +27,23 @@
     if (banner) banner.remove();
   }
 
+  function removeSettingsPopover() {
+    var popover = document.querySelector('.cookie-choice-popover');
+    if (popover) popover.remove();
+  }
+
+  function stopPostHog() {
+    if (!window.posthog) return;
+
+    if (typeof window.posthog.opt_out_capturing === 'function') {
+      window.posthog.opt_out_capturing();
+    }
+
+    if (typeof window.posthog.stopSessionRecording === 'function') {
+      window.posthog.stopSessionRecording();
+    }
+  }
+
   function setConsent(value) {
     try {
       window.localStorage.setItem(consentKey, value);
@@ -37,6 +54,8 @@
     if (value === acceptedValue) {
       loadPostHog();
       captureKodexEvent('cookie_consent_accepted', { page: window.location.pathname });
+    } else {
+      stopPostHog();
     }
   }
 
@@ -73,17 +92,49 @@
     document.body.appendChild(banner);
   }
 
+  function renderSettingsPopover() {
+    removeSettingsPopover();
+
+    var popover = document.createElement('div');
+    popover.className = 'cookie-choice-popover';
+    popover.setAttribute('role', 'dialog');
+    popover.setAttribute('aria-label', 'Промяна на cookie съгласие');
+    popover.innerHTML = '' +
+      '<h2>Промяна на cookies</h2>' +
+      '<p>Искам да оттегля съгласието си за аналитични cookies и да спра проследяването в този браузър.</p>' +
+      '<div class="cookie-choice-popover__actions">' +
+        '<button type="button" class="button secondary" data-cookie-settings-cancel>Отказ</button>' +
+        '<button type="button" class="button copper" data-cookie-withdraw>ОК</button>' +
+      '</div>';
+
+    document.body.appendChild(popover);
+  }
+
   window.kodexCookieConsent = {
     accept: function () { setConsent(acceptedValue); },
     reject: function () { setConsent(rejectedValue); },
-    reset: function () {
-      try { window.localStorage.removeItem(consentKey); } catch (error) {}
-      window.location.reload();
-    },
+    showSettings: renderSettingsPopover,
+    reset: renderSettingsPopover,
     status: getConsent
   };
 
   document.addEventListener('click', function (event) {
+    if (event.target.closest('[data-cookie-settings]')) {
+      renderSettingsPopover();
+      return;
+    }
+
+    if (event.target.closest('[data-cookie-settings-cancel]')) {
+      removeSettingsPopover();
+      return;
+    }
+
+    if (event.target.closest('[data-cookie-withdraw]')) {
+      setConsent(rejectedValue);
+      removeSettingsPopover();
+      return;
+    }
+
     var cookieChoice = event.target.closest('[data-cookie-choice]');
     if (cookieChoice) {
       setConsent(cookieChoice.dataset.cookieChoice === 'accept' ? acceptedValue : rejectedValue);
