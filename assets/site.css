@@ -779,14 +779,15 @@ h3 {
 
 .cookie-banner__actions {
   display: grid;
-  grid-template-columns: minmax(150px, 1fr) auto;
-  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
   align-items: center;
 }
 
 .cookie-banner__actions .button {
+  min-width: 112px;
   min-height: 42px;
-  padding: 0 18px;
+  padding: 0 20px;
   cursor: pointer;
 }
 
@@ -801,7 +802,7 @@ h3 {
   color: var(--muted);
   font: inherit;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 400;
   cursor: pointer;
 }
 
@@ -843,14 +844,16 @@ h3 {
 }
 
 .cookie-choice-popover__actions {
-  display: flex;
-  gap: 10px;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
 }
 
 .cookie-choice-popover__actions .button {
-  min-height: 40px;
-  padding: 0 16px;
+  min-width: 112px;
+  min-height: 42px;
+  padding: 0 20px;
   cursor: pointer;
 }
 

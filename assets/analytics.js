@@ -85,8 +85,8 @@
         '<a class="cookie-banner__link" href="' + privacyHref() + '">Повече информация</a>' +
       '</div>' +
       '<div class="cookie-banner__actions">' +
+        '<button type="button" class="cookie-link-button" data-cookie-choice="reject">Отказвам</button>' +
         '<button type="button" class="button copper" data-cookie-choice="accept">ОК</button>' +
-        '<button type="button" class="cookie-link-button" data-cookie-choice="reject">Не сега</button>' +
       '</div>';
 
     document.body.appendChild(banner);
@@ -101,10 +101,10 @@
     popover.setAttribute('aria-label', 'Промяна на cookie съгласие');
     popover.innerHTML = '' +
       '<h2>Промяна на cookies</h2>' +
-      '<p>Искам да оттегля съгласието си за аналитични cookies и да спра проследяването в този браузър.</p>' +
+      '<p>Можете да оттеглите съгласието си за аналитични cookies. Това ще спре проследяването в този браузър.</p>' +
       '<div class="cookie-choice-popover__actions">' +
-        '<button type="button" class="button secondary" data-cookie-settings-cancel>Отказ</button>' +
-        '<button type="button" class="button copper" data-cookie-withdraw>ОК</button>' +
+        '<button type="button" class="cookie-link-button" data-cookie-withdraw>Оттеглям съгласието</button>' +
+        '<button type="button" class="button copper" data-cookie-settings-cancel>Запази</button>' +
       '</div>';
 
     document.body.appendChild(popover);
