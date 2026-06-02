@@ -475,6 +475,12 @@ h3 {
   line-height: 1.7;
 }
 
+.book-card-button {
+  width: fit-content;
+  min-width: 132px;
+  margin-top: 26px;
+}
+
 .text-link {
   display: inline-flex;
   align-items: center;
@@ -802,7 +808,7 @@ h3 {
   color: var(--muted);
   font: inherit;
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   cursor: pointer;
 }
 
