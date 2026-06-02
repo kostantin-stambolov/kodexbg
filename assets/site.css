@@ -740,6 +740,64 @@ h3 {
   color: var(--copper);
 }
 
+.cookie-banner {
+  position: fixed;
+  right: clamp(14px, 3vw, 32px);
+  bottom: clamp(14px, 3vw, 32px);
+  left: clamp(14px, 3vw, 32px);
+  z-index: 50;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 22px;
+  align-items: center;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid rgba(24, 33, 31, 0.18);
+  border-radius: 22px;
+  background: rgba(255, 250, 240, 0.97);
+  box-shadow: 0 24px 70px rgba(24, 33, 31, 0.2);
+}
+
+.cookie-banner h2 {
+  margin-bottom: 6px;
+  font-size: 22px;
+  line-height: 1.1;
+}
+
+.cookie-banner p {
+  max-width: 680px;
+  margin-bottom: 8px;
+  color: var(--ink-soft);
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.cookie-banner__link {
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.cookie-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.cookie-banner__actions .button {
+  min-height: 42px;
+  cursor: pointer;
+}
+
+.cookie-settings-button {
+  margin-top: 8px;
+}
+
 .page-hero {
   padding: 72px 0 46px;
 }
@@ -863,6 +921,16 @@ h3 {
 
   .button {
     width: 100%;
+  }
+
+  .cookie-banner {
+    grid-template-columns: 1fr;
+    padding: 18px;
+  }
+
+  .cookie-banner__actions {
+    display: grid;
+    justify-content: stretch;
   }
 
   .intro,
