@@ -742,38 +742,33 @@ h3 {
 
 .cookie-banner {
   position: fixed;
-  right: clamp(14px, 3vw, 32px);
-  bottom: clamp(14px, 3vw, 32px);
-  left: clamp(14px, 3vw, 32px);
+  right: clamp(14px, 2.4vw, 28px);
+  bottom: clamp(14px, 2.4vw, 28px);
   z-index: 50;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 22px;
-  align-items: center;
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid rgba(24, 33, 31, 0.18);
-  border-radius: 22px;
-  background: rgba(255, 250, 240, 0.97);
-  box-shadow: 0 24px 70px rgba(24, 33, 31, 0.2);
+  width: min(420px, calc(100vw - 28px));
+  padding: 18px;
+  border: 1px solid rgba(24, 33, 31, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 250, 240, 0.98);
+  box-shadow: 0 22px 58px rgba(24, 33, 31, 0.2);
 }
 
 .cookie-banner h2 {
-  margin-bottom: 6px;
-  font-size: 22px;
-  line-height: 1.1;
+  margin: 0 0 8px;
+  font-size: 21px;
+  line-height: 1.15;
 }
 
 .cookie-banner p {
-  max-width: 680px;
-  margin-bottom: 8px;
+  margin: 0 0 10px;
   color: var(--ink-soft);
   font-size: 15px;
   line-height: 1.45;
 }
 
 .cookie-banner__link {
+  display: inline-flex;
+  margin-bottom: 14px;
   color: var(--ink);
   font-size: 14px;
   font-weight: 800;
@@ -784,14 +779,18 @@ h3 {
 
 .cookie-banner__actions {
   display: flex;
-  flex-wrap: wrap;
   gap: 10px;
   justify-content: flex-end;
 }
 
 .cookie-banner__actions .button {
-  min-height: 42px;
+  min-height: 40px;
+  padding: 0 16px;
   cursor: pointer;
+}
+
+.cookie-banner__actions .button.secondary {
+  background: transparent;
 }
 
 .cookie-settings-button {
@@ -924,8 +923,10 @@ h3 {
   }
 
   .cookie-banner {
-    grid-template-columns: 1fr;
-    padding: 18px;
+    right: 14px;
+    bottom: 14px;
+    left: 14px;
+    width: auto;
   }
 
   .cookie-banner__actions {
