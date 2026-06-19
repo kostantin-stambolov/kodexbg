@@ -11,6 +11,12 @@ Static one-page website for Kodex Publishing.
 - `/terms.html` - terms and conditions
 - `/privacy.html` - privacy policy
 
+## References
+
+Internal notes and strategy references live in [`references/`](./references/):
+
+- [Alex Hormozi — детска книжка, оферта и канали](./references/hormozi-detska-kniga.md)
+
 ## GitHub Pages
 
 The site is ready to publish from the repository root. The custom domain is configured through `CNAME`:
