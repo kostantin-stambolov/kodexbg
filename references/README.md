@@ -7,3 +7,4 @@
 | Файл | Тема |
 |------|------|
 | [hormozi-detska-kniga.md](./hormozi-detska-kniga.md) | Alex Hormozi — оферта, канали и стратегия за детска книжка |
+| [prikazka-za-gluhoto-gorsko-chudovishte.md](./prikazka-za-gluhoto-gorsko-chudovishte.md) | Пълен текст на историята, от която е адаптирана детската книжка |
