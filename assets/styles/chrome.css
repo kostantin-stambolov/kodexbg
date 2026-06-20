@@ -34,6 +34,13 @@
   --chrome-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Reset the default 8px body margin every browser ships with, so the
+   page background always reaches the true viewport edge regardless of
+   which page-specific stylesheet is also loaded. */
+body {
+  margin: 0;
+}
+
 .page {
   min-height: 100vh;
 }
