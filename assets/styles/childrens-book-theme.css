@@ -1,0 +1,322 @@
+/*
+  Childrens Book Theme
+  --------------------
+  Warm editorial design system for the BODY content of children's-book
+  offer pages. Scoped under .cb-page so it never leaks into the main
+  site's Inter/--paper/--ink design system (assets/site-consent3.css).
+
+  Header and footer are NOT part of this theme: pages using this file
+  must also link assets/styles/chrome.css and use the universal
+  .shell/.topbar/.brand/.nav/.footer markup (see chrome.css for the
+  contract) so the chrome looks and measures identically on every page,
+  book-themed or not.
+
+  Fonts: Alegreya (display serif) + Alegreya Sans (body).
+  Load via:
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;0,800;1,500;1,700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+*/
+
+.cb-page {
+  --cb-font-brand: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, ui-sans-serif, system-ui, sans-serif;
+  --cb-bg: #f4ecdf;
+  --cb-paper: #fcf8f0;
+  --cb-paper-strong: #fbf2e9;
+  --cb-ink: #211c18;
+  --cb-ink-soft: #2b2521;
+  --cb-text: #544a40;
+  --cb-text-soft: #6a5f51;
+  --cb-muted: #8a7d6c;
+  --cb-line: rgba(43, 37, 33, 0.1);
+  --cb-accent: #bc4e2b;
+  --cb-accent-strong: #a23f20;
+  --cb-accent-soft: #f4ddd0;
+  --cb-accent-soft-line: #e6c3b2;
+  --cb-sage: #5b7a4f;
+  --cb-sage-soft: #e6ecd9;
+  --cb-sage-soft-line: #d2dcbf;
+  --cb-sage-text: #46603c;
+  --cb-shadow-card: 0 18px 36px -26px rgba(43, 37, 33, 0.2);
+  --cb-shadow-pop: 0 26px 50px -24px rgba(188, 78, 43, 0.4);
+  --cb-font-display: 'Alegreya', Georgia, serif;
+  --cb-font-body: 'Alegreya Sans', sans-serif;
+
+  background: var(--cb-bg);
+  background-image: radial-gradient(rgba(43, 37, 33, 0.045) 1px, transparent 1px);
+  background-size: 27px 27px;
+  color: var(--cb-ink-soft);
+  font-family: var(--cb-font-body);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.cb-page * {
+  box-sizing: border-box;
+}
+
+.cb-page ::selection {
+  background: var(--cb-accent);
+  color: #fff;
+}
+
+@keyframes cb-floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes cb-floaty2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.cb-float { animation: cb-floaty 7s ease-in-out infinite; }
+.cb-float-alt { animation: cb-floaty2 8s ease-in-out infinite; }
+
+/* Layout
+   Full-bleed band: breaks .shell out to the viewport edge while keeping
+   its inner content aligned to the same column (same calc trick as
+   .landing-offers in assets/site-consent3.css). Uses the shared --max
+   from chrome.css. Use on sections with a distinct background fill that
+   should visually run edge-to-edge. */
+.cb-band {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: calc(50vw - min(var(--max), calc(100vw - 40px)) / 2);
+  padding-right: calc(50vw - min(var(--max), calc(100vw - 40px)) / 2);
+}
+.cb-section { padding: 84px 0 30px; position: relative; }
+.cb-section-tight { padding: 60px 0 30px; }
+.cb-kicker {
+  font-family: var(--cb-font-body);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--cb-sage);
+}
+.cb-kicker.is-accent { color: var(--cb-accent); }
+
+/* Header/footer chrome is NOT defined here on purpose — see chrome.css.
+   The brand/nav text inside .topbar still inherits the system sans
+   stack from chrome.css (not Alegreya), which is intentional: the logo
+   wordmark stays identical everywhere regardless of page theme. */
+
+/* Buttons */
+.cb-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  border-radius: 999px; padding: 16px 28px; text-decoration: none;
+  font-weight: 700; font-size: 17px; cursor: pointer; border: none;
+}
+.cb-btn-primary { background: var(--cb-accent); color: #fff; box-shadow: 0 12px 24px -10px rgba(188, 78, 43, .7); }
+.cb-btn-outline { background: transparent; color: var(--cb-ink-soft); border: 1.5px solid rgba(43, 37, 33, .25); }
+.cb-btn-outline-dark { background: transparent; color: #f6efe2; border: 1.5px solid rgba(246, 239, 226, .35); }
+.cb-btn-light { background: #fff; border: 1.5px solid var(--cb-ink-soft); color: var(--cb-ink-soft); width: 100%; }
+.cb-btn-block { display: flex; width: 100%; margin-top: 16px; }
+.cb-price-card .cb-btn-block { margin-top: auto; }
+
+/* Hero */
+.cb-hero {
+  display: grid; grid-template-columns: 1.04fr .96fr; gap: 56px;
+  padding: 64px 0 56px; align-items: center; position: relative;
+}
+.cb-hero-copy { position: relative; z-index: 2; }
+.cb-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--cb-accent-soft); color: var(--cb-accent-strong);
+  border: 1px solid var(--cb-accent-soft-line); border-radius: 999px;
+  padding: 7px 15px; font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+}
+.cb-badge-dot { width: 7px; height: 7px; border-radius: 99px; background: var(--cb-accent); display: inline-block; }
+.cb-hero h1 {
+  font-family: var(--cb-font-display); font-weight: 800; font-size: 78px;
+  line-height: .98; letter-spacing: -.01em; margin: 22px 0 0; color: var(--cb-ink);
+}
+.cb-hero p { font-size: 21px; line-height: 1.5; color: var(--cb-text); max-width: 480px; margin: 24px 0 0; }
+.cb-hero-actions { display: flex; align-items: center; gap: 14px; margin-top: 34px; }
+.cb-hero-meta { display: flex; align-items: center; gap: 16px; margin-top: 26px; color: #7a6e5e; font-weight: 600; font-size: 15px; }
+.cb-rating { display: flex; align-items: center; gap: 6px; }
+.cb-stars { color: var(--cb-accent); font-size: 17px; }
+.cb-meta-dot { width: 5px; height: 5px; border-radius: 99px; background: #c5b9a6; }
+
+.cb-hero-art { position: relative; height: 560px; }
+.cb-hero-art img.cb-float,
+.cb-hero-art img.cb-float-alt { position: absolute; filter: drop-shadow(0 8px 12px rgba(43, 37, 33, .2)); }
+.cb-cover-frame {
+  position: absolute; top: 8px; left: 50%; transform: translateX(-50%) rotate(-2.5deg);
+  width: 420px; background: #fff; padding: 14px 14px 16px; border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(43, 37, 33, .1), 0 36px 60px -24px rgba(43, 37, 33, .4); z-index: 2;
+}
+.cb-cover-frame img { width: 100%; display: block; border-radius: 4px; }
+
+/* Trust strip */
+.cb-trust {
+  display: flex; align-items: stretch; justify-content: center;
+  border-top: 1px solid var(--cb-line); border-bottom: 1px solid var(--cb-line);
+}
+.cb-trust-item { flex: 1; padding: 20px 24px; text-align: center; border-right: 1px solid var(--cb-line); }
+.cb-trust-item:last-child { border-right: none; }
+.cb-trust-num { font-family: var(--cb-font-display); font-weight: 800; font-size: 24px; }
+.cb-trust-num.is-accent { color: var(--cb-accent); }
+.cb-trust-num.is-sage { color: var(--cb-sage); }
+.cb-trust-label { font-size: 14px; color: #7a6e5e; font-weight: 600; }
+
+/* Story */
+.cb-story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.cb-story-grid h2 {
+  font-family: var(--cb-font-display); font-weight: 800; font-size: 52px;
+  line-height: 1.04; letter-spacing: -.01em; margin: 14px 0 0; color: var(--cb-ink);
+}
+.cb-story-grid p { font-size: 19px; line-height: 1.62; color: var(--cb-text); margin: 18px 0 0; }
+.cb-illustration-card {
+  background: #fff; padding: 14px; border-radius: 14px;
+  box-shadow: 0 2px 6px rgba(43, 37, 33, .08), 0 30px 56px -26px rgba(43, 37, 33, .4);
+  transform: rotate(-1deg); position: relative;
+}
+.cb-illustration-card img { width: 100%; display: block; border-radius: 7px; }
+.cb-illustration-caption {
+  font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: .04em;
+  color: #a8927a; text-align: center; padding: 10px 0 4px;
+}
+
+/* Excerpt quote */
+.cb-excerpt {
+  margin-top: 60px; background: var(--cb-sage-soft); border: 1px solid var(--cb-sage-soft-line);
+  border-radius: 20px; padding: 52px 64px; display: flex; align-items: center; gap: 44px;
+  position: relative; overflow: hidden;
+}
+.cb-excerpt-mark { font-family: var(--cb-font-display); font-weight: 800; font-size: 120px; line-height: .6; color: var(--cb-sage); opacity: .5; }
+.cb-excerpt p {
+  font-family: var(--cb-font-display); font-style: italic; font-weight: 500;
+  font-size: 29px; line-height: 1.42; color: #34402b; margin: 0; max-width: 760px;
+}
+.cb-excerpt-source { font-family: var(--cb-font-body); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: #6f7d59; margin-top: 18px; }
+
+/* Generic section heading */
+.cb-section-head { text-align: center; max-width: 680px; margin: 0 auto; }
+.cb-section-head h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 46px; line-height: 1.06; margin: 14px 0 0; color: var(--cb-ink); }
+.cb-section-head p { font-size: 18px; line-height: 1.55; color: var(--cb-text-soft); margin: 16px 0 0; }
+
+/* Feature cards (what's inside) */
+.cb-feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 48px; }
+.cb-feature-card {
+  background: var(--cb-paper); border: 1px solid rgba(43, 37, 33, .09); border-radius: 18px; padding: 30px 26px;
+  box-shadow: 0 1px 2px rgba(43, 37, 33, .04), 0 18px 34px -22px rgba(43, 37, 33, .18);
+}
+.cb-feature-icon { width: 74px; height: 74px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.cb-feature-icon.is-accent { background: var(--cb-accent-soft); }
+.cb-feature-icon.is-sage { background: var(--cb-sage-soft); }
+.cb-feature-card h3 { font-family: var(--cb-font-display); font-weight: 800; font-size: 22px; margin-top: 20px; color: var(--cb-ink); }
+.cb-feature-card p { font-size: 16px; line-height: 1.5; color: var(--cb-text-soft); margin-top: 7px; }
+
+/* Pricing */
+.cb-pricing { margin-top: 84px; background: #ece1cf; border-top: 1px solid rgba(43, 37, 33, .07); border-bottom: 1px solid rgba(43, 37, 33, .07); padding-top: 72px; padding-bottom: 80px; }
+.cb-pricing-head { text-align: center; max-width: 720px; margin: 0 auto; }
+.cb-pricing-head h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 50px; line-height: 1.04; margin: 14px 0 0; color: var(--cb-ink); }
+.cb-urgency-badge {
+  display: inline-flex; align-items: center; gap: 9px; margin-top: 20px;
+  background: var(--cb-accent-soft); color: var(--cb-accent-strong); border: 1px solid var(--cb-accent-soft-line);
+  border-radius: 999px; padding: 8px 16px; font-weight: 700; font-size: 14px;
+}
+.cb-urgency-dot { width: 8px; height: 8px; border-radius: 99px; background: var(--cb-accent); box-shadow: 0 0 0 4px rgba(188, 78, 43, .18); }
+
+.cb-price-grid { display: grid; grid-template-columns: 1.08fr 1fr 1fr; gap: 24px; margin-top: 48px; align-items: stretch; }
+.cb-price-card { display: flex; flex-direction: column; background: var(--cb-paper); border: 1px solid rgba(43, 37, 33, .12); border-radius: 22px; padding: 34px 30px; box-shadow: var(--cb-shadow-card); position: relative; }
+.cb-price-card.is-featured { background: var(--cb-paper-strong); border: 2px solid var(--cb-accent); padding: 34px 32px; box-shadow: var(--cb-shadow-pop); }
+.cb-price-row { display: flex; align-items: center; justify-content: space-between; }
+.cb-price-pill { border-radius: 999px; padding: 5px 13px; font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.cb-price-pill.is-accent { background: var(--cb-accent); color: #fff; }
+.cb-price-pill.is-sage { background: var(--cb-sage-soft); color: var(--cb-sage-text); }
+.cb-price-amount { text-align: right; }
+.cb-price-amount strong { font-family: var(--cb-font-display); font-weight: 800; font-size: 40px; color: var(--cb-ink); line-height: 1; }
+.cb-price-amount span { font-size: 22px; font-weight: 800; color: #7a6e5e; }
+.cb-price-card h3 { font-family: var(--cb-font-display); font-weight: 800; font-size: 28px; margin: 18px 0 0; color: var(--cb-ink); }
+.cb-price-card > p { font-size: 16px; line-height: 1.5; color: var(--cb-text-soft); margin: 8px 0 0; }
+.cb-savings { display: inline-block; margin-top: 14px; background: var(--cb-sage-soft); color: var(--cb-sage-text); border-radius: 8px; padding: 5px 11px; font-weight: 700; font-size: 13px; }
+.cb-divider { height: 1px; background: rgba(43, 37, 33, .1); margin: 22px 0; }
+.cb-feature-list { display: flex; flex-direction: column; gap: 12px; font-size: 16px; color: #3f372f; font-weight: 500; list-style: none; padding: 0; margin: 0; }
+.cb-feature-list li { display: flex; gap: 11px; align-items: flex-start; }
+.cb-check { font-weight: 800; }
+.cb-check.is-accent { color: var(--cb-accent); }
+.cb-check.is-sage { color: var(--cb-sage); }
+.cb-quantity-row {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #fff; border: 1px solid rgba(43, 37, 33, .14); border-radius: 11px; padding: 12px 16px; margin-top: 20px;
+}
+.cb-quantity-row span { font-weight: 700; color: #4a4138; }
+.cb-select { border: 1px solid rgba(43, 37, 33, .2); border-radius: 8px; padding: 6px 12px; font-family: var(--cb-font-body); font-weight: 700; font-size: 15px; color: var(--cb-ink-soft); background: var(--cb-paper); }
+.cb-pricing-note { text-align: center; color: var(--cb-muted); font-size: 15px; margin: 28px 0 0; font-weight: 600; }
+
+/* Reviews */
+.cb-reviews-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; }
+.cb-reviews-head h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 46px; line-height: 1.05; margin: 14px 0 0; color: var(--cb-ink); }
+.cb-rating-summary { text-align: right; flex: none; }
+.cb-rating-summary .cb-stars { font-size: 22px; letter-spacing: 2px; }
+.cb-rating-summary span { font-size: 15px; color: #7a6e5e; font-weight: 600; margin-top: 2px; display: block; }
+.cb-review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+.cb-review-card { background: var(--cb-paper); border: 1px solid rgba(43, 37, 33, .09); border-radius: 18px; padding: 30px; box-shadow: var(--cb-shadow-card); }
+.cb-review-card .cb-stars { font-size: 17px; letter-spacing: 1px; }
+.cb-review-card p { font-family: var(--cb-font-display); font-size: 20px; line-height: 1.5; color: #34302a; margin: 14px 0 0; font-weight: 500; }
+.cb-review-author { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
+.cb-review-avatar {
+  width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: var(--cb-font-display); font-weight: 800;
+}
+.cb-review-avatar.is-accent { background: var(--cb-accent-soft); color: var(--cb-accent-strong); }
+.cb-review-avatar.is-sage { background: var(--cb-sage-soft); color: var(--cb-sage-text); }
+.cb-review-name { font-weight: 700; color: var(--cb-ink-soft); }
+.cb-review-role { font-size: 14px; color: var(--cb-muted); }
+
+/* Preview */
+.cb-preview-panel { background: #f7efe1; border: 1px solid var(--cb-line); border-radius: 24px; padding: 52px 56px; display: grid; grid-template-columns: .86fr 1.14fr; gap: 50px; align-items: center; }
+.cb-preview-panel h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 44px; line-height: 1.04; margin: 14px 0 0; color: var(--cb-ink); }
+.cb-preview-panel p { font-size: 18px; line-height: 1.58; color: var(--cb-text-soft); margin: 16px 0 0; }
+.cb-preview-stack { display: flex; gap: 18px; justify-content: flex-end; }
+.cb-preview-page {
+  width: 172px; aspect-ratio: 3/4; background: #fff; border: 1px solid rgba(43, 37, 33, .12); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px;
+}
+.cb-preview-page span { font-family: ui-monospace, monospace; font-size: 10.5px; letter-spacing: .04em; color: #a8927a; line-height: 1.6; }
+
+/* FAQ */
+.cb-faq-list { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.cb-faq-item { background: var(--cb-paper); border: 1px solid var(--cb-line); border-radius: 16px; padding: 4px 28px; }
+.cb-faq-item summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 0; font-family: var(--cb-font-display); font-weight: 700; font-size: 21px; color: var(--cb-ink);
+}
+.cb-faq-item summary::-webkit-details-marker { display: none; }
+.cb-faq-plus { color: var(--cb-accent); font-size: 26px; font-weight: 400; }
+.cb-faq-item p { font-size: 17px; line-height: 1.6; color: var(--cb-text-soft); margin: 0 0 22px; max-width: 720px; }
+
+/* Author */
+.cb-author-panel {
+  background: var(--cb-paper); border: 1px solid var(--cb-line); border-radius: 24px; padding: 52px 56px;
+  display: grid; grid-template-columns: .5fr 1fr; gap: 48px; align-items: center; position: relative; overflow: hidden;
+}
+.cb-author-photo {
+  width: 200px; height: 200px; border-radius: 50%; border: 1.5px dashed #c2a98f; background: rgba(255, 255, 255, .5);
+  display: flex; align-items: center; justify-content: center; text-align: center; padding: 18px; margin: 0 auto;
+}
+.cb-author-photo span { font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: .04em; color: #a8927a; line-height: 1.6; }
+.cb-author-panel h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 48px; line-height: 1.02; margin: 12px 0 0; color: var(--cb-ink); }
+.cb-author-panel p { font-size: 19px; line-height: 1.6; color: var(--cb-text); margin: 18px 0 0; max-width: 560px; }
+
+/* Final CTA */
+.cb-final-cta { background: var(--cb-ink-soft); border-radius: 26px; padding: 64px 56px; position: relative; overflow: hidden; }
+.cb-final-cta-copy { position: relative; z-index: 2; max-width: 620px; }
+.cb-final-cta h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 50px; line-height: 1.04; color: #f6efe2; margin: 0; }
+.cb-final-cta p { font-size: 19px; line-height: 1.55; color: #cbbfac; margin: 18px 0 0; }
+.cb-final-cta-actions { display: flex; align-items: center; gap: 14px; margin-top: 32px; }
+.cb-final-cta-meta { display: flex; gap: 26px; margin-top: 28px; color: #b6aa97; font-weight: 600; font-size: 15px; }
+
+/* Responsive */
+@media (max-width: 960px) {
+  .cb-hero { grid-template-columns: 1fr; }
+  .cb-hero-art { height: 380px; }
+  .cb-hero h1 { font-size: 52px; }
+  .cb-story-grid { grid-template-columns: 1fr; }
+  .cb-feature-grid { grid-template-columns: repeat(2, 1fr); }
+  .cb-price-grid { grid-template-columns: 1fr; }
+  .cb-review-grid { grid-template-columns: 1fr; }
+  .cb-preview-panel, .cb-author-panel { grid-template-columns: 1fr; }
+}

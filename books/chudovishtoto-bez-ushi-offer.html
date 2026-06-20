@@ -23,6 +23,7 @@
   <link rel="icon" type="image/svg+xml" href="../assets/kodex-icon.svg" />
   <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32.png" />
   <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png" />
+  <link rel="stylesheet" href="../assets/styles/chrome.css" />
   <link rel="stylesheet" href="../assets/site-consent3.css" />
   <script src="../assets/analytics-consent3.js" defer></script>
   <script type="application/ld+json">
@@ -63,63 +64,62 @@
         </nav>
       </header>
 
-      <main class="offer-page">
-        <section class="offer-hero" aria-labelledby="offer-title">
-          <div class="offer-hero-copy">
-            <span class="badge">Нова детска книга</span>
+      <main class="landing-offer-page">
+        <section class="landing-hero" aria-labelledby="offer-title">
+          <div class="landing-hero-copy">
+            <span class="landing-kicker">Детска книга</span>
             <h1 id="offer-title">Чудовището без уши</h1>
-            <p class="lead">
+            <p>
               История за различността, самотата и приятелството, която децата могат да почувстват, а възрастните да използват като начало на разговор.
             </p>
-            <div class="offer-hero-actions">
-              <a class="button copper" href="#offers" data-book="chudovishtoto-bez-ushi" data-cta="hero_choose_offer" data-track-event="hero_choose_offer_click">Избери издание</a>
-              <a class="button secondary" href="../assets/books/chudovishtoto-bez-ushi/previews/pregled-chudovishtoto-bez-ushi.pdf" target="_blank" rel="noopener" data-book="chudovishtoto-bez-ushi" data-cta="hero_preview_pdf" data-track-event="hero_preview_pdf_click">Бърз преглед</a>
-            </div>
-            <p class="offer-microcopy">За деца 5+ години • подходяща за подарък • първо издание</p>
+            <a class="button copper landing-primary" href="#offers" data-book="chudovishtoto-bez-ushi" data-cta="hero_order" data-track-event="hero_order_click">Вземи книгата</a>
+            <small>Включена доставка</small>
           </div>
-          <div class="offer-hero-media">
+          <div class="landing-hero-art">
             <img src="../assets/books/chudovishtoto-bez-ushi/previews/monster-without-ears-cover.jpg" alt="Корица на детската книга Чудовището без уши от Костантин Стамболов" />
-            <div class="image-slot">Място за lifestyle снимка: книга в ръце / подаръчна опаковка</div>
           </div>
         </section>
 
+        <section class="landing-stats" aria-label="Детайли за книгата">
+          <div><strong>4-8</strong><span>години аудитория</span></div>
+          <div><strong>36</strong><span>страници</span></div>
+          <div><strong>2026</strong><span>година на издаване</span></div>
+        </section>
 
-        <section class="offer-section" id="offers" aria-labelledby="offers-title">
-          <div class="offer-section-head">
-            <span class="section-label">Избери издание</span>
+        <section class="landing-offers" id="offers" aria-labelledby="offers-title">
+          <div class="landing-section-head">
+            <span class="landing-kicker">Изберете издание</span>
             <h2 id="offers-title">Как искате да получите книгата?</h2>
           </div>
 
-          <div class="commerce-grid" aria-label="Издания на книгата">
-            <article class="commerce-card recommended">
-              <div class="commerce-topline">
-                <span class="badge">Препоръчано</span>
-                <strong>39 лв.</strong>
+          <div class="landing-price-grid" aria-label="Издания на книгата">
+            <article class="landing-price-card">
+              <div class="landing-price-row">
+                <h3>Подаръчен пакет</h3>
+                <strong>15€</strong>
               </div>
-              <h3>Подаръчен пакет</h3>
-              <p>Най-пълният вариант: печатна книга плюс дигитални материали за четене, подаряване и разговор с детето.</p>
               <ul>
                 <li>Печатна книга</li>
                 <li>Дигитална версия</li>
-                <li>5 въпроса за разговор</li>
+                <li>PDF с въпроси за разговор</li>
                 <li>Оцветявка и картичка за подарък</li>
               </ul>
-              <button class="button copper" type="button" data-checkout-open data-package="Подаръчен пакет" data-price="39 лв." data-book="chudovishtoto-bez-ushi" data-cta="buy_gift_bundle" data-track-event="buy_gift_bundle_click">Избери подаръчен пакет</button>
+              <button class="landing-card-button" type="button" data-checkout-open data-package="Подаръчен пакет" data-price="15€" data-book="chudovishtoto-bez-ushi" data-cta="buy_gift_bundle" data-track-event="buy_gift_bundle_click">Поръчай пакет</button>
             </article>
 
-            <article class="commerce-card">
-              <div class="commerce-topline">
-                <span class="badge">Печатно</span>
-                <strong>24 лв.</strong>
+            <article class="landing-price-card is-featured">
+              <span class="landing-ribbon">Най-популярно</span>
+              <div class="landing-price-row">
+                <h3>Печатно издание</h3>
+                <strong>10€</strong>
               </div>
-              <h3>Печатно издание</h3>
-              <p>Книга за домашната библиотека, подарък или спокойно вечерно четене.</p>
               <ul>
-                <li>Първо издание</li>
-                <li>Подходящо за деца 5+ години</li>
+                <li>Печатна книга</li>
+                <li>Доставка включена</li>
+                <li>Подходящо за подарък</li>
                 <li>Количество до 10 броя</li>
               </ul>
-              <label class="compact-quantity" for="print-quantity">
+              <label class="landing-quantity" for="print-quantity">
                 <span>Брой</span>
                 <select id="print-quantity" data-checkout-quantity>
                   <option value="1">1</option>
@@ -134,78 +134,88 @@
                   <option value="10">10</option>
                 </select>
               </label>
-              <button class="button secondary" type="button" data-checkout-open data-package="Печатно издание" data-price="24 лв." data-book="chudovishtoto-bez-ushi" data-cta="buy_print" data-track-event="buy_print_click">Купи печатно издание</button>
+              <button class="landing-card-button primary" type="button" data-checkout-open data-package="Печатно издание" data-price="10€" data-book="chudovishtoto-bez-ushi" data-cta="buy_print" data-track-event="buy_print_click">Поръчай сега</button>
             </article>
 
-            <article class="commerce-card">
-              <div class="commerce-topline">
-                <span class="badge">Дигитално</span>
-                <strong>14 лв.</strong>
+            <article class="landing-price-card">
+              <div class="landing-price-row">
+                <h3>Дигитална версия</h3>
+                <strong>5€</strong>
               </div>
-              <h3>Дигитална версия</h3>
-              <p>Бърз достъп до историята, подходящ за четене веднага или когато сте извън България.</p>
               <ul>
-                <li>PDF версия на книгата</li>
-                <li>Дигитален download</li>
+                <li>PDF версия</li>
+                <li>Незабавен достъп</li>
+                <li>Четене на всяко устройство</li>
                 <li>Бонус въпроси за разговор</li>
               </ul>
-              <button class="button secondary" type="button" data-checkout-open data-package="Дигитална версия" data-price="14 лв." data-book="chudovishtoto-bez-ushi" data-cta="buy_digital" data-track-event="buy_digital_click">Купи дигитална версия</button>
+              <button class="landing-card-button" type="button" data-checkout-open data-package="Дигитална версия" data-price="5€" data-book="chudovishtoto-bez-ushi" data-cta="buy_digital" data-track-event="buy_digital_click">Вземи сега</button>
             </article>
           </div>
         </section>
 
-        <section class="offer-proof" aria-label="За кого е книгата">
-          <p><strong>За родители</strong><span>когато искат смислена история преди сън.</span></p>
-          <p><strong>За подарък</strong><span>когато играчката не е достатъчна.</span></p>
-          <p><strong>За разговор</strong><span>когато темата е различност, страх или приемане.</span></p>
-        </section>
-
-        <section class="story-sell-section" aria-labelledby="story-title">
+        <section class="landing-story" aria-labelledby="story-title">
+          <h2 id="story-title">Голямо чудовище, което просто иска да бъде чуто.</h2>
           <div>
-            <span class="section-label">Историята</span>
-            <h2 id="story-title">Голямо чудовище, което просто иска да бъде чуто.</h2>
             <p>
-              В тиха гора живее добродушно чудовище без уши. То не плаши никого нарочно, но всички се отдръпват, защото не го разбират.
+              В тиха гора живее голямо, пухкаво и добродушно чудовище без уши. Животните го избягват, защото не знаят какво иска, а то самото не може да ги чуе.
             </p>
             <p>
-              Всяка вечер чудовището слуша човешки приказки, докато една фея не открива защо стои само в тъмното. Оттам започва пътят му към глас, приятели и място, където да принадлежи.
+              Историята е за приемането, което не само децата, но и родителите понякога имат нужда да си припомнят.
             </p>
+            <span>За деца и техните родители</span>
           </div>
-          <div class="image-slot tall">Място за илюстрация: чудовището слуша под прозореца</div>
         </section>
 
-        <section class="preview-band" aria-labelledby="preview-title">
+        <section class="landing-preview" aria-labelledby="preview-title">
           <div>
-            <span class="section-label">Преглед</span>
+            <span class="landing-kicker">Предварителен преглед</span>
             <h2 id="preview-title">Вижте първите страници.</h2>
-            <p>Кратък PDF преглед, за да усетите текста, атмосферата и визуалния свят на книгата.</p>
-            <a class="button secondary" href="../assets/books/chudovishtoto-bez-ushi/previews/pregled-chudovishtoto-bez-ushi.pdf" target="_blank" rel="noopener" data-book="chudovishtoto-bez-ushi" data-cta="preview_pdf" data-track-event="preview_pdf_click">Отвори PDF преглед</a>
+            <p>Разгледайте началото на историята и усетете тона на книгата, преди да поръчате.</p>
+            <a class="landing-outline" href="../assets/books/chudovishtoto-bez-ushi/previews/pregled-chudovishtoto-bez-ushi.pdf" target="_blank" rel="noopener" data-book="chudovishtoto-bez-ushi" data-cta="preview_pdf" data-track-event="preview_pdf_click">Виж PDF преглед</a>
           </div>
-          <div class="preview-thumbs" aria-label="Места за preview страници">
-            <span>Preview страница 1</span>
-            <span>Preview страница 2</span>
-            <span>Preview страница 3</span>
+          <div class="landing-image-slot">Място за снимка на отворена книга / preview страници</div>
+        </section>
+
+        <section class="landing-use" aria-labelledby="use-title">
+          <span class="landing-kicker">За кого е</span>
+          <h2 id="use-title">Малки моменти, които остават.</h2>
+          <div class="landing-use-grid">
+            <article>
+              <h3>За децата</h3>
+              <p>Книга, която разказва за различното по начин, който децата разбират чрез приключение, хумор и емпатия.</p>
+            </article>
+            <article>
+              <h3>Подарък</h3>
+              <p>Идея за дете на 5+ години, когато искате нещо по-смислено от поредната вещ.</p>
+            </article>
+            <article>
+              <h3>За вас и другите</h3>
+              <p>За родители, учители и всички, които вярват, че добрите книги оставят следа.</p>
+            </article>
           </div>
         </section>
 
-        <section class="use-cases" aria-labelledby="use-cases-title">
-          <span class="section-label">Подходяща е за</span>
-          <h2 id="use-cases-title">Малки моменти, които остават.</h2>
-          <div class="use-case-grid">
-            <article><strong>Вечерно четене</strong><span>Кратка история с тих емоционален център.</span></article>
-            <article><strong>Подарък</strong><span>По-смислен избор от поредната вещ.</span></article>
-            <article><strong>Разговор</strong><span>Мек вход към теми като различност и принадлежност.</span></article>
-          </div>
-        </section>
-
-        <section class="author-mini" aria-labelledby="author-title">
+        <section class="landing-author" aria-labelledby="author-title">
           <div>
-            <span class="section-label">Автор</span>
+            <span class="landing-kicker">Автор</span>
             <h2 id="author-title">Костантин Стамболов</h2>
+            <p>
+              Нов автор на детски истории, който пише за малки и пораснали читатели с внимание към тихите чувства, различността и нуждата да бъдем разбрани.
+            </p>
+            <p>
+              Вярва, че добрата детска книга е мост между поколенията - поводът за разговор, който иначе никога не би се случил.
+            </p>
           </div>
-          <p>
-            Нов автор на детски истории, който пише за малки и пораснали читатели с внимание към тихите чувства, различността и нуждата да бъдем разбрани.
-          </p>
+          <div class="landing-image-slot portrait">Място за авторска снимка</div>
+        </section>
+
+        <section class="landing-final soft-final" aria-labelledby="final-title">
+          <div>
+            <span class="landing-kicker">Финална стъпка</span>
+            <h2 id="final-title">Готови за история?</h2>
+            <p>Изберете издание и подарете книга, която отваря разговор.</p>
+          </div>
+          <a class="button copper" href="#offers" data-book="chudovishtoto-bez-ushi" data-cta="final_order" data-track-event="final_order_click">Към изданията</a>
         </section>
 
         <div class="checkout-overlay" hidden data-checkout-overlay>
