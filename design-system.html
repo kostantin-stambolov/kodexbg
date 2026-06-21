@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Дизайн система | Kodex Publishing</title>
+<meta name="description" content="Вътрешна дизайн система на Kodex Publishing — цветове, типография, компоненти и интеракции." />
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/svg+xml" href="assets/kodex-icon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;0,800;1,500;1,700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles/chrome.css" />
+<link rel="stylesheet" href="assets/styles/childrens-book-theme.css" />
+<style>
+  /* Page-only scaffolding for the styleguide. Not part of the theme. */
+  .ds-hero { padding: 56px 0 8px; }
+  .ds-hero h1 { font-family: var(--cb-font-display); font-weight: 800; font-size: 60px; line-height: 1; letter-spacing: -.01em; margin: 14px 0 0; color: var(--cb-ink); }
+  .ds-hero p { font-size: 20px; line-height: 1.5; color: var(--cb-text); max-width: 620px; margin: 18px 0 0; }
+  .ds-toc { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0 0; }
+  .ds-toc a {
+    font-size: 14px; font-weight: 700; text-decoration: none; color: var(--cb-text);
+    background: var(--cb-paper); border: 1px solid var(--cb-line); border-radius: 999px; padding: 7px 15px;
+    transition: border-color .16s ease, color .16s ease, transform .16s ease;
+  }
+  .ds-toc a:hover { color: var(--cb-accent); border-color: var(--cb-accent-soft-line); transform: translateY(-2px); }
+
+  .ds-section { padding: 64px 0 8px; border-top: 1px solid var(--cb-line); margin-top: 56px; }
+  .ds-section:first-of-type { border-top: none; margin-top: 24px; }
+  .ds-section > h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 38px; line-height: 1.05; margin: 0; color: var(--cb-ink); }
+  .ds-section > .ds-lead { font-size: 17px; line-height: 1.55; color: var(--cb-text-soft); margin: 12px 0 0; max-width: 640px; }
+  .ds-sub { font-family: var(--cb-font-body); font-weight: 800; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--cb-muted); margin: 40px 0 18px; }
+
+  .ds-swatches { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .ds-swatch-chip { height: 76px; border-radius: 14px; border: 1px solid var(--cb-line); }
+  .ds-swatch-name { font-size: 13px; font-weight: 700; color: var(--cb-ink-soft); margin-top: 10px; font-family: ui-monospace, monospace; }
+  .ds-swatch-hex { font-size: 12px; color: var(--cb-muted); font-family: ui-monospace, monospace; margin-top: 2px; }
+
+  .ds-states { display: flex; flex-wrap: wrap; gap: 26px; align-items: flex-start; }
+  .ds-state { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .ds-state-label { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--cb-muted); }
+  .ds-panel-dark { background: var(--cb-ink-soft); border-radius: 18px; padding: 28px 30px; }
+  .ds-panel-dark .ds-state-label { color: #b6aa97; }
+
+  .ds-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .ds-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+  .ds-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .ds-maxform { max-width: 520px; display: flex; flex-direction: column; gap: 18px; }
+
+  .ds-type-row { display: flex; align-items: baseline; gap: 20px; padding: 14px 0; border-bottom: 1px dashed var(--cb-line); }
+  .ds-type-meta { flex: 0 0 150px; font-family: ui-monospace, monospace; font-size: 12px; color: var(--cb-muted); }
+
+  .ds-note-badge {
+    display: inline-block; background: var(--cb-sage-soft); color: var(--cb-sage-text);
+    border-radius: 8px; padding: 4px 10px; font-size: 12px; font-weight: 800;
+    letter-spacing: .06em; text-transform: uppercase; margin-left: 10px; vertical-align: middle;
+  }
+
+  @media (max-width: 760px) {
+    .ds-swatches { grid-template-columns: repeat(2, 1fr); }
+    .ds-grid-2, .ds-grid-3 { grid-template-columns: 1fr; }
+    .ds-hero h1 { font-size: 44px; }
+  }
+</style>
+</head>
+<body>
+<div class="cb-page">
+<div class="shell">
+
+  <header class="topbar" aria-label="Основна навигация">
+    <a class="brand" href="index.html" aria-label="Kodex Publishing начало">
+      <img class="brand-mark" src="assets/kodex-icon.svg" alt="Икона Kodex Publishing" />
+      <span>
+        <span class="brand-name">Kodex</span>
+        <span class="brand-note">Publishing House</span>
+      </span>
+    </a>
+    <nav class="nav" aria-label="Секции">
+      <a href="books.html">Каталог</a>
+      <a class="nav-cta" href="contact.html">Запитвания</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="ds-hero">
+      <div class="cb-kicker is-accent">Вътрешна документация</div>
+      <h1>Дизайн система</h1>
+      <p>Градивните елементи на Kodex — цветове, типография, компоненти и техните състояния при интеракция. Източник: офертната страница „Чудовището без уши“. Тази страница не се индексира.</p>
+      <nav class="ds-toc" aria-label="Съдържание">
+        <a href="#colors">Цветове</a>
+        <a href="#type">Типография</a>
+        <a href="#buttons">Бутони</a>
+        <a href="#badges">Баджове и тагове</a>
+        <a href="#cards">Карти</a>
+        <a href="#forms">Форми</a>
+        <a href="#faq">Акордеон</a>
+        <a href="#proposals">Предложения</a>
+      </nav>
+    </div>
+
+    <!-- COLORS -->
+    <section class="ds-section" id="colors">
+      <h2>Цветове</h2>
+      <p class="ds-lead">Топла редакторска палитра. Всеки цвят е CSS променлива в <code>.cb-page</code>, така че може да се пренастрои на едно място.</p>
+
+      <div class="ds-sub">Повърхности</div>
+      <div class="ds-swatches">
+        <div><div class="ds-swatch-chip" style="background:#f4ecdf;"></div><div class="ds-swatch-name">--cb-bg</div><div class="ds-swatch-hex">#f4ecdf</div></div>
+        <div><div class="ds-swatch-chip" style="background:#fcf8f0;"></div><div class="ds-swatch-name">--cb-paper</div><div class="ds-swatch-hex">#fcf8f0</div></div>
+        <div><div class="ds-swatch-chip" style="background:#fbf2e9;"></div><div class="ds-swatch-name">--cb-paper-strong</div><div class="ds-swatch-hex">#fbf2e9</div></div>
+        <div><div class="ds-swatch-chip" style="background:#ece1cf;"></div><div class="ds-swatch-name">band</div><div class="ds-swatch-hex">#ece1cf</div></div>
+      </div>
+
+      <div class="ds-sub">Мастило и текст</div>
+      <div class="ds-swatches">
+        <div><div class="ds-swatch-chip" style="background:#211c18;"></div><div class="ds-swatch-name">--cb-ink</div><div class="ds-swatch-hex">#211c18</div></div>
+        <div><div class="ds-swatch-chip" style="background:#2b2521;"></div><div class="ds-swatch-name">--cb-ink-soft</div><div class="ds-swatch-hex">#2b2521</div></div>
+        <div><div class="ds-swatch-chip" style="background:#544a40;"></div><div class="ds-swatch-name">--cb-text</div><div class="ds-swatch-hex">#544a40</div></div>
+        <div><div class="ds-swatch-chip" style="background:#6a5f51;"></div><div class="ds-swatch-name">--cb-text-soft</div><div class="ds-swatch-hex">#6a5f51</div></div>
+        <div><div class="ds-swatch-chip" style="background:#8a7d6c;"></div><div class="ds-swatch-name">--cb-muted</div><div class="ds-swatch-hex">#8a7d6c</div></div>
+      </div>
+
+      <div class="ds-sub">Акцент (теракота)</div>
+      <div class="ds-swatches">
+        <div><div class="ds-swatch-chip" style="background:#bc4e2b;"></div><div class="ds-swatch-name">--cb-accent</div><div class="ds-swatch-hex">#bc4e2b</div></div>
+        <div><div class="ds-swatch-chip" style="background:#a23f20;"></div><div class="ds-swatch-name">--cb-accent-strong</div><div class="ds-swatch-hex">#a23f20</div></div>
+        <div><div class="ds-swatch-chip" style="background:#f4ddd0;"></div><div class="ds-swatch-name">--cb-accent-soft</div><div class="ds-swatch-hex">#f4ddd0</div></div>
+        <div><div class="ds-swatch-chip" style="background:#e6c3b2;"></div><div class="ds-swatch-name">--cb-accent-soft-line</div><div class="ds-swatch-hex">#e6c3b2</div></div>
+      </div>
+
+      <div class="ds-sub">Маслинено зелено (sage)</div>
+      <div class="ds-swatches">
+        <div><div class="ds-swatch-chip" style="background:#5b7a4f;"></div><div class="ds-swatch-name">--cb-sage</div><div class="ds-swatch-hex">#5b7a4f</div></div>
+        <div><div class="ds-swatch-chip" style="background:#46603c;"></div><div class="ds-swatch-name">--cb-sage-text</div><div class="ds-swatch-hex">#46603c</div></div>
+        <div><div class="ds-swatch-chip" style="background:#e6ecd9;"></div><div class="ds-swatch-name">--cb-sage-soft</div><div class="ds-swatch-hex">#e6ecd9</div></div>
+        <div><div class="ds-swatch-chip" style="background:#d2dcbf;"></div><div class="ds-swatch-name">--cb-sage-soft-line</div><div class="ds-swatch-hex">#d2dcbf</div></div>
+      </div>
+    </section>
+
+    <!-- TYPOGRAPHY -->
+    <section class="ds-section" id="type">
+      <h2>Типография</h2>
+      <p class="ds-lead">Заглавия с Alegreya (serif), текст с Alegreya Sans. Display за емоция, sans за четимост.</p>
+
+      <div class="ds-type-row"><div class="ds-type-meta">Display / 60–78</div><span style="font-family:var(--cb-font-display);font-weight:800;font-size:60px;line-height:1;color:var(--cb-ink);">Чудовището без уши</span></div>
+      <div class="ds-type-row"><div class="ds-type-meta">H2 / 46–52</div><span style="font-family:var(--cb-font-display);font-weight:800;font-size:46px;color:var(--cb-ink);">Голямо чудовище</span></div>
+      <div class="ds-type-row"><div class="ds-type-meta">H3 / 28</div><span style="font-family:var(--cb-font-display);font-weight:800;font-size:28px;color:var(--cb-ink);">Подаръчен пакет</span></div>
+      <div class="ds-type-row"><div class="ds-type-meta">Kicker / 13</div><span class="cb-kicker is-accent">Какво има вътре</span></div>
+      <div class="ds-type-row"><div class="ds-type-meta">Body / 19</div><span style="font-size:19px;color:var(--cb-text);max-width:560px;">История за различността, самотата и приятелството.</span></div>
+      <div class="ds-type-row"><div class="ds-type-meta">Цитат / italic</div><span style="font-family:var(--cb-font-display);font-style:italic;font-weight:500;font-size:24px;color:#34402b;">Ти не си страшно — ти просто си голямо.</span></div>
+      <div class="ds-type-row"><div class="ds-type-meta">Caption / mono</div><span style="font-family:ui-monospace,monospace;font-size:11px;letter-spacing:.04em;color:#a8927a;">илюстрация от вътрешността на книгата</span></div>
+    </section>
+
+    <!-- BUTTONS -->
+    <section class="ds-section" id="buttons">
+      <h2>Бутони</h2>
+      <p class="ds-lead">Всеки вариант е показан във всичките си състояния. Hover/Focus/Active са истинските — посочи ги с мишката; тук са „замразени“ чрез <code>.is-hover</code>, <code>.is-focus</code>, <code>.is-active</code>, за да се виждат наведнъж.</p>
+
+      <div class="ds-sub">Primary</div>
+      <div class="ds-states">
+        <div class="ds-state"><button class="cb-btn cb-btn-primary">Избери издание</button><span class="ds-state-label">Default</span></div>
+        <div class="ds-state"><button class="cb-btn cb-btn-primary is-hover">Избери издание</button><span class="ds-state-label">Hover</span></div>
+        <div class="ds-state"><button class="cb-btn cb-btn-primary is-focus">Избери издание</button><span class="ds-state-label">Focus</span></div>
+        <div class="ds-state"><button class="cb-btn cb-btn-primary is-active">Избери издание</button><span class="ds-state-label">Active</span></div>
+        <div class="ds-state"><button class="cb-btn cb-btn-primary is-disabled" disabled>Избери издание</button><span class="ds-state-label">Disabled</span></div>
+      </div>
+
+      <div class="ds-sub">Light (бял с контур)</div>
+      <div class="ds-states">
+        <div class="ds-state"><button class="cb-btn cb-btn-light" style="width:auto;">Купи печатно</button><span class="ds-state-label">Default</span></div>
+        <div class="ds-state"><button class="cb-btn cb-btn-light is-hover" style="width:auto;">Купи печатно</button><span class="ds-state-label">Hover</span></div>
+        <div class="ds-state"><button class="cb-btn cb-btn-light is-focus" style="width:auto;">Купи печатно</button><span class="ds-state-label">Focus</span></div>
+        <div class="ds-state"><button class="cb-btn cb-btn-light is-active" style="width:auto;">Купи печатно</button><span class="ds-state-label">Active</span></div>
+      </div>
+
+      <div class="ds-sub">Outline</div>
+      <div class="ds-states">
+        <div class="ds-state"><button class="cb-btn cb-btn-outline">Бърз преглед</button><span class="ds-state-label">Default</span></div>
+        <div class="ds-state"><button class="cb-btn cb-btn-outline is-hover">Бърз преглед</button><span class="ds-state-label">Hover</span></div>
+        <div class="ds-state"><button class="cb-btn cb-btn-outline is-focus">Бърз преглед</button><span class="ds-state-label">Focus</span></div>
+        <div class="ds-state"><button class="cb-btn cb-btn-outline is-active">Бърз преглед</button><span class="ds-state-label">Active</span></div>
+      </div>
+
+      <div class="ds-sub">Outline (на тъмен фон)</div>
+      <div class="ds-panel-dark">
+        <div class="ds-states">
+          <div class="ds-state"><button class="cb-btn cb-btn-outline-dark">Бърз преглед</button><span class="ds-state-label">Default</span></div>
+          <div class="ds-state"><button class="cb-btn cb-btn-outline-dark is-hover">Бърз преглед</button><span class="ds-state-label">Hover</span></div>
+          <div class="ds-state"><button class="cb-btn cb-btn-outline-dark is-focus">Бърз преглед</button><span class="ds-state-label">Focus</span></div>
+        </div>
+      </div>
+
+      <div class="ds-sub">Размери <span class="ds-note-badge">Предложение</span></div>
+      <div class="ds-row">
+        <button class="cb-btn cb-btn-primary cb-btn-sm">Small</button>
+        <button class="cb-btn cb-btn-primary">Default</button>
+        <button class="cb-btn cb-btn-primary cb-btn-lg">Large</button>
+      </div>
+    </section>
+
+    <!-- BADGES -->
+    <section class="ds-section" id="badges">
+      <h2>Баджове и тагове</h2>
+      <p class="ds-lead">Малки етикети за статус, акценти и категоризация.</p>
+
+      <div class="ds-sub">Баджове</div>
+      <div class="ds-row">
+        <span class="cb-badge"><span class="cb-badge-dot"></span> Нова детска книга</span>
+        <span class="cb-urgency-badge"><span class="cb-urgency-dot"></span> Ограничен тираж от 200 копия</span>
+        <span class="cb-savings">Всичко в едно</span>
+      </div>
+
+      <div class="ds-sub">Pills (в цените)</div>
+      <div class="ds-row">
+        <span class="cb-price-pill is-accent">Препоръчано</span>
+        <span class="cb-price-pill is-sage">Печатно</span>
+      </div>
+
+      <div class="ds-sub">Тагове <span class="ds-note-badge">Предложение</span></div>
+      <div class="ds-row">
+        <span class="cb-tag">Детска книга</span>
+        <span class="cb-tag is-accent">5+ години</span>
+        <span class="cb-tag is-sage">Твърди корици</span>
+      </div>
+    </section>
+
+    <!-- CARDS -->
+    <section class="ds-section" id="cards">
+      <h2>Карти</h2>
+      <p class="ds-lead">Посочи всяка карта — повдига се леко при hover. Ценовата карта е основният интерактивен елемент.</p>
+
+      <div class="ds-sub">Карта характеристика</div>
+      <div class="ds-grid-3">
+        <div class="cb-feature-card">
+          <div class="cb-feature-icon is-accent" style="background:var(--cb-accent-soft);"></div>
+          <h3>Меки корици</h3>
+          <p>32 страници на качествена, приятна на допир хартия.</p>
+        </div>
+        <div class="cb-feature-card">
+          <div class="cb-feature-icon is-sage" style="background:var(--cb-sage-soft);"></div>
+          <h3>Илюстрации</h3>
+          <p>Топли, цветни сцени на всяка страница.</p>
+        </div>
+        <div class="cb-feature-card">
+          <div class="cb-feature-icon is-accent" style="background:var(--cb-accent-soft);"></div>
+          <h3>Едър шрифт</h3>
+          <p>Подходящ за първите самостоятелни прочити.</p>
+        </div>
+      </div>
+
+      <div class="ds-sub">Карта отзив</div>
+      <div class="ds-grid-2">
+        <div class="cb-review-card">
+          <div class="cb-stars">★★★★★</div>
+          <p>„Дъщеря ми поиска да я четем три вечери подред.“</p>
+          <div class="cb-review-author">
+            <div class="cb-review-avatar is-accent">М</div>
+            <div><div class="cb-review-name">Мария Г.</div><div class="cb-review-role">майка на Ная, 6 г.</div></div>
+          </div>
+        </div>
+        <div class="cb-review-card">
+          <div class="cb-stars">★★★★★</div>
+          <p>„Илюстрациите са невероятно топли.“</p>
+          <div class="cb-review-author">
+            <div class="cb-review-avatar is-sage">Д</div>
+            <div><div class="cb-review-name">Десислава П.</div><div class="cb-review-role">купи като подарък</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ds-sub">Ценова карта</div>
+      <div class="ds-grid-3">
+        <div class="cb-price-card is-featured">
+          <div class="cb-price-row">
+            <span class="cb-price-pill is-accent">Препоръчано</span>
+            <div class="cb-price-amount"><strong>15</strong> <span>€</span></div>
+          </div>
+          <h3>Подаръчен пакет</h3>
+          <p>Печатна книга плюс дигитални материали.</p>
+          <ul class="cb-feature-list">
+            <li><span class="cb-check is-accent">✓</span> Печатна книга</li>
+            <li><span class="cb-check is-accent">✓</span> Дигитална версия (PDF)</li>
+          </ul>
+          <a href="#" class="cb-btn cb-btn-primary cb-btn-block">Избери пакет</a>
+        </div>
+        <div class="cb-price-card">
+          <div class="cb-price-row">
+            <span class="cb-price-pill is-sage">Печатно</span>
+            <div class="cb-price-amount"><strong>10</strong> <span>€</span></div>
+          </div>
+          <h3>Печатно издание</h3>
+          <p>Книга за домашната библиотека.</p>
+          <ul class="cb-feature-list">
+            <li><span class="cb-check is-sage">✓</span> Доставката е включена</li>
+            <li><span class="cb-check is-sage">✓</span> До 10 броя</li>
+          </ul>
+          <a href="#" class="cb-btn cb-btn-light cb-btn-block">Купи печатно</a>
+        </div>
+        <div class="cb-price-card">
+          <div class="cb-price-row">
+            <span class="cb-price-pill is-sage">Дигитално</span>
+            <div class="cb-price-amount"><strong>5</strong> <span>€</span></div>
+          </div>
+          <h3>Дигитална версия</h3>
+          <p>Бърз достъп до историята.</p>
+          <ul class="cb-feature-list">
+            <li><span class="cb-check is-sage">✓</span> PDF версия</li>
+            <li><span class="cb-check is-sage">✓</span> Незабавен достъп</li>
+          </ul>
+          <a href="#" class="cb-btn cb-btn-light cb-btn-block">Вземи сега</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMS -->
+    <section class="ds-section" id="forms">
+      <h2>Форми</h2>
+      <p class="ds-lead">Полета за поръчка, контакт и количество. Фокусирай поле — получава теракотен пръстен.</p>
+
+      <div class="ds-grid-2">
+        <div class="ds-maxform">
+          <div class="cb-field">
+            <label for="ds-name">Име</label>
+            <input class="cb-input" id="ds-name" type="text" placeholder="Вашето име" />
+          </div>
+          <div class="cb-field">
+            <label for="ds-email">Имейл</label>
+            <input class="cb-input" id="ds-email" type="email" placeholder="name@example.com" />
+          </div>
+          <div class="cb-field">
+            <label for="ds-msg">Съобщение</label>
+            <textarea class="cb-textarea" id="ds-msg" placeholder="Как да помогнем?"></textarea>
+          </div>
+          <button class="cb-btn cb-btn-primary" style="align-self:flex-start;">Изпрати</button>
+          <span class="ds-note-badge" style="align-self:flex-start;margin-left:0;">Предложение</span>
+        </div>
+
+        <div>
+          <div class="cb-field">
+            <label for="ds-format">Избор (select)</label>
+            <select class="cb-select" id="ds-format"><option>Печатно издание</option><option>Дигитална версия</option><option>Подаръчен пакет</option></select>
+          </div>
+
+          <div class="ds-sub">Количество <span class="ds-note-badge">Предложение</span></div>
+          <p style="font-size:14px;color:var(--cb-text-soft);margin:0 0 12px;max-width:420px;">Вместо select в select — стъпков избор (по-ясен за 1–10) или поле „Брой" със същия размер като полетата.</p>
+          <div class="ds-row" style="gap:28px;align-items:flex-end;">
+            <div class="ds-state">
+              <div class="cb-stepper" data-stepper>
+                <button type="button" data-step="-1" aria-label="Намали">−</button>
+                <input type="number" value="1" min="1" max="10" aria-label="Брой" />
+                <button type="button" data-step="1" aria-label="Увеличи">+</button>
+              </div>
+              <span class="ds-state-label">Stepper</span>
+            </div>
+            <div class="ds-state">
+              <select class="cb-select cb-select-inline"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+              <span class="ds-state-label">Inline select</span>
+            </div>
+          </div>
+
+          <div class="ds-sub">Callout / бележка <span class="ds-note-badge">Предложение</span></div>
+          <div class="cb-note" style="margin-bottom:14px;">
+            <span class="cb-note-icon">✓</span>
+            <span><strong>Преглед преди плащане</strong>Отваряте пратката при куриера, преди да платите.</span>
+          </div>
+          <div class="cb-note is-accent">
+            <span class="cb-note-icon">★</span>
+            <span><strong>Ограничен тираж</strong>Първо издание от 200 копия.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="ds-section" id="faq">
+      <h2>Акордеон (FAQ)</h2>
+      <p class="ds-lead">Кликни въпрос — отваря се и „+“ се завърта на „×“.</p>
+      <div class="cb-faq-list" style="margin:24px 0 0;">
+        <details open class="cb-faq-item">
+          <summary>За каква възраст е книгата?<span class="cb-faq-plus">+</span></summary>
+          <p>За деца от 5 години нагоре, но звучи добре и при четене на глас за по-малки.</p>
+        </details>
+        <details class="cb-faq-item">
+          <summary>Колко време отнема доставката?<span class="cb-faq-plus">+</span></summary>
+          <p>Изпращаме с Еконт и Спиди до 1–3 работни дни в цялата страна.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- PROPOSALS -->
+    <section class="ds-section" id="proposals">
+      <h2>Предложения за развитие</h2>
+      <p class="ds-lead">Нови компоненти, добавени към системата, за да расте сайтът. Всичко по-долу е живо — пробвай го. Каталогът ще иска тагове, checkout и контактът ще искат форми, а доставка/връщане — callout-и.</p>
+
+      <div class="ds-sub">① Тагове за каталог</div>
+      <div class="ds-row">
+        <span class="cb-tag">Детска книга</span>
+        <span class="cb-tag is-accent">5+ години</span>
+        <span class="cb-tag is-sage">Меки корици</span>
+        <span class="cb-tag">Приказка</span>
+        <span class="cb-tag is-accent">Ново</span>
+      </div>
+
+      <div class="ds-sub">② Стъпков избор за количество</div>
+      <div class="cb-stepper" data-stepper>
+        <button type="button" data-step="-1" aria-label="Намали">−</button>
+        <input type="number" value="2" min="1" max="10" aria-label="Брой" />
+        <button type="button" data-step="1" aria-label="Увеличи">+</button>
+      </div>
+
+      <div class="ds-sub">③ Callout-и</div>
+      <div class="ds-grid-2">
+        <div class="cb-note"><span class="cb-note-icon">✓</span><span><strong>Преглед преди плащане</strong>Отваряте пратката при куриера, преди да платите.</span></div>
+        <div class="cb-note is-accent"><span class="cb-note-icon">★</span><span><strong>Ограничен тираж</strong>Първо издание от 200 копия.</span></div>
+      </div>
+
+      <div class="ds-sub">④ Размери бутони</div>
+      <div class="ds-row">
+        <button class="cb-btn cb-btn-primary cb-btn-sm">Small</button>
+        <button class="cb-btn cb-btn-primary">Default</button>
+        <button class="cb-btn cb-btn-primary cb-btn-lg">Large</button>
+      </div>
+
+      <div class="ds-sub">⑤ Инлайн линк</div>
+      <p style="font-size:18px;color:var(--cb-text);max-width:620px;">Параграф с <a href="#" class="cb-link">инлайн текстов линк</a>, който при посочване свива подчертаването си плавно — за текст, бележки и правни страници.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Kodex Publishing • kodexbg.com • 2026</span>
+    <span class="footer-links">
+      <a href="contact.html">Контакт</a>
+      <a href="terms.html">Общи условия</a>
+      <a href="privacy.html">Поверителност</a>
+    </span>
+  </footer>
+
+</div>
+</div>
+<script>
+  // Quantity stepper: clamp between min/max on +/- click.
+  document.querySelectorAll('[data-stepper]').forEach(function (s) {
+    var input = s.querySelector('input');
+    s.querySelectorAll('[data-step]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var min = parseInt(input.min || '1', 10);
+        var max = parseInt(input.max || '99', 10);
+        var next = (parseInt(input.value, 10) || min) + parseInt(btn.dataset.step, 10);
+        input.value = Math.min(max, Math.max(min, next));
+      });
+    });
+  });
+</script>
+</body>
+</html>

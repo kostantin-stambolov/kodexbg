@@ -135,7 +135,6 @@
         <h3>Подаръчен пакет</h3>
         <p>Печатна книга плюс дигитални материали за четене и подаряване.</p>
         <div class="cb-savings">Всичко в едно – печатно и дигитално</div>
-        <div class="cb-divider"></div>
         <ul class="cb-feature-list">
           <li><span class="cb-check is-accent">✓</span> Печатна книга</li>
           <li><span class="cb-check is-accent">✓</span> Дигитална версия (PDF)</li>
@@ -152,15 +151,18 @@
         </div>
         <h3>Печатно издание</h3>
         <p>Книга за домашната библиотека, подарък или спокойно вечерно четене.</p>
-        <div class="cb-divider"></div>
         <ul class="cb-feature-list">
           <li><span class="cb-check is-sage">✓</span> Доставката е включена</li>
           <li><span class="cb-check is-sage">✓</span> Подходящо за деца 5+ години</li>
           <li><span class="cb-check is-sage">✓</span> Количество до 10 броя</li>
         </ul>
-        <div class="cb-quantity-row">
-          <span>Брой</span>
-          <select class="cb-select"><option>1</option><option>2</option><option>3</option></select>
+        <div class="cb-field cb-field-row" style="margin-bottom:18px;">
+          <label for="print-qty">Брой</label>
+          <div class="cb-stepper" data-stepper>
+            <button type="button" data-step="-1" aria-label="Намали">−</button>
+            <input type="number" id="print-qty" value="1" min="1" max="10" aria-label="Брой" />
+            <button type="button" data-step="1" aria-label="Увеличи">+</button>
+          </div>
         </div>
         <a href="#" class="cb-btn cb-btn-light cb-btn-block">Купи печатно издание</a>
       </div>
@@ -172,7 +174,6 @@
         </div>
         <h3>Дигитална версия</h3>
         <p>Бърз достъп до историята – за четене веднага или когато сте извън България.</p>
-        <div class="cb-divider"></div>
         <ul class="cb-feature-list">
           <li><span class="cb-check is-sage">✓</span> PDF версия на книгата</li>
           <li><span class="cb-check is-sage">✓</span> Незабавен дигитален достъп</li>
@@ -304,5 +305,19 @@
 
 </div>
 </div>
+<script>
+  document.querySelectorAll('[data-stepper]').forEach(function (stepper) {
+    var input = stepper.querySelector('input');
+    stepper.querySelectorAll('button').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var step = parseInt(btn.dataset.step, 10);
+        var min = parseInt(input.min, 10) || 1;
+        var max = parseInt(input.max, 10) || 10;
+        var value = (parseInt(input.value, 10) || min) + step;
+        input.value = Math.min(max, Math.max(min, value));
+      });
+    });
+  });
+</script>
 </body>
 </html>

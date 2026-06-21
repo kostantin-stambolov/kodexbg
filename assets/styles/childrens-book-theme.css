@@ -37,6 +37,7 @@
   --cb-sage-text: #46603c;
   --cb-shadow-card: 0 18px 36px -26px rgba(43, 37, 33, 0.2);
   --cb-shadow-pop: 0 26px 50px -24px rgba(188, 78, 43, 0.4);
+  --cb-focus: 0 0 0 3px rgba(188, 78, 43, 0.32);
   --cb-font-display: 'Alegreya', Georgia, serif;
   --cb-font-body: 'Alegreya Sans', sans-serif;
 
@@ -220,30 +221,25 @@
 .cb-urgency-dot { width: 8px; height: 8px; border-radius: 99px; background: var(--cb-accent); box-shadow: 0 0 0 4px rgba(188, 78, 43, .18); }
 
 .cb-price-grid { display: grid; grid-template-columns: 1.08fr 1fr 1fr; gap: 24px; margin-top: 48px; align-items: stretch; }
-.cb-price-card { display: flex; flex-direction: column; background: var(--cb-paper); border: 1px solid rgba(43, 37, 33, .12); border-radius: 22px; padding: 34px 30px; box-shadow: var(--cb-shadow-card); position: relative; }
-.cb-price-card.is-featured { background: var(--cb-paper-strong); border: 2px solid var(--cb-accent); padding: 34px 32px; box-shadow: var(--cb-shadow-pop); }
+.cb-price-card { display: flex; flex-direction: column; background: var(--cb-paper); border: 1px solid rgba(43, 37, 33, .12); border-radius: 22px; padding: 28px 26px; box-shadow: var(--cb-shadow-card); position: relative; }
+.cb-price-card.is-featured { background: var(--cb-paper-strong); border: 2px solid var(--cb-accent); padding: 28px 28px; box-shadow: var(--cb-shadow-pop); }
 .cb-price-row { display: flex; align-items: center; justify-content: space-between; }
 .cb-price-pill { border-radius: 999px; padding: 5px 13px; font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
 .cb-price-pill.is-accent { background: var(--cb-accent); color: #fff; }
 .cb-price-pill.is-sage { background: var(--cb-sage-soft); color: var(--cb-sage-text); }
-.cb-price-amount { text-align: right; }
-.cb-price-amount strong { font-family: var(--cb-font-display); font-weight: 800; font-size: 40px; color: var(--cb-ink); line-height: 1; }
-.cb-price-amount span { font-size: 22px; font-weight: 800; color: #7a6e5e; }
+.cb-price-amount { display: flex; align-items: baseline; gap: 4px; }
+.cb-price-amount strong { font-family: var(--cb-font-display); font-weight: 800; font-size: 44px; color: var(--cb-ink); line-height: 1; }
+.cb-price-amount span { font-family: var(--cb-font-display); font-size: 30px; font-weight: 700; color: var(--cb-ink-soft); line-height: 1; }
 .cb-price-card h3 { font-family: var(--cb-font-display); font-weight: 800; font-size: 28px; margin: 18px 0 0; color: var(--cb-ink); }
 .cb-price-card > p { font-size: 16px; line-height: 1.5; color: var(--cb-text-soft); margin: 8px 0 0; }
 .cb-savings { display: inline-block; margin-top: 14px; background: var(--cb-sage-soft); color: var(--cb-sage-text); border-radius: 8px; padding: 5px 11px; font-weight: 700; font-size: 13px; }
-.cb-divider { height: 1px; background: rgba(43, 37, 33, .1); margin: 22px 0; }
 .cb-feature-list { display: flex; flex-direction: column; gap: 12px; font-size: 16px; color: #3f372f; font-weight: 500; list-style: none; padding: 0; margin: 0; }
 .cb-feature-list li { display: flex; gap: 11px; align-items: flex-start; }
 .cb-check { font-weight: 800; }
 .cb-check.is-accent { color: var(--cb-accent); }
 .cb-check.is-sage { color: var(--cb-sage); }
-.cb-quantity-row {
-  display: flex; align-items: center; justify-content: space-between;
-  background: #fff; border: 1px solid rgba(43, 37, 33, .14); border-radius: 11px; padding: 12px 16px; margin-top: 20px;
-}
-.cb-quantity-row span { font-weight: 700; color: #4a4138; }
-.cb-select { border: 1px solid rgba(43, 37, 33, .2); border-radius: 8px; padding: 6px 12px; font-family: var(--cb-font-body); font-weight: 700; font-size: 15px; color: var(--cb-ink-soft); background: var(--cb-paper); }
+/* Guaranteed breathing room between card content and the bottom-pinned CTA */
+.cb-price-card .cb-feature-list { margin-top: 22px; margin-bottom: 26px; }
 .cb-pricing-note { text-align: center; color: var(--cb-muted); font-size: 15px; margin: 28px 0 0; font-weight: 600; }
 
 /* Reviews */
@@ -308,6 +304,189 @@
 .cb-final-cta p { font-size: 19px; line-height: 1.55; color: #cbbfac; margin: 18px 0 0; }
 .cb-final-cta-actions { display: flex; align-items: center; gap: 14px; margin-top: 32px; }
 .cb-final-cta-meta { display: flex; gap: 26px; margin-top: 28px; color: #b6aa97; font-weight: 600; font-size: 15px; }
+
+/* ----------------------------------------------------------------
+   Interaction & focus states
+   Each :hover / :active / :focus-visible is paired with an
+   .is-hover / .is-active / .is-focus helper class so the design-system
+   page (design-system.html) can display every state side by side,
+   statically. The helper classes are inert in production — nothing
+   adds them at runtime, so real pages only ever get the real
+   pseudo-class behaviour.
+   ---------------------------------------------------------------- */
+
+/* Buttons */
+.cb-btn {
+  transition: transform .16s ease, box-shadow .16s ease,
+    background-color .16s ease, border-color .16s ease, color .16s ease;
+}
+.cb-btn-primary:hover, .cb-btn-primary.is-hover {
+  background: var(--cb-accent-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -10px rgba(188, 78, 43, .75);
+}
+.cb-btn-primary:active, .cb-btn-primary.is-active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px -10px rgba(188, 78, 43, .7);
+}
+.cb-btn-outline:hover, .cb-btn-outline.is-hover {
+  border-color: var(--cb-ink-soft);
+  background: rgba(43, 37, 33, .05);
+  transform: translateY(-2px);
+}
+.cb-btn-outline:active, .cb-btn-outline.is-active { transform: translateY(0); }
+.cb-btn-light:hover, .cb-btn-light.is-hover {
+  background: var(--cb-paper);
+  border-color: var(--cb-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -16px rgba(43, 37, 33, .4);
+}
+.cb-btn-light:active, .cb-btn-light.is-active { transform: translateY(0); box-shadow: none; }
+.cb-btn-outline-dark:hover, .cb-btn-outline-dark.is-hover {
+  border-color: rgba(246, 239, 226, .8);
+  background: rgba(246, 239, 226, .1);
+  transform: translateY(-2px);
+}
+.cb-btn-outline-dark:active, .cb-btn-outline-dark.is-active { transform: translateY(0); }
+.cb-btn:focus-visible, .cb-btn.is-focus { outline: none; box-shadow: var(--cb-focus); }
+.cb-btn-primary:focus-visible, .cb-btn-primary.is-focus {
+  box-shadow: var(--cb-focus), 0 12px 24px -10px rgba(188, 78, 43, .7);
+}
+.cb-btn:disabled, .cb-btn.is-disabled {
+  opacity: .5; cursor: not-allowed; transform: none; box-shadow: none;
+}
+
+/* Cards
+   Price cards do NOT move on hover (movement on the key purchase
+   element is distracting) — only the shadow deepens for subtle
+   feedback. Non-purchase cards may lift slightly. */
+.cb-price-card { transition: box-shadow .18s ease, border-color .18s ease; }
+.cb-price-card:hover, .cb-price-card.is-hover {
+  box-shadow: 0 24px 50px -26px rgba(43, 37, 33, .34);
+}
+.cb-feature-card, .cb-review-card { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.cb-feature-card:hover, .cb-feature-card.is-hover,
+.cb-review-card:hover, .cb-review-card.is-hover {
+  transform: translateY(-3px);
+  border-color: var(--cb-accent-soft-line);
+  box-shadow: 0 22px 40px -24px rgba(43, 37, 33, .28);
+}
+
+/* FAQ */
+.cb-faq-item summary { transition: color .16s ease; }
+.cb-faq-item summary:hover, .cb-faq-item.is-hover > summary { color: var(--cb-accent); }
+.cb-faq-item summary:focus-visible { outline: none; color: var(--cb-accent); }
+.cb-faq-plus { transition: transform .2s ease; }
+.cb-faq-item[open] .cb-faq-plus, .cb-faq-item.is-open .cb-faq-plus { transform: rotate(45deg); }
+
+/* Select */
+.cb-select { transition: border-color .16s ease, box-shadow .16s ease; }
+.cb-select:hover { border-color: rgba(43, 37, 33, .4); }
+.cb-select:focus, .cb-select.is-focus { outline: none; border-color: var(--cb-accent); box-shadow: var(--cb-focus); }
+
+/* ----------------------------------------------------------------
+   Proposed extensions (added to grow the system beyond the v2 offer
+   page — review and keep what fits). Each is genuinely needed soon:
+   forms for checkout/contact, tags for the catalog, callouts for
+   shipping/return notices, and button sizes for denser layouts.
+   ---------------------------------------------------------------- */
+
+/* Button sizes */
+.cb-btn-sm { padding: 10px 18px; font-size: 14px; }
+.cb-btn-lg { padding: 19px 34px; font-size: 19px; }
+
+/* Inline text link */
+.cb-link {
+  color: var(--cb-accent);
+  font-weight: 700;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1.5px;
+  transition: background-size .2s ease, color .16s ease;
+}
+.cb-link:hover, .cb-link.is-hover { color: var(--cb-accent-strong); background-size: 0 1.5px; }
+.cb-link:focus-visible { outline: none; box-shadow: var(--cb-focus); border-radius: 3px; }
+
+/* Form controls (label + input / textarea / select)
+   Inputs, textareas and selects share one size and one focus ring so a
+   "Брой" picker reads as the same control as a text field — never a
+   small box nested inside another box. */
+.cb-field { display: flex; flex-direction: column; gap: 8px; }
+.cb-field label, .cb-label { font-weight: 700; font-size: 14px; color: var(--cb-text); }
+.cb-field-row { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; }
+.cb-field-row label { margin: 0; }
+.cb-input, .cb-textarea, .cb-select {
+  font-family: var(--cb-font-body); font-size: 16px; font-weight: 500; color: var(--cb-ink-soft);
+  background: #fff; border: 1.5px solid rgba(43, 37, 33, .18); border-radius: 12px;
+  padding: 13px 16px; width: 100%;
+  transition: border-color .16s ease, box-shadow .16s ease;
+}
+.cb-textarea { min-height: 120px; resize: vertical; line-height: 1.55; }
+.cb-input::placeholder, .cb-textarea::placeholder { color: var(--cb-muted); }
+.cb-input:hover, .cb-textarea:hover, .cb-select:hover { border-color: rgba(43, 37, 33, .34); }
+.cb-input:focus, .cb-textarea:focus, .cb-select:focus,
+.cb-input.is-focus, .cb-textarea.is-focus, .cb-select.is-focus {
+  outline: none; border-color: var(--cb-accent); box-shadow: var(--cb-focus);
+}
+/* Native select: hide default arrow, draw our own chevron, keep room for it */
+.cb-select {
+  appearance: none; -webkit-appearance: none; -moz-appearance: none;
+  cursor: pointer; padding-right: 42px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%232b2521' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center;
+}
+/* Compact auto-width select for inline use (e.g. small quantity) */
+.cb-select.cb-select-inline { width: auto; min-width: 88px; }
+
+/* Quantity stepper (− value +) — clearer than a select for 1–N counts */
+.cb-stepper { display: inline-flex; align-items: stretch; background: #fff; border: 1.5px solid rgba(43, 37, 33, .18); border-radius: 12px; overflow: hidden; transition: border-color .16s ease, box-shadow .16s ease; }
+.cb-stepper:focus-within { border-color: var(--cb-accent); box-shadow: var(--cb-focus); }
+.cb-stepper button {
+  width: 48px; border: none; background: transparent; cursor: pointer;
+  font-size: 22px; line-height: 1; color: var(--cb-ink-soft);
+  transition: background-color .16s ease, color .16s ease;
+}
+.cb-stepper button:hover { background: var(--cb-accent-soft); color: var(--cb-accent-strong); }
+.cb-stepper input {
+  width: 56px; text-align: center; border: none; border-left: 1px solid var(--cb-line); border-right: 1px solid var(--cb-line);
+  font-family: var(--cb-font-body); font-size: 19px; font-weight: 800; color: var(--cb-ink);
+  padding: 13px 0; -moz-appearance: textfield;
+}
+.cb-stepper input::-webkit-outer-spin-button,
+.cb-stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.cb-stepper input:focus { outline: none; }
+
+/* Tag / chip (catalog genres, age groups, etc.) */
+.cb-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--cb-paper); border: 1px solid var(--cb-line); border-radius: 999px;
+  padding: 6px 14px; font-size: 13px; font-weight: 700; color: var(--cb-text);
+}
+.cb-tag.is-accent { background: var(--cb-accent-soft); border-color: var(--cb-accent-soft-line); color: var(--cb-accent-strong); }
+.cb-tag.is-sage { background: var(--cb-sage-soft); border-color: var(--cb-sage-soft-line); color: var(--cb-sage-text); }
+
+/* Callout / notice (shipping info, returns, highlights) */
+.cb-note {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: var(--cb-sage-soft); border: 1px solid var(--cb-sage-soft-line);
+  border-radius: 16px; padding: 18px 22px; color: var(--cb-sage-text);
+  font-size: 16px; line-height: 1.5;
+}
+.cb-note.is-accent { background: var(--cb-accent-soft); border-color: var(--cb-accent-soft-line); color: var(--cb-accent-strong); }
+.cb-note-icon { font-size: 20px; line-height: 1.3; flex: 0 0 auto; }
+.cb-note strong { display: block; margin-bottom: 2px; }
+
+/* Honour users who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+  .cb-float, .cb-float-alt { animation: none; }
+  .cb-btn, .cb-price-card, .cb-feature-card, .cb-review-card,
+  .cb-link, .cb-input, .cb-textarea, .cb-select, .cb-faq-plus,
+  .cb-faq-item summary { transition: none; }
+  .cb-btn:hover, .cb-btn.is-hover,
+  .cb-price-card:hover, .cb-feature-card:hover, .cb-review-card:hover { transform: none; }
+}
 
 /* Responsive */
 @media (max-width: 960px) {
