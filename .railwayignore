@@ -1,0 +1,16 @@
+# Only the Next.js app needs to ship to Railway.
+# Exclude the legacy static site files (served by Next from public/ instead),
+# local-only references, and the original root asset copy.
+/assets
+/books
+/references
+/design-system.html
+/index.html
+/books.html
+/contact.html
+/privacy.html
+/terms.html
+/CNAME
+/robots.txt
+/sitemap.xml
+/.claude

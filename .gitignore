@@ -18,3 +18,7 @@ next-env.d.ts
 
 # typescript
 *.tsbuildinfo
+
+# heavy local-only book export artifacts (not part of the site)
+/books/Claude - Monster Without Ears/
+/books/Чудовището без уши.html
