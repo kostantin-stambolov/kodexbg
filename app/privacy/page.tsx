@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: "Поверителност | Kodex Publishing",
     description:
       "Политика за поверителност на Kodex Publishing: какви лични данни обработваме, защо, за колко време и какви права имате.",
+    images: [{ url: "/assets/og-image.jpg" }],
   },
 };
 

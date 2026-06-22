@@ -8,11 +8,19 @@ export const metadata: Metadata = {
     title: "Kodex Publishing | Издателство за книги със смисъл",
     description:
       "Истории, детски книги и смислени издания, създадени с уважение към текста, формата и читателя.",
+    images: [
+      {
+        url: "/assets/og-image.jpg",
+        alt: "Корица на детската книга Чудовището без уши от Костантин Стамболов",
+      },
+    ],
   },
   twitter: {
+    card: "summary_large_image",
     title: "Kodex Publishing | Издателство за книги със смисъл",
     description:
       "Българско издателство за книги с ясна мисъл, добра форма и дълъг живот.",
+    images: ["/assets/og-image.jpg"],
   },
 };
 

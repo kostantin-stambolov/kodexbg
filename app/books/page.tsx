@@ -10,10 +10,18 @@ export const metadata: Metadata = {
     url: "https://kodexbg.com/books",
     title: "Каталог | Kodex Publishing",
     description: "Последни книги и нови издания от Kodex Publishing.",
+    images: [
+      {
+        url: "/assets/og-image.jpg",
+        alt: "Корица на детската книга Чудовището без уши от Костантин Стамболов",
+      },
+    ],
   },
   twitter: {
+    card: "summary_large_image",
     title: "Каталог | Kodex Publishing",
     description: "Последни книги и нови издания от Kodex Publishing.",
+    images: ["/assets/og-image.jpg"],
   },
 };
 

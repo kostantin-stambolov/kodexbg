@@ -11,11 +11,19 @@ export const metadata: Metadata = {
     title: "Запитвания | Kodex Publishing",
     description:
       "Изпратете запитване до Kodex Publishing относно книги, издания, електронни версии и печатни копия.",
+    images: [
+      {
+        url: "/assets/og-image.jpg",
+        alt: "Корица на детската книга Чудовището без уши от Костантин Стамболов",
+      },
+    ],
   },
   twitter: {
+    card: "summary_large_image",
     title: "Запитвания | Kodex Publishing",
     description:
       "Изпратете запитване до Kodex Publishing относно книги, издания, електронни версии и печатни копия.",
+    images: ["/assets/og-image.jpg"],
   },
 };
 

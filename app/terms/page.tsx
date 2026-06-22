@@ -13,6 +13,7 @@ export const metadata: Metadata = {
     title: "Общи условия | Kodex Publishing",
     description:
       "Общи условия за използване на сайта Kodex Publishing, заявки, електронни книги, физически поръчки, доставка, отказ и рекламации.",
+    images: [{ url: "/assets/og-image.jpg" }],
   },
 };
 
