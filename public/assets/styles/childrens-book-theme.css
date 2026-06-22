@@ -1,0 +1,549 @@
+/*
+  Childrens Book Theme
+  --------------------
+  Warm editorial design system for the BODY content of children's-book
+  offer pages. Scoped under .cb-page so it never leaks into the main
+  site's Inter/--paper/--ink design system (assets/site-consent3.css).
+
+  Header and footer are NOT part of this theme: pages using this file
+  must also link assets/styles/chrome.css and use the universal
+  .shell/.topbar/.brand/.nav/.footer markup (see chrome.css for the
+  contract) so the chrome looks and measures identically on every page,
+  book-themed or not.
+
+  Fonts: Alegreya (display serif) + Alegreya Sans (body).
+  Load via:
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;0,800;1,500;1,700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+*/
+
+.cb-page {
+  --cb-font-brand: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, ui-sans-serif, system-ui, sans-serif;
+  --cb-bg: #f4ecdf;
+  --cb-paper: #fcf8f0;
+  --cb-paper-strong: #fbf2e9;
+  --cb-ink: #211c18;
+  --cb-ink-soft: #2b2521;
+  --cb-text: #544a40;
+  --cb-text-soft: #6a5f51;
+  --cb-muted: #8a7d6c;
+  --cb-line: rgba(43, 37, 33, 0.1);
+  --cb-accent: #bc4e2b;
+  --cb-accent-strong: #a23f20;
+  --cb-accent-soft: #f4ddd0;
+  --cb-accent-soft-line: #e6c3b2;
+  --cb-sage: #5b7a4f;
+  --cb-sage-soft: #e6ecd9;
+  --cb-sage-soft-line: #d2dcbf;
+  --cb-sage-text: #46603c;
+  --cb-shadow-card: 0 18px 36px -26px rgba(43, 37, 33, 0.2);
+  --cb-shadow-pop: 0 26px 50px -24px rgba(188, 78, 43, 0.4);
+  --cb-focus: 0 0 0 3px rgba(188, 78, 43, 0.32);
+  --cb-font-display: 'Alegreya', Georgia, serif;
+  --cb-font-body: 'Alegreya Sans', sans-serif;
+
+  background: var(--cb-bg);
+  background-image: radial-gradient(rgba(43, 37, 33, 0.045) 1px, transparent 1px);
+  background-size: 27px 27px;
+  color: var(--cb-ink-soft);
+  font-family: var(--cb-font-body);
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+}
+
+.cb-page * {
+  box-sizing: border-box;
+}
+
+.cb-page ::selection {
+  background: var(--cb-accent);
+  color: #fff;
+}
+
+@keyframes cb-floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes cb-floaty2 {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.cb-float { animation: cb-floaty 7s ease-in-out infinite; }
+.cb-float-alt { animation: cb-floaty2 8s ease-in-out infinite; }
+
+/* Layout
+   Full-bleed band: breaks .shell out to the viewport edge while keeping
+   its inner content aligned to the same column (same calc trick as
+   .landing-offers in assets/site-consent3.css). Uses the shared --max
+   from chrome.css. Use on sections with a distinct background fill that
+   should visually run edge-to-edge. */
+.cb-band {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: calc(50vw - min(var(--max), calc(100vw - 40px)) / 2);
+  padding-right: calc(50vw - min(var(--max), calc(100vw - 40px)) / 2);
+}
+.cb-section { padding: 84px 0 30px; position: relative; }
+.cb-section-tight { padding: 60px 0 30px; }
+.cb-kicker {
+  font-family: var(--cb-font-body);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--cb-sage);
+}
+.cb-kicker.is-accent { color: var(--cb-accent); }
+
+/* Header/footer chrome is NOT defined here on purpose — see chrome.css.
+   The brand/nav text inside .topbar still inherits the system sans
+   stack from chrome.css (not Alegreya), which is intentional: the logo
+   wordmark stays identical everywhere regardless of page theme. */
+
+/* Buttons */
+.cb-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  border-radius: 999px; padding: 16px 28px; text-decoration: none;
+  font-weight: 700; font-size: 17px; cursor: pointer; border: none;
+}
+.cb-btn-primary { background: var(--cb-accent); color: #fff; box-shadow: 0 12px 24px -10px rgba(188, 78, 43, .7); }
+.cb-btn-outline { background: transparent; color: var(--cb-ink-soft); border: 1.5px solid rgba(43, 37, 33, .25); }
+.cb-btn-outline-dark { background: transparent; color: #f6efe2; border: 1.5px solid rgba(246, 239, 226, .35); }
+.cb-btn-light { background: #fff; border: 1.5px solid var(--cb-ink-soft); color: var(--cb-ink-soft); width: 100%; }
+.cb-btn-dark { background: var(--cb-ink-soft); color: #f4ecdf; box-shadow: 0 12px 24px -10px rgba(43, 37, 33, .5); }
+.cb-btn-block { display: flex; width: 100%; margin-top: 16px; }
+.cb-price-card .cb-btn-block { margin-top: auto; }
+
+/* Hero */
+.cb-hero {
+  display: grid; grid-template-columns: 1.04fr .96fr; gap: 56px;
+  padding: 64px 0 56px; align-items: center; position: relative;
+}
+.cb-hero-copy { position: relative; z-index: 2; }
+.cb-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--cb-accent-soft); color: var(--cb-accent-strong);
+  border: 1px solid var(--cb-accent-soft-line); border-radius: 999px;
+  padding: 7px 15px; font-weight: 700; font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+}
+.cb-badge-dot { width: 7px; height: 7px; border-radius: 99px; background: var(--cb-accent); display: inline-block; }
+.cb-hero h1 {
+  font-family: var(--cb-font-display); font-weight: 800; font-size: 78px;
+  line-height: .98; letter-spacing: -.01em; margin: 22px 0 0; color: var(--cb-ink);
+}
+.cb-hero p { font-size: 21px; line-height: 1.5; color: var(--cb-text); max-width: 480px; margin: 24px 0 0; }
+.cb-hero-actions { display: flex; align-items: center; gap: 14px; margin-top: 34px; }
+.cb-hero-meta { display: flex; align-items: center; gap: 16px; margin-top: 26px; color: #7a6e5e; font-weight: 600; font-size: 15px; }
+.cb-rating { display: flex; align-items: center; gap: 6px; }
+.cb-stars { color: var(--cb-accent); font-size: 17px; }
+.cb-meta-dot { width: 5px; height: 5px; border-radius: 99px; background: #c5b9a6; }
+
+.cb-hero-art { position: relative; height: 560px; }
+.cb-hero-art img.cb-float,
+.cb-hero-art img.cb-float-alt { position: absolute; filter: drop-shadow(0 8px 12px rgba(43, 37, 33, .2)); }
+.cb-cover-frame {
+  position: absolute; top: 8px; left: 50%; transform: translateX(-50%) rotate(-2.5deg);
+  width: 420px; background: #fff; padding: 14px 14px 16px; border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(43, 37, 33, .1), 0 36px 60px -24px rgba(43, 37, 33, .4); z-index: 2;
+}
+.cb-cover-frame img { width: 100%; display: block; border-radius: 4px; }
+
+/* Trust strip */
+.cb-trust {
+  display: flex; align-items: stretch; justify-content: center;
+  border-top: 1px solid var(--cb-line); border-bottom: 1px solid var(--cb-line);
+}
+.cb-trust-item { flex: 1; padding: 20px 24px; text-align: center; border-right: 1px solid var(--cb-line); }
+.cb-trust-item:last-child { border-right: none; }
+.cb-trust-num { font-family: var(--cb-font-display); font-weight: 800; font-size: 24px; }
+.cb-trust-num.is-accent { color: var(--cb-accent); }
+.cb-trust-num.is-sage { color: var(--cb-sage); }
+.cb-trust-label { font-size: 14px; color: #7a6e5e; font-weight: 600; }
+
+/* Story */
+.cb-story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.cb-story-grid h2 {
+  font-family: var(--cb-font-display); font-weight: 800; font-size: 52px;
+  line-height: 1.04; letter-spacing: -.01em; margin: 14px 0 0; color: var(--cb-ink);
+}
+.cb-story-grid p { font-size: 19px; line-height: 1.62; color: var(--cb-text); margin: 18px 0 0; }
+.cb-illustration-card {
+  background: #fff; padding: 14px; border-radius: 14px;
+  box-shadow: 0 2px 6px rgba(43, 37, 33, .08), 0 30px 56px -26px rgba(43, 37, 33, .4);
+  transform: rotate(-1deg); position: relative;
+}
+.cb-illustration-card img { width: 100%; display: block; border-radius: 7px; }
+.cb-illustration-caption {
+  font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: .04em;
+  color: #a8927a; text-align: center; padding: 10px 0 4px;
+}
+
+/* Excerpt quote */
+.cb-excerpt {
+  margin-top: 60px; background: var(--cb-sage-soft); border: 1px solid var(--cb-sage-soft-line);
+  border-radius: 20px; padding: 52px 64px; display: flex; align-items: center; gap: 44px;
+  position: relative; overflow: hidden;
+}
+.cb-excerpt-mark { font-family: var(--cb-font-display); font-weight: 800; font-size: 120px; line-height: .6; color: var(--cb-sage); opacity: .5; }
+.cb-excerpt p {
+  font-family: var(--cb-font-display); font-style: italic; font-weight: 500;
+  font-size: 29px; line-height: 1.42; color: #34402b; margin: 0; max-width: 760px;
+}
+.cb-excerpt-source { font-family: var(--cb-font-body); font-weight: 700; font-size: 14px; letter-spacing: .14em; text-transform: uppercase; color: #6f7d59; margin-top: 18px; }
+
+/* Generic section heading */
+.cb-section-head { text-align: center; max-width: 680px; margin: 0 auto; }
+.cb-section-head h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 46px; line-height: 1.06; margin: 14px 0 0; color: var(--cb-ink); }
+.cb-section-head p { font-size: 18px; line-height: 1.55; color: var(--cb-text-soft); margin: 16px 0 0; }
+
+/* Feature cards (what's inside) */
+.cb-feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; margin-top: 48px; }
+.cb-feature-card {
+  background: var(--cb-paper); border: 1px solid rgba(43, 37, 33, .09); border-radius: 18px; padding: 30px 26px;
+  box-shadow: 0 1px 2px rgba(43, 37, 33, .04), 0 18px 34px -22px rgba(43, 37, 33, .18);
+  display: flex; flex-direction: column;
+}
+.cb-feature-icon { width: 74px; height: 74px; border-radius: 50%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.cb-feature-icon.is-accent { background: var(--cb-accent-soft); color: var(--cb-accent-strong); }
+.cb-feature-icon.is-sage { background: var(--cb-sage-soft); color: var(--cb-sage-text); }
+.cb-feature-card h3 {
+  font-family: var(--cb-font-display); font-weight: 800; font-size: 22px; line-height: 1.18;
+  margin-top: 20px; color: var(--cb-ink);
+}
+.cb-feature-card p { font-size: 16px; line-height: 1.5; color: var(--cb-text-soft); margin-top: 10px; }
+
+/* Pricing */
+.cb-pricing { margin-top: 84px; background: #ece1cf; border-top: 1px solid rgba(43, 37, 33, .07); border-bottom: 1px solid rgba(43, 37, 33, .07); padding-top: 72px; padding-bottom: 80px; }
+.cb-pricing-head { text-align: center; max-width: 720px; margin: 0 auto; }
+.cb-pricing-head h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 50px; line-height: 1.04; margin: 14px 0 0; color: var(--cb-ink); }
+.cb-urgency-badge {
+  display: inline-flex; align-items: center; gap: 9px; margin-top: 20px;
+  background: var(--cb-accent-soft); color: var(--cb-accent-strong); border: 1px solid var(--cb-accent-soft-line);
+  border-radius: 999px; padding: 8px 16px; font-weight: 700; font-size: 14px;
+}
+.cb-urgency-dot {
+  position: relative; width: 8px; height: 8px; border-radius: 99px; background: var(--cb-accent);
+  box-shadow: 0 0 0 4px rgba(188, 78, 43, .18);
+  animation: cb-beat 12s ease-in-out infinite;
+}
+.cb-urgency-dot::after {
+  content: ""; position: absolute; inset: 0; border-radius: 99px;
+  background: var(--cb-accent); opacity: 0;
+  animation: cb-ripple 12s ease-out infinite;
+}
+@keyframes cb-beat {
+  0%, 2%, 4%, 6%, 8%, 100% { transform: scale(1); }
+  3% { transform: scale(1.35); }
+  7% { transform: scale(1.3); }
+}
+@keyframes cb-ripple {
+  0%, 8% { transform: scale(1); opacity: .5; }
+  35% { transform: scale(2.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+.cb-price-grid { display: grid; grid-template-columns: 1.08fr 1fr 1fr; gap: 24px; margin-top: 48px; align-items: stretch; }
+.cb-price-card { display: flex; flex-direction: column; background: var(--cb-paper); border: 1px solid rgba(43, 37, 33, .12); border-radius: 22px; padding: 28px 26px; box-shadow: var(--cb-shadow-card); position: relative; }
+.cb-price-card.is-featured { background: var(--cb-paper-strong); border: 2px solid var(--cb-accent); padding: 28px 28px; box-shadow: var(--cb-shadow-pop); }
+.cb-price-row { display: flex; align-items: center; justify-content: space-between; }
+.cb-price-pill { border-radius: 999px; padding: 5px 13px; font-weight: 800; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.cb-price-pill.is-accent { background: var(--cb-accent); color: #fff; }
+.cb-price-pill.is-sage { background: var(--cb-sage-soft); color: var(--cb-sage-text); }
+.cb-price-amount { display: flex; align-items: baseline; gap: 4px; }
+.cb-price-amount strong { font-family: var(--cb-font-display); font-weight: 800; font-size: 44px; color: var(--cb-ink); line-height: 1; }
+.cb-price-amount span { font-family: var(--cb-font-display); font-size: 30px; font-weight: 700; color: var(--cb-ink-soft); line-height: 1; }
+.cb-price-card h3 { font-family: var(--cb-font-display); font-weight: 800; font-size: 28px; margin: 18px 0 0; color: var(--cb-ink); }
+.cb-price-card > p { font-size: 16px; line-height: 1.5; color: var(--cb-text-soft); margin: 8px 0 0; }
+.cb-savings { display: inline-block; margin-top: 14px; background: var(--cb-sage-soft); color: var(--cb-sage-text); border-radius: 8px; padding: 5px 11px; font-weight: 700; font-size: 13px; }
+.cb-feature-list { display: flex; flex-direction: column; gap: 12px; font-size: 16px; color: #3f372f; font-weight: 500; list-style: none; padding: 0; margin: 0; }
+.cb-feature-list li { display: flex; gap: 11px; align-items: flex-start; }
+.cb-check { font-weight: 800; }
+.cb-check.is-accent { color: var(--cb-accent); }
+.cb-check.is-sage { color: var(--cb-sage); }
+/* Guaranteed breathing room between card content and the bottom-pinned CTA */
+.cb-price-card .cb-feature-list { margin-top: 22px; margin-bottom: 26px; }
+.cb-pricing-note { text-align: center; color: var(--cb-muted); font-size: 15px; margin: 28px 0 0; font-weight: 600; }
+
+/* Reviews */
+.cb-reviews-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; }
+.cb-reviews-head h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 46px; line-height: 1.05; margin: 14px 0 0; color: var(--cb-ink); }
+.cb-rating-summary { text-align: right; flex: none; }
+.cb-rating-summary .cb-stars { font-size: 22px; letter-spacing: 2px; }
+.cb-rating-summary span { font-size: 15px; color: #7a6e5e; font-weight: 600; margin-top: 2px; display: block; }
+.cb-review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 40px; }
+.cb-review-card { background: var(--cb-paper); border: 1px solid rgba(43, 37, 33, .09); border-radius: 18px; padding: 30px; box-shadow: var(--cb-shadow-card); }
+.cb-review-card .cb-stars { font-size: 17px; letter-spacing: 1px; }
+.cb-review-card p { font-family: var(--cb-font-display); font-size: 20px; line-height: 1.5; color: #34302a; margin: 14px 0 0; font-weight: 500; }
+.cb-review-author { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
+.cb-review-avatar {
+  width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-family: var(--cb-font-display); font-weight: 800;
+}
+.cb-review-avatar.is-accent { background: var(--cb-accent-soft); color: var(--cb-accent-strong); }
+.cb-review-avatar.is-sage { background: var(--cb-sage-soft); color: var(--cb-sage-text); }
+.cb-review-name { font-weight: 700; color: var(--cb-ink-soft); }
+.cb-review-role { font-size: 14px; color: var(--cb-muted); }
+
+/* Preview */
+.cb-preview-panel { background: #f7efe1; border: 1px solid var(--cb-line); border-radius: 24px; padding: 52px 56px; display: grid; grid-template-columns: .86fr 1.14fr; gap: 50px; align-items: center; }
+.cb-preview-panel h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 44px; line-height: 1.04; margin: 14px 0 0; color: var(--cb-ink); }
+.cb-preview-panel p { font-size: 18px; line-height: 1.58; color: var(--cb-text-soft); margin: 16px 0 0; }
+.cb-preview-stack { position: relative; width: 400px; height: 244px; margin-left: auto; }
+.cb-preview-page {
+  --rot: 0deg;
+  position: absolute; top: 0; width: 210px; height: 210px; object-fit: cover;
+  background: #fff; border: 4px solid #fff; border-radius: 14px;
+  box-shadow: 0 16px 30px -18px rgba(43, 37, 33, .35);
+  transform: rotate(var(--rot));
+  transition: transform .2s ease, box-shadow .2s ease, z-index .2s ease;
+  cursor: pointer;
+}
+.cb-preview-page.is-left { left: 0; top: 30px; --rot: -6deg; z-index: 1; }
+.cb-preview-page.is-center { left: 95px; top: 0; --rot: 0deg; z-index: 2; }
+.cb-preview-page.is-right { left: 190px; top: 34px; --rot: 6deg; z-index: 1; }
+.cb-preview-page:hover, .cb-preview-page.is-hover {
+  transform: rotate(var(--rot)) translateY(-10px) scale(1.04);
+  box-shadow: 0 24px 44px -20px rgba(43, 37, 33, .42);
+  z-index: 5;
+}
+
+/* FAQ */
+.cb-faq-list { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+.cb-faq-item { background: var(--cb-paper); border: 1px solid var(--cb-line); border-radius: 16px; padding: 4px 28px; }
+.cb-faq-item summary {
+  list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 0; font-family: var(--cb-font-display); font-weight: 700; font-size: 21px; color: var(--cb-ink);
+}
+.cb-faq-item summary::-webkit-details-marker { display: none; }
+.cb-faq-plus { color: var(--cb-accent); font-size: 26px; font-weight: 400; }
+.cb-faq-item p { font-size: 17px; line-height: 1.6; color: var(--cb-text-soft); margin: 0 0 22px; max-width: 720px; }
+
+/* Author */
+.cb-author-panel {
+  background: var(--cb-paper); border: 1px solid var(--cb-line); border-radius: 24px; padding: 52px 56px;
+  display: grid; grid-template-columns: 200px 1fr; gap: 40px; align-items: center; position: relative; overflow: hidden;
+}
+.cb-author-photo {
+  width: 200px; height: 200px; border-radius: 50%; border: 3px solid var(--cb-accent); background: rgba(255, 255, 255, .5);
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  overflow: hidden; box-shadow: var(--cb-shadow-card);
+}
+.cb-author-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+.cb-author-photo span { font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: .04em; color: #a8927a; line-height: 1.6; }
+.cb-author-panel h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 48px; line-height: 1.02; margin: 12px 0 0; color: var(--cb-ink); }
+.cb-author-panel p { font-size: 19px; line-height: 1.6; color: var(--cb-text); margin: 18px 0 0; max-width: 560px; }
+
+/* Final CTA */
+.cb-final-cta { background: var(--cb-ink-soft); border-radius: 26px; padding: 64px 56px; position: relative; overflow: hidden; }
+.cb-final-cta-copy { position: relative; z-index: 2; max-width: 620px; }
+.cb-final-cta h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 50px; line-height: 1.04; color: #f6efe2; margin: 0; }
+.cb-final-cta p { font-size: 19px; line-height: 1.55; color: #cbbfac; margin: 18px 0 0; }
+.cb-final-cta-actions { display: flex; align-items: center; gap: 14px; margin-top: 32px; }
+.cb-final-cta-meta { display: flex; gap: 26px; margin-top: 28px; color: #b6aa97; font-weight: 600; font-size: 15px; }
+
+/* ----------------------------------------------------------------
+   Interaction & focus states
+   Each :hover / :active / :focus-visible is paired with an
+   .is-hover / .is-active / .is-focus helper class so the design-system
+   page (design-system.html) can display every state side by side,
+   statically. The helper classes are inert in production — nothing
+   adds them at runtime, so real pages only ever get the real
+   pseudo-class behaviour.
+   ---------------------------------------------------------------- */
+
+/* Buttons */
+.cb-btn {
+  transition: transform .16s ease, box-shadow .16s ease,
+    background-color .16s ease, border-color .16s ease, color .16s ease;
+}
+.cb-btn-primary:hover, .cb-btn-primary.is-hover {
+  background: var(--cb-accent-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -10px rgba(188, 78, 43, .75);
+}
+.cb-btn-primary:active, .cb-btn-primary.is-active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px -10px rgba(188, 78, 43, .7);
+}
+.cb-btn-outline:hover, .cb-btn-outline.is-hover {
+  border-color: var(--cb-ink-soft);
+  background: rgba(43, 37, 33, .05);
+  transform: translateY(-2px);
+}
+.cb-btn-outline:active, .cb-btn-outline.is-active { transform: translateY(0); }
+.cb-btn-light:hover, .cb-btn-light.is-hover {
+  background: var(--cb-paper);
+  border-color: var(--cb-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px -16px rgba(43, 37, 33, .4);
+}
+.cb-btn-light:active, .cb-btn-light.is-active { transform: translateY(0); box-shadow: none; }
+.cb-btn-outline-dark:hover, .cb-btn-outline-dark.is-hover {
+  border-color: rgba(246, 239, 226, .8);
+  background: rgba(246, 239, 226, .1);
+  transform: translateY(-2px);
+}
+.cb-btn-outline-dark:active, .cb-btn-outline-dark.is-active { transform: translateY(0); }
+.cb-btn-dark:hover, .cb-btn-dark.is-hover {
+  background: var(--cb-ink);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -10px rgba(43, 37, 33, .6);
+}
+.cb-btn-dark:active, .cb-btn-dark.is-active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px -10px rgba(43, 37, 33, .5);
+}
+.cb-btn:focus-visible, .cb-btn.is-focus { outline: none; box-shadow: var(--cb-focus); }
+.cb-btn-primary:focus-visible, .cb-btn-primary.is-focus {
+  box-shadow: var(--cb-focus), 0 12px 24px -10px rgba(188, 78, 43, .7);
+}
+.cb-btn:disabled, .cb-btn.is-disabled {
+  opacity: .5; cursor: not-allowed; transform: none; box-shadow: none;
+}
+
+/* Cards
+   Price cards do NOT move on hover (movement on the key purchase
+   element is distracting) — only the shadow deepens for subtle
+   feedback. Non-purchase cards may lift slightly. */
+.cb-price-card { transition: box-shadow .18s ease, border-color .18s ease; }
+.cb-price-card:hover, .cb-price-card.is-hover {
+  box-shadow: 0 24px 50px -26px rgba(43, 37, 33, .34);
+}
+.cb-feature-card, .cb-review-card { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.cb-feature-card:hover, .cb-feature-card.is-hover,
+.cb-review-card:hover, .cb-review-card.is-hover {
+  transform: translateY(-3px);
+  border-color: var(--cb-accent-soft-line);
+  box-shadow: 0 22px 40px -24px rgba(43, 37, 33, .28);
+}
+
+/* FAQ */
+.cb-faq-item summary { transition: color .16s ease; }
+.cb-faq-item summary:hover, .cb-faq-item.is-hover > summary { color: var(--cb-accent); }
+.cb-faq-item summary:focus-visible { outline: none; color: var(--cb-accent); }
+.cb-faq-plus { transition: transform .2s ease; }
+.cb-faq-item[open] .cb-faq-plus, .cb-faq-item.is-open .cb-faq-plus { transform: rotate(45deg); }
+
+/* Select */
+.cb-select { transition: border-color .16s ease, box-shadow .16s ease; }
+.cb-select:hover { border-color: rgba(43, 37, 33, .4); }
+.cb-select:focus, .cb-select.is-focus { outline: none; border-color: var(--cb-accent); box-shadow: var(--cb-focus); }
+
+/* ----------------------------------------------------------------
+   Proposed extensions (added to grow the system beyond the v2 offer
+   page — review and keep what fits). Each is genuinely needed soon:
+   forms for checkout/contact, tags for the catalog, callouts for
+   shipping/return notices, and button sizes for denser layouts.
+   ---------------------------------------------------------------- */
+
+/* Button sizes */
+.cb-btn-sm { padding: 10px 18px; font-size: 14px; }
+.cb-btn-lg { padding: 19px 34px; font-size: 19px; }
+
+/* Inline text link */
+.cb-link {
+  color: var(--cb-accent);
+  font-weight: 700;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1.5px;
+  transition: background-size .2s ease, color .16s ease;
+}
+.cb-link:hover, .cb-link.is-hover { color: var(--cb-accent-strong); background-size: 0 1.5px; }
+.cb-link:focus-visible { outline: none; box-shadow: var(--cb-focus); border-radius: 3px; }
+
+/* Form controls (label + input / textarea / select)
+   Inputs, textareas and selects share one size and one focus ring so a
+   "Брой" picker reads as the same control as a text field — never a
+   small box nested inside another box. */
+.cb-field { display: flex; flex-direction: column; gap: 8px; }
+.cb-field label, .cb-label { font-weight: 700; font-size: 14px; color: var(--cb-text); }
+.cb-field-row { flex-direction: row; align-items: center; justify-content: space-between; gap: 12px; }
+.cb-field-row label { margin: 0; }
+.cb-input, .cb-textarea, .cb-select {
+  font-family: var(--cb-font-body); font-size: 16px; font-weight: 500; color: var(--cb-ink-soft);
+  background: #fff; border: 1.5px solid rgba(43, 37, 33, .18); border-radius: 12px;
+  padding: 13px 16px; width: 100%;
+  transition: border-color .16s ease, box-shadow .16s ease;
+}
+.cb-textarea { min-height: 120px; resize: vertical; line-height: 1.55; }
+.cb-input::placeholder, .cb-textarea::placeholder { color: var(--cb-muted); }
+.cb-input:hover, .cb-textarea:hover, .cb-select:hover { border-color: rgba(43, 37, 33, .34); }
+.cb-input:focus, .cb-textarea:focus, .cb-select:focus,
+.cb-input.is-focus, .cb-textarea.is-focus, .cb-select.is-focus {
+  outline: none; border-color: var(--cb-accent); box-shadow: var(--cb-focus);
+}
+/* Native select: hide default arrow, draw our own chevron, keep room for it */
+.cb-select {
+  appearance: none; -webkit-appearance: none; -moz-appearance: none;
+  cursor: pointer; padding-right: 42px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%232b2521' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center;
+}
+/* Compact auto-width select for inline use (e.g. small quantity) */
+.cb-select.cb-select-inline { width: auto; min-width: 88px; }
+
+/* Quantity stepper (− value +) — clearer than a select for 1–N counts */
+.cb-stepper { display: inline-flex; align-items: stretch; background: #fff; border: 1.5px solid rgba(43, 37, 33, .18); border-radius: 12px; overflow: hidden; transition: border-color .16s ease, box-shadow .16s ease; }
+.cb-stepper:focus-within { border-color: var(--cb-accent); box-shadow: var(--cb-focus); }
+.cb-stepper button {
+  width: 48px; border: none; background: transparent; cursor: pointer;
+  font-size: 22px; line-height: 1; color: var(--cb-ink-soft);
+  transition: background-color .16s ease, color .16s ease;
+}
+.cb-stepper button:hover { background: var(--cb-accent-soft); color: var(--cb-accent-strong); }
+.cb-stepper input {
+  width: 56px; text-align: center; border: none; border-left: 1px solid var(--cb-line); border-right: 1px solid var(--cb-line);
+  font-family: var(--cb-font-body); font-size: 19px; font-weight: 800; color: var(--cb-ink);
+  padding: 13px 0; -moz-appearance: textfield;
+}
+.cb-stepper input::-webkit-outer-spin-button,
+.cb-stepper input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+.cb-stepper input:focus { outline: none; }
+
+/* Tag / chip (catalog genres, age groups, etc.) */
+.cb-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--cb-paper); border: 1px solid var(--cb-line); border-radius: 999px;
+  padding: 6px 14px; font-size: 13px; font-weight: 700; color: var(--cb-text);
+}
+.cb-tag.is-accent { background: var(--cb-accent-soft); border-color: var(--cb-accent-soft-line); color: var(--cb-accent-strong); }
+.cb-tag.is-sage { background: var(--cb-sage-soft); border-color: var(--cb-sage-soft-line); color: var(--cb-sage-text); }
+
+/* Callout / notice (shipping info, returns, highlights) */
+.cb-note {
+  display: flex; gap: 14px; align-items: flex-start;
+  background: var(--cb-sage-soft); border: 1px solid var(--cb-sage-soft-line);
+  border-radius: 16px; padding: 18px 22px; color: var(--cb-sage-text);
+  font-size: 16px; line-height: 1.5;
+}
+.cb-note.is-accent { background: var(--cb-accent-soft); border-color: var(--cb-accent-soft-line); color: var(--cb-accent-strong); }
+.cb-note-icon { font-size: 20px; line-height: 1.3; flex: 0 0 auto; }
+.cb-note strong { display: block; margin-bottom: 2px; }
+
+/* Honour users who ask for less motion */
+@media (prefers-reduced-motion: reduce) {
+  .cb-float, .cb-float-alt, .cb-urgency-dot, .cb-urgency-dot::after { animation: none; }
+  .cb-btn, .cb-price-card, .cb-feature-card, .cb-review-card, .cb-preview-page,
+  .cb-link, .cb-input, .cb-textarea, .cb-select, .cb-faq-plus,
+  .cb-faq-item summary { transition: none; }
+  .cb-btn:hover, .cb-btn.is-hover,
+  .cb-price-card:hover, .cb-feature-card:hover, .cb-review-card:hover,
+  .cb-preview-page:hover { transform: rotate(var(--rot)); }
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .cb-hero { grid-template-columns: 1fr; }
+  .cb-hero-art { height: 380px; }
+  .cb-hero h1 { font-size: 52px; }
+  .cb-story-grid { grid-template-columns: 1fr; }
+  .cb-feature-grid { grid-template-columns: repeat(2, 1fr); }
+  .cb-price-grid { grid-template-columns: 1fr; }
+  .cb-review-grid { grid-template-columns: 1fr; }
+  .cb-preview-panel, .cb-author-panel { grid-template-columns: 1fr; }
+}
