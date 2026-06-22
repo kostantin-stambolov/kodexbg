@@ -1,20 +1,15 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kodexbg.com"),
-  title: "Kodex Publishing | Издателство за книги със смисъл",
+  title: {
+    default: "Kodex Publishing | Издателство за книги със смисъл",
+    template: "%s | Kodex Publishing",
+  },
   description:
     "Kodex Publishing е българско издателство за истории, детски книги и смислени издания с ясна мисъл, добра форма и трайна стойност.",
-  keywords: [
-    "Kodex Publishing",
-    "издателство",
-    "българско издателство",
-    "детски книги",
-    "книги със смисъл",
-    "Чудовището без уши",
-  ],
   authors: [{ name: "Kodex Publishing" }],
-  alternates: { canonical: "/" },
   icons: {
     icon: [
       { url: "/assets/kodex-icon.svg", type: "image/svg+xml" },
@@ -26,10 +21,6 @@ export const metadata: Metadata = {
     type: "website",
     locale: "bg_BG",
     siteName: "Kodex Publishing",
-    title: "Kodex Publishing | Издателство за книги със смисъл",
-    description:
-      "Истории, детски книги и смислени издания, създадени с уважение към текста, формата и читателя.",
-    url: "https://kodexbg.com/",
     images: [
       {
         url: "/assets/og-image.jpg",
@@ -39,9 +30,6 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kodex Publishing | Издателство за книги със смисъл",
-    description:
-      "Българско издателство за книги с ясна мисъл, добра форма и дълъг живот.",
     images: ["/assets/og-image.jpg"],
   },
 };
@@ -59,8 +47,8 @@ export default function RootLayout({
     <html lang="bg">
       <body>
         <link rel="stylesheet" href="/assets/styles/chrome.css" />
-        <link rel="stylesheet" href="/assets/site-consent3.css" />
         {children}
+        <Script src="/assets/analytics-consent3.js" strategy="afterInteractive" />
       </body>
     </html>
   );
