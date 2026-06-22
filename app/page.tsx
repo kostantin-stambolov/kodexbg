@@ -48,7 +48,7 @@ export default function HomePage() {
           <section className="section" aria-labelledby="featured-book">
             <a
               className="book-card"
-              href="/books/chudovishtoto-bez-ushi.html"
+              href="/books/chudovishtoto-bez-ushi-offer-v2.html"
               data-book="chudovishtoto-bez-ushi"
               data-cta="book_detail"
               data-track-event="book_detail_click"
