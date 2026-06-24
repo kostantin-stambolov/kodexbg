@@ -29,10 +29,23 @@ function baseUrlFromEnv(): string | undefined {
   return undefined;
 }
 
+function baseUrlFromReferer(request: NextRequest): string | undefined {
+  const referer = request.headers.get("referer");
+  if (!referer) return undefined;
+  try {
+    const url = new URL(referer);
+    if (!isLocalHost(url.host)) return url.origin;
+  } catch {
+    // ignore malformed referer
+  }
+  return undefined;
+}
+
 /**
  * Зад Railway-проксито `request.url` показва вътрешния адрес
- * (напр. http://localhost:8080), не публичния домейн. Затова за редиректи
- * ползваме proxy headers, после env fallback (RAILWAY_PUBLIC_DOMAIN / APP_URL).
+ * (напр. http://localhost:8080), не публичния домейн. Railway понякога
+ * подава x-forwarded-host=localhost:8080 – затова игнорираме локални host-ове
+ * и ползваме env/referer fallback.
  */
 export function getBaseUrl(request: NextRequest): string {
   const forwardedHost = firstHeaderValue(
@@ -40,7 +53,9 @@ export function getBaseUrl(request: NextRequest): string {
   );
   const forwardedProto =
     firstHeaderValue(request.headers.get("x-forwarded-proto")) || "https";
-  if (forwardedHost) return `${forwardedProto}://${forwardedHost}`;
+  if (forwardedHost && !isLocalHost(forwardedHost)) {
+    return `${forwardedProto}://${forwardedHost}`;
+  }
 
   const host = firstHeaderValue(request.headers.get("host"));
   if (host && !isLocalHost(host)) {
@@ -52,6 +67,9 @@ export function getBaseUrl(request: NextRequest): string {
 
   const fromEnv = baseUrlFromEnv();
   if (fromEnv) return fromEnv;
+
+  const fromReferer = baseUrlFromReferer(request);
+  if (fromReferer) return fromReferer;
 
   return new URL(request.url).origin;
 }
