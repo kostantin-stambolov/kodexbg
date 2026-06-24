@@ -2,6 +2,13 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import type { Metadata } from "next";
 import StepperInit from "../../components/StepperInit";
+import { getBook } from "../../../lib/catalog";
+import { getAvailable, MAX_PER_ORDER } from "../../../lib/inventory";
+
+const SLUG = "chudovishtoto-bez-ushi";
+
+// Наличността зависи от базата, затова страницата е динамична.
+export const dynamic = "force-dynamic";
 
 const COVER =
   "/assets/books/chudovishtoto-bez-ushi/previews/monster-without-ears-cover.jpg";
@@ -37,7 +44,22 @@ const html = readFileSync(
   "utf8"
 );
 
-export default function BookPage() {
+async function getPrintAvailable(): Promise<number> {
+  const book = getBook(SLUG);
+  const printCfg = book?.editions.print;
+  if (!printCfg?.physical) return MAX_PER_ORDER;
+  try {
+    return await getAvailable(SLUG, "print");
+  } catch {
+    // Ако базата не е достъпна, не блокираме страницата –
+    // показваме нормален лимит, а checkout-ът остава авторитетен.
+    return MAX_PER_ORDER;
+  }
+}
+
+export default async function BookPage() {
+  const printAvailable = await getPrintAvailable();
+
   return (
     <>
       <link
@@ -55,7 +77,11 @@ export default function BookPage() {
       />
       <link rel="stylesheet" href="/assets/styles/childrens-book-theme.css" />
       <div dangerouslySetInnerHTML={{ __html: html }} />
-      <StepperInit />
+      <StepperInit
+        printAvailable={printAvailable}
+        printCheckoutBase={`/api/checkout/${SLUG}/print`}
+        maxPerOrder={MAX_PER_ORDER}
+      />
     </>
   );
 }

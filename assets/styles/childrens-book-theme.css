@@ -264,7 +264,7 @@
 .cb-check.is-sage { color: var(--cb-sage); }
 /* Guaranteed breathing room between card content and the bottom-pinned CTA */
 .cb-price-card .cb-feature-list { margin-top: 22px; margin-bottom: 26px; }
-.cb-pricing-note { text-align: center; color: var(--cb-muted); font-size: 15px; margin: 28px 0 0; font-weight: 600; }
+.cb-pricing-note { text-align: center; color: var(--cb-muted); font-size: 15px; margin: 28px 0 0; font-weight: 200; }
 
 /* Reviews */
 .cb-reviews-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; }
