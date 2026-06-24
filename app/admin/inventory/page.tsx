@@ -14,6 +14,10 @@ import {
   getInventoryLog,
   type InventoryLogEntry,
 } from "../../../lib/inventory";
+import {
+  InventoryEditDialog,
+  InventoryEditOpenButton,
+} from "./InventoryEdit";
 
 export const metadata: Metadata = {
   title: "Наличност",
@@ -200,6 +204,19 @@ export default async function AdminInventoryPage({
               marginBottom: 24,
             }}
           >
+            {editions
+              .filter((row) => row.physical && row.isPoolOwner && row.poolKey)
+              .map((row) => (
+                <InventoryEditDialog
+                  key={`edit-${row.poolKey}`}
+                  dialogId={`${book.slug}-${row.poolKey}`}
+                  bookSlug={book.slug}
+                  poolKey={row.poolKey!}
+                  stockLimit={row.stockLimit ?? 0}
+                  adjustment={row.adjustment}
+                  adjustmentNote={row.adjustmentNote}
+                />
+              ))}
             <h2 style={{ fontSize: 20, margin: "0 0 16px" }}>{book.title}</h2>
 
             <table style={{ width: "100%", borderCollapse: "collapse" }}>
@@ -278,134 +295,41 @@ export default async function AdminInventoryPage({
                         maxWidth: 180,
                       }}
                     >
-                      {row.adjustmentNote ?? "–"}
+                      {row.physical && row.poolKey ? (
+                        <InventoryEditOpenButton
+                          dialogId={`${book.slug}-${row.poolKey}`}
+                          title="Редактирай бележката"
+                          style={{
+                            textDecoration: "underline",
+                            textDecorationColor: "#544a40",
+                            textUnderlineOffset: 2,
+                          }}
+                        >
+                          {row.adjustmentNote ?? "–"}
+                        </InventoryEditOpenButton>
+                      ) : (
+                        "–"
+                      )}
                     </td>
 
                     <td style={{ padding: "10px 6px" }}>
-                      {row.physical && row.isPoolOwner && (
-                        <details style={{ position: "relative" }}>
-                          <summary
-                            style={{
-                              cursor: "pointer",
-                              padding: "6px 12px",
-                              borderRadius: 6,
-                              border: "none",
-                              background: "#bc4e2b",
-                              color: "#fff",
-                              fontWeight: 600,
-                              fontSize: 13,
-                              listStyle: "none",
-                              display: "inline-block",
-                            }}
-                          >
-                            Редактирай
-                          </summary>
-                          <form
-                            method="POST"
-                            action="/api/admin/inventory"
-                            style={{
-                              position: "absolute",
-                              right: 0,
-                              top: "100%",
-                              marginTop: 8,
-                              background: "#352f2a",
-                              border: "1px solid #544a40",
-                              borderRadius: 10,
-                              padding: 16,
-                              display: "flex",
-                              flexDirection: "column",
-                              gap: 10,
-                              zIndex: 10,
-                              minWidth: 260,
-                            }}
-                          >
-                            <input
-                              type="hidden"
-                              name="book_slug"
-                              value={book.slug}
-                            />
-                            <input
-                              type="hidden"
-                              name="edition"
-                              value={row.poolKey ?? row.edition}
-                            />
-
-                            <label style={{ fontSize: 13, color: "#cbbfae" }}>
-                              Лимит
-                              <input
-                                type="number"
-                                name="stock_limit"
-                                defaultValue={row.stockLimit ?? 0}
-                                min={0}
-                                style={{
-                                  display: "block",
-                                  width: "100%",
-                                  marginTop: 4,
-                                  padding: "6px 8px",
-                                  borderRadius: 6,
-                                  border: "1px solid #544a40",
-                                  background: "#211c18",
-                                  color: "#fff",
-                                }}
-                              />
-                            </label>
-
-                            <label style={{ fontSize: 13, color: "#cbbfae" }}>
-                              Корекция (+ или &minus;)
-                              <input
-                                type="number"
-                                name="adjustment"
-                                defaultValue={row.adjustment}
-                                style={{
-                                  display: "block",
-                                  width: "100%",
-                                  marginTop: 4,
-                                  padding: "6px 8px",
-                                  borderRadius: 6,
-                                  border: "1px solid #544a40",
-                                  background: "#211c18",
-                                  color: "#fff",
-                                }}
-                              />
-                            </label>
-
-                            <label style={{ fontSize: 13, color: "#cbbfae" }}>
-                              Бележка (защо)
-                              <input
-                                type="text"
-                                name="adjustment_note"
-                                defaultValue={row.adjustmentNote ?? ""}
-                                placeholder="напр. 3 тестови поръчки"
-                                style={{
-                                  display: "block",
-                                  width: "100%",
-                                  marginTop: 4,
-                                  padding: "6px 8px",
-                                  borderRadius: 6,
-                                  border: "1px solid #544a40",
-                                  background: "#211c18",
-                                  color: "#fff",
-                                }}
-                              />
-                            </label>
-
-                            <button
-                              type="submit"
-                              style={{
-                                padding: "8px 14px",
-                                borderRadius: 6,
-                                border: "none",
-                                background: "#bc4e2b",
-                                color: "#fff",
-                                fontWeight: 600,
-                                cursor: "pointer",
-                                marginTop: 4,
-                              }}
-                            >
-                              Запази
-                            </button>
-                          </form>
-                        </details>
+                      {row.physical && row.isPoolOwner && row.poolKey && (
+                        <InventoryEditOpenButton
+                          dialogId={`${book.slug}-${row.poolKey}`}
+                          style={{
+                            cursor: "pointer",
+                            padding: "6px 12px",
+                            borderRadius: 6,
+                            border: "none",
+                            background: "#bc4e2b",
+                            color: "#fff",
+                            fontWeight: 600,
+                            fontSize: 13,
+                            display: "inline-block",
+                          }}
+                        >
+                          Редактирай
+                        </InventoryEditOpenButton>
                       )}
                       {row.physical && !row.isPoolOwner && (
                         <span style={{ color: "#8a7d6c", fontSize: 12 }}>
