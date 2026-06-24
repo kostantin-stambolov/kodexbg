@@ -7,13 +7,7 @@ import {
   type Edition,
 } from "../../../../../lib/catalog";
 import { getAvailable, MAX_PER_ORDER } from "../../../../../lib/inventory";
-
-function getBaseUrl(request: NextRequest): string {
-  const forwardedHost = request.headers.get("x-forwarded-host");
-  const forwardedProto = request.headers.get("x-forwarded-proto") || "https";
-  if (forwardedHost) return `${forwardedProto}://${forwardedHost}`;
-  return new URL(request.url).origin;
-}
+import { getBaseUrl } from "../../../../../lib/url";
 
 function clamp(n: number, min: number, max: number): number {
   return Math.min(max, Math.max(min, n));

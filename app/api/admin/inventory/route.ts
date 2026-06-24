@@ -1,9 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isAdminAuthenticated } from "../../../../lib/admin";
 import { setInventory } from "../../../../lib/inventory";
+import { getBaseUrl } from "../../../../lib/url";
 
 export async function POST(request: NextRequest) {
-  const base = new URL(request.url).origin;
+  const base = getBaseUrl(request);
 
   if (!(await isAdminAuthenticated())) {
     return NextResponse.redirect(`${base}/admin/login`, 303);

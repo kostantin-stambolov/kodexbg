@@ -1,10 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { checkAdminPassword, adminSessionToken, ADMIN_COOKIE } from "../../../../lib/admin";
+import { getBaseUrl } from "../../../../lib/url";
 
 export async function POST(request: NextRequest) {
   const form = await request.formData();
   const password = String(form.get("password") ?? "");
-  const base = new URL(request.url).origin;
+  const base = getBaseUrl(request);
 
   if (!checkAdminPassword(password)) {
     return NextResponse.redirect(`${base}/admin/login?error=1`, 303);
