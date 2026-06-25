@@ -47,7 +47,8 @@
   color: var(--cb-ink-soft);
   font-family: var(--cb-font-body);
   position: relative;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
   min-height: 100vh;
 }
 
@@ -549,4 +550,17 @@
   .cb-price-grid { grid-template-columns: 1fr; }
   .cb-review-grid { grid-template-columns: 1fr; }
   .cb-preview-panel, .cb-author-panel { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 620px) {
+  .cb-final-cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cb-final-cta-actions .cb-btn {
+    width: 100%;
+    min-height: 54px;
+    white-space: nowrap;
+  }
 }

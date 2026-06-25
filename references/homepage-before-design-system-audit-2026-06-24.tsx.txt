@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import EditorialFocusTabs from "./components/EditorialFocusTabs";
 import NewsletterSignup from "./components/NewsletterSignup";
 import SiteShell from "./components/SiteShell";
 
@@ -46,7 +45,7 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
-      <main className="home-visual-v3">
+      <main>
         <section className="home-hero" aria-labelledby="hero-title">
           <div className="home-hero-copy">
             <p className="eyebrow">Нова детска книга</p>
@@ -83,26 +82,35 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="trust-strip" aria-label="Какво прави изданията на Kodex различни">
-          <div>
-            <span>01</span>
-            <strong>Четене на глас</strong>
-            <p>История, която звучи естествено и държи детето вътре в момента.</p>
+        <section
+          className="publisher-signal"
+          id="kodex-publishing"
+          aria-label="За Kodex Publishing"
+        >
+          <div className="publisher-signal-copy">
+            <span className="section-label">Kodex Publishing</span>
+            <h2>Издаваме книги, които могат да се поръчат директно.</h2>
+            <p>
+              Работим с печатни и дигитални формати, ясна страница за всяко
+              заглавие и нормален път от избора до получаването.
+            </p>
           </div>
-          <div>
-            <span>02</span>
-            <strong>Подаръчен вид</strong>
-            <p>Корица и детайли, които изглеждат добре още преди книгата да се отвори.</p>
-          </div>
-          <div>
-            <span>03</span>
-            <strong>Ясен преглед</strong>
-            <p>Виждаш страницата, формата и усещането преди да поръчаш.</p>
-          </div>
-          <div>
-            <span>04</span>
-            <strong>Директен път</strong>
-            <p>Без шум около покупката: книга, цена, поръчка и нормална доставка.</p>
+          <div className="publisher-signal-stats" aria-label="Издателска рамка">
+            <div>
+              <span aria-hidden="true">01</span>
+              <strong>Печат</strong>
+              <p>Физически книги с ясна цена, формат и доставка.</p>
+            </div>
+            <div>
+              <span aria-hidden="true">02</span>
+              <strong>Дигитално</strong>
+              <p>PDF прегледи, файлове и допълнения около изданията.</p>
+            </div>
+            <div>
+              <span aria-hidden="true">03</span>
+              <strong>Директно</strong>
+              <p>Покупка от страницата на книгата, без излишни стъпки.</p>
+            </div>
           </div>
         </section>
 
@@ -111,10 +119,6 @@ export default function HomePage() {
             <div>
               <span className="section-label">Светът на книгите</span>
               <h2>Малко дом, малко магия, много настроение.</h2>
-              <p>
-                Това е визуалният тон за началната страница: топъл, предметен
-                и достатъчно приказен, без да губи яснота.
-              </p>
             </div>
           </div>
           <div className="story-sign-grid">
@@ -151,16 +155,73 @@ export default function HomePage() {
 
         <section className="editorial-system" aria-labelledby="editorial-system-title">
           <div className="editorial-system-intro">
-            <span className="section-label">За читателите</span>
+            <span className="section-label">За читателите • Нашият фокус</span>
             <h2 id="editorial-system-title">
-              Добрата детска книга остава след четенето.
+              Книгата трябва да има причина да съществува.
             </h2>
             <p>
-              Търсим книги, които събират семейство около история, дават образ
-              на разговора и изглеждат добре и след последната страница.
+              Работим за читатели, които разпознават смислен текст, добра форма
+              и издание с живот след първата покупка.
             </p>
+            <div className="editorial-system-tags" aria-label="Формати">
+              <span>художествени</span>
+              <span>детски</span>
+              <span>нехудожествени</span>
+              <span>дигитални</span>
+            </div>
           </div>
-          <EditorialFocusTabs />
+          <div className="editorial-system-grid" aria-label="Издателски фокус">
+            <article>
+              <span>01</span>
+              <div>
+                <h3>Истории</h3>
+                <p>Текстове с глас, структура и причина да бъдат разказани.</p>
+              </div>
+            </article>
+            <article>
+              <span>02</span>
+              <div>
+                <h3>Детски книги</h3>
+                <p>Топли, визуални и смислени издания за семейно четене.</p>
+              </div>
+            </article>
+            <article>
+              <span>03</span>
+              <div>
+                <h3>Специални издания</h3>
+                <p>Книги с внимателна редакция, дизайн и дълъг живот.</p>
+              </div>
+            </article>
+            <article>
+              <span>04</span>
+              <div>
+                <h3>Директна търговия</h3>
+                <p>Физически и дигитални продукти, представени ясно онлайн.</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section className="section" aria-labelledby="featured-book">
+          <article className="book-card featured-edition-card">
+            <div className="empty-edition-cover" aria-hidden="true">
+              <span>Скоро</span>
+            </div>
+            <div>
+              <span className="badge">Следващо издание</span>
+              <h2 className="book-title" id="featured-book">
+                Тоби и магията на Миялната
+              </h2>
+              <p className="book-summary">
+                Нова семейна приказка в подготовка: кухнята се превръща в
+                сцена, миялната крие малка магия, а Тоби открива, че понякога
+                най-обикновените неща имат собствено приключение.
+              </p>
+              <span className="edition-meta">
+                В подготовка • нова история от Kodex
+              </span>
+            </div>
+          </article>
         </section>
 
         <section className="newsletter-cta">
@@ -186,7 +247,6 @@ export default function HomePage() {
             />
           </div>
         </section>
-
       </main>
     </SiteShell>
   );
