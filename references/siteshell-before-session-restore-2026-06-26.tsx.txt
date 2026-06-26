@@ -24,6 +24,13 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                 <span className="brand-note">Publishing House</span>
               </span>
             </a>
+            <div
+              className="header-upcoming"
+              aria-label="Предстоящи книги: Тоби и силата на миялната"
+            >
+              <span>Предстоящи книги</span>
+              <strong>Тоби и силата на миялната</strong>
+            </div>
             <nav className="nav" aria-label="Секции">
               <a href="/books">Каталог</a>
               <a className="nav-cta" href="/contact">
@@ -42,24 +49,25 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                   Българско издателство за детски книги, семейно четене и
                   смислени издания с ясна история, добра форма и дълъг живот.
                 </p>
+                <a href="mailto:kodex@blackrockcapital.bg">
+                  kodex@blackrockcapital.bg
+                </a>
               </div>
               <nav className="footer-nav" aria-label="Footer навигация">
                 <div>
                   <h2>Книги</h2>
                   <a href="/books">Каталог</a>
                   <a href="/books/chudovishtoto-bez-ushi">Чудовището без уши</a>
-                  <a href="/tobi">Тоби и силата на миялната</a>
                   <a href="/">Начална страница</a>
                 </div>
                 <div>
-                  <h2>Автори</h2>
-                  <a href="/author/kostantin-stambolov">Костантин Стамболов</a>
+                  <h2>Издателство</h2>
+                  <a href="/#kodex-publishing">За Kodex Publishing</a>
                   <a href="/contact">Запитвания</a>
                   <a href="mailto:kodex@blackrockcapital.bg">Имейл</a>
                 </div>
                 <div>
                   <h2>Документи</h2>
-                  <a href="/delivery">Доставка и плащане</a>
                   <a href="/terms">Общи условия</a>
                   <a href="/privacy">Поверителност</a>
                 </div>

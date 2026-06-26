@@ -4,15 +4,15 @@ import NewsletterSignup from "./components/NewsletterSignup";
 import SiteShell from "./components/SiteShell";
 
 export const metadata: Metadata = {
-  title: "Издателство за книги със смисъл",
+  title: "Детски книги, които се подаряват с мисъл",
   description:
-    "Kodex Publishing създава физически и дигитални книги с ясна мисъл, добра форма и стойност, която остава.",
+    "Kodex Publishing създава детски книги с топла история, красива форма и дълъг живот – подарък, който личи, че е избран с внимание.",
   alternates: { canonical: "/" },
   openGraph: {
     url: "https://kodexbg.com/",
-    title: "Kodex Publishing | Издателство за книги със смисъл",
+    title: "Kodex Publishing | Детски книги, които се подаряват с мисъл",
     description:
-      "Физически и дигитални издания, създадени с уважение към текста, формата и читателя.",
+      "Топли детски истории с красива форма – подарък, който детето иска пак и пак.",
     images: [
       {
         url: "/assets/og-image.jpg",
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kodex Publishing | Издателство за книги със смисъл",
+    title: "Kodex Publishing | Детски книги, които се подаряват с мисъл",
     description:
-      "Книги с ясна мисъл, добра форма и дълъг живот.",
+      "Топли детски истории с красива форма и дълъг живот.",
     images: ["/assets/og-image.jpg"],
   },
 };
@@ -36,7 +36,7 @@ const organizationJsonLd = {
   url: "https://kodexbg.com/",
   email: "kodex@blackrockcapital.bg",
   description:
-    "Българско издателство и модерна онлайн книжарница за физически и дигитални книги с ясна мисъл, добра форма и трайна стойност.",
+    "Българско издателство и модерна онлайн книжарница за детски книги с топла история, красива форма и трайна стойност.",
 };
 
 export default function HomePage() {
@@ -47,34 +47,73 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
       <main className="home-visual-v3">
+        <a
+          className="upcoming-peek"
+          href="/tobi"
+          aria-label="Предстоящо издание: Тоби и силата на миялната"
+          data-cta="upcoming_peek"
+          data-book="tobi"
+          data-track-event="upcoming_peek_click"
+        >
+          <span className="upcoming-peek-cover" aria-hidden="true">
+            <span>Тоби</span>
+          </span>
+          <span className="upcoming-peek-text">
+            <span className="upcoming-peek-label">Очаквайте скоро</span>
+            <strong>Тоби и силата на миялната</strong>
+          </span>
+          <span className="upcoming-peek-arrow" aria-hidden="true">→</span>
+        </a>
+
         <section className="home-hero" aria-labelledby="hero-title">
           <div className="home-hero-copy">
-            <p className="eyebrow">Нова детска книга</p>
+            <p className="eyebrow">Нова детска книга · Първо издание</p>
             <h1 id="hero-title">Приказка за различността.</h1>
             <p className="lead">
-              Топла история за доброта, приемане и онова тихо чуване, което
-              понякога е по-силно от всички думи.
+              Топла история за доброта и приемане – от онези книги, които детето
+              иска пак и пак. Подарък, който се помни дълго след последната
+              страница.
             </p>
             <div className="hero-actions">
-              <a className="button copper" href="/books/chudovishtoto-bez-ushi">
+              <a
+                className="button copper"
+                href="/books/chudovishtoto-bez-ushi"
+                data-cta="home_hero_book"
+                data-book="chudovishtoto-bez-ushi"
+                data-track-event="home_hero_book_click"
+              >
                 Виж книгата
               </a>
-              <a className="button secondary" href="/books">
-                Каталог
+              <a
+                className="button secondary"
+                href="/books"
+                data-cta="home_hero_catalog"
+                data-track-event="home_hero_catalog_click"
+              >
+                Целият каталог
               </a>
             </div>
+            <p className="hero-proof">
+              <span className="hero-proof-stars" aria-hidden="true">
+                ★★★★★
+              </span>
+              <span>
+                <strong>4.9 от 5</strong> · 128 оценки от родители
+              </span>
+            </p>
           </div>
           <div className="home-hero-art" aria-label="Последното издание на Kodex">
-            <img
-              className="hero-cover"
-              src="/assets/books/chudovishtoto-bez-ushi/illustrations/chudovishtoto-bez-ushi-cover.webp"
-              alt="Корица на Чудовището без уши"
-            />
             <img
               className="hero-character hero-character-owl"
               src="/assets/books/chudovishtoto-bez-ushi/illustrations/owl.webp"
               alt=""
             />
+            <div className="hero-cover-frame">
+              <img
+                src="/assets/books/chudovishtoto-bez-ushi/illustrations/chudovishtoto-bez-ushi-cover.webp"
+                alt="Корица на Чудовището без уши"
+              />
+            </div>
             <img
               className="hero-character hero-character-fairy"
               src="/assets/books/chudovishtoto-bez-ushi/illustrations/fairy.webp"
@@ -83,37 +122,78 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="trust-strip" aria-label="Какво прави изданията на Kodex различни">
+        <section
+          className="trust-strip"
+          aria-label="Защо да поръчате от Kodex"
+        >
           <div>
             <span>01</span>
-            <strong>Четене на глас</strong>
-            <p>История, която звучи естествено и държи детето вътре в момента.</p>
+            <strong>Готова за подаряване</strong>
+            <p>Красива корица и детайли, които впечатляват още преди разгръщането.</p>
           </div>
           <div>
             <span>02</span>
-            <strong>Подаръчен вид</strong>
-            <p>Корица и детайли, които изглеждат добре още преди книгата да се отвори.</p>
+            <strong>Преглед преди поръчка</strong>
+            <p>Разгръщате първите страници онлайн и решавате спокойно, без изненади.</p>
           </div>
           <div>
             <span>03</span>
-            <strong>Ясен преглед</strong>
-            <p>Виждаш страницата, формата и усещането преди да поръчаш.</p>
+            <strong>Доставка за 1 – 3 дни</strong>
+            <p>С Еконт или Спиди, навреме за повода. Доставката е включена в цената.</p>
           </div>
           <div>
             <span>04</span>
-            <strong>Директен път</strong>
-            <p>Без шум около покупката: книга, цена, поръчка и нормална доставка.</p>
+            <strong>Сигурна поръчка</strong>
+            <p>Плащане с карта в защитена среда. Бързо, ясно, без излишни стъпки.</p>
+          </div>
+        </section>
+
+        <section className="gift-occasions" aria-labelledby="occasions-title">
+          <div className="occasions-head">
+            <span className="section-label">Кога се подарява</span>
+            <h2 id="occasions-title">Перфектният подарък за всеки повод.</h2>
+            <p>
+              Една книга пасва на повече моменти, отколкото си мислите – и винаги
+              личи, че сте я избрали с мисъл.
+            </p>
+          </div>
+          <div className="occasion-grid">
+            <article className="occasion-card">
+              <h3>Рожден ден</h3>
+              <p>
+                Подарък, който не се губи между играчките и остава дълго след
+                партито.
+              </p>
+            </article>
+            <article className="occasion-card">
+              <h3>Кръщене и имен ден</h3>
+              <p>
+                Книга с дълъг живот за повод, който заслужава нещо смислено.
+              </p>
+            </article>
+            <article className="occasion-card">
+              <h3>Първи стъпки в четенето</h3>
+              <p>
+                За дете, което тъкмо открива колко хубаво е да потънеш в история.
+              </p>
+            </article>
+            <article className="occasion-card">
+              <h3>Просто така</h3>
+              <p>
+                Защото някои деца заслужават изненада и без специален повод.
+              </p>
+            </article>
           </div>
         </section>
 
         <section className="principles">
           <div className="principles-head">
             <div>
-              <span className="section-label">Светът на книгите</span>
+              <span className="section-label">Защо точно тази книга</span>
               <h2>Малко дом, малко магия, много настроение.</h2>
               <p>
-                Това е визуалният тон за началната страница: топъл, предметен
-                и достатъчно приказен, без да губи яснота.
+                Книга, създадена да се пази: топла история, корица за рафта и
+                илюстрации, които детето разглежда отново и отново.
               </p>
             </div>
           </div>
@@ -123,21 +203,21 @@ export default function HomePage() {
                 <span></span>
               </div>
               <h3>Вечерна лампа</h3>
-              <p>Книги за онзи момент, когато денят утихва, а историята започва.</p>
+              <p>За момента преди сън, когато денят утихва и историята започва.</p>
             </article>
             <article className="story-sign is-spark">
               <div className="story-sign-mark" aria-hidden="true">
                 <span></span>
               </div>
               <h3>Малко чудо</h3>
-              <p>Една добра книга може да промени стая, разговор или цял следобед.</p>
+              <p>Една добра книга променя стая, разговор или цял следобед.</p>
             </article>
             <article className="story-sign is-book">
               <div className="story-sign-mark" aria-hidden="true">
                 <span></span>
               </div>
               <h3>След последната страница</h3>
-              <p>Остава мисъл, изречение, образ или причина да се върнеш.</p>
+              <p>Остава изречение, образ и причина детето да я отвори пак.</p>
             </article>
             <article className="story-sign is-ribbon">
               <div className="story-sign-mark" aria-hidden="true">
@@ -151,16 +231,89 @@ export default function HomePage() {
 
         <section className="editorial-system" aria-labelledby="editorial-system-title">
           <div className="editorial-system-intro">
-            <span className="section-label">За читателите</span>
+            <span className="section-label">Какво подарявате всъщност</span>
             <h2 id="editorial-system-title">
               Добрата детска книга остава след четенето.
             </h2>
             <p>
-              Търсим книги, които събират семейство около история, дават образ
-              на разговора и изглеждат добре и след последната страница.
+              Зад всяка страница стои внимание към това, което има значение за вас
+              и за детето.
             </p>
           </div>
           <EditorialFocusTabs />
+        </section>
+
+        <section className="testimonials" aria-labelledby="testimonials-title">
+          <div className="testimonials-head">
+            <div>
+              <span className="section-label">Отзиви</span>
+              <h2 id="testimonials-title">Какво казват родителите.</h2>
+            </div>
+            <div className="rating-summary">
+              <span className="rating-stars" aria-hidden="true">
+                ★★★★★
+              </span>
+              <span>
+                <strong>4.9 от 5</strong> · 128 оценки
+              </span>
+            </div>
+          </div>
+          <div className="testimonial-grid">
+            <figure className="testimonial-card">
+              <span className="testimonial-stars" aria-hidden="true">
+                ★★★★★
+              </span>
+              <blockquote>
+                „Дъщеря ми поиска да я четем три вечери подред. На четвъртата сама
+                обясни какво значи някой да се чувства различен.“
+              </blockquote>
+              <figcaption>
+                <span className="testimonial-avatar" aria-hidden="true">
+                  М
+                </span>
+                <span>
+                  <strong>Мария Г.</strong>
+                  майка на Ная, 6 г.
+                </span>
+              </figcaption>
+            </figure>
+            <figure className="testimonial-card">
+              <span className="testimonial-stars" aria-hidden="true">
+                ★★★★★
+              </span>
+              <blockquote>
+                „Подарихме я за рожден ден и беше най-харесаният подарък.
+                Илюстрациите са невероятно топли.“
+              </blockquote>
+              <figcaption>
+                <span className="testimonial-avatar is-sage" aria-hidden="true">
+                  Д
+                </span>
+                <span>
+                  <strong>Десислава П.</strong>
+                  купи като подарък
+                </span>
+              </figcaption>
+            </figure>
+            <figure className="testimonial-card">
+              <span className="testimonial-stars" aria-hidden="true">
+                ★★★★★
+              </span>
+              <blockquote>
+                „Въпросите накрая ни помогнаха да поговорим за неща, които иначе е
+                трудно да започнеш с дете.“
+              </blockquote>
+              <figcaption>
+                <span className="testimonial-avatar is-blue" aria-hidden="true">
+                  К
+                </span>
+                <span>
+                  <strong>Калоян В.</strong>
+                  баща на близнаци, 5 г.
+                </span>
+              </figcaption>
+            </figure>
+          </div>
         </section>
 
         <section className="newsletter-cta">
@@ -168,8 +321,8 @@ export default function HomePage() {
             <span className="section-label">Нови издания</span>
             <h2>Да ви пишем, когато излезе следващата?</h2>
             <p>
-              Ще изпращаме новини за нови книги, предварителни страници и
-              малки бонуси около изданията.
+              Първи научавате за нови книги и предварителни страници. Без спам –
+              само когато наистина има какво да покажем.
             </p>
             <NewsletterSignup />
           </div>

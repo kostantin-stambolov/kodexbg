@@ -1,0 +1,251 @@
+import type { Metadata } from "next";
+import NewsletterSignup from "./components/NewsletterSignup";
+import SiteShell from "./components/SiteShell";
+
+export const metadata: Metadata = {
+  title: "Детски книги за подаряване и споделяне",
+  description:
+    "Съвременни детски книги с характер, топли илюстрации и истории, които се подаряват, пазят и препрочитат.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    url: "https://kodexbg.com/",
+    title: "Kodex Publishing | Детски книги за подаряване и споделяне",
+    description:
+      "Съвременни детски книги с характер, топли илюстрации и истории, които се подаряват, пазят и препрочитат.",
+    images: [
+      {
+        url: "/assets/og-image.jpg",
+        alt: "Корица на детската книга Чудовището без уши от Костантин Стамболов",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Kodex Publishing | Детски книги за подаряване и споделяне",
+    description:
+      "Съвременни детски книги с характер, топли илюстрации и истории за домашната библиотека.",
+    images: ["/assets/og-image.jpg"],
+  },
+};
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Kodex Publishing",
+  url: "https://kodexbg.com/",
+  email: "kodex@blackrockcapital.bg",
+  description:
+    "Българско издателство за съвременни детски книги с топли илюстрации, смислени истории и подаръчна стойност.",
+};
+
+export default function HomePage() {
+  return (
+    <SiteShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      />
+      <main>
+        <section className="home-hero" aria-labelledby="hero-title">
+          <div className="home-hero-copy">
+            <p className="eyebrow">Детски книги • подаръчни издания</p>
+            <h1 id="hero-title">Истории, които влизат в детската стая.</h1>
+            <p className="lead">
+              Kodex създава нови български книги за деца, родители и баби и
+              дядовци, които търсят красив подарък с чувство, смисъл и място в
+              домашната библиотека.
+            </p>
+            <div className="hero-actions">
+              <a className="button copper" href="/books/chudovishtoto-bez-ushi">
+                Виж последното издание
+              </a>
+              <a className="button secondary" href="#featured-book">
+                Следваща книга
+              </a>
+            </div>
+          </div>
+          <div className="home-hero-art" aria-label="Последното издание на Kodex">
+            <img
+              className="hero-cover"
+              src="/assets/books/chudovishtoto-bez-ushi/illustrations/chudovishtoto-bez-ushi-cover.webp"
+              alt="Корица на Чудовището без уши"
+            />
+            <img
+              className="hero-character hero-character-owl"
+              src="/assets/books/chudovishtoto-bez-ushi/illustrations/owl.webp"
+              alt=""
+            />
+            <img
+              className="hero-character hero-character-fairy"
+              src="/assets/books/chudovishtoto-bez-ushi/illustrations/fairy.webp"
+              alt=""
+            />
+            <div className="hero-edition-note">
+              <span>Последно издание</span>
+            </div>
+          </div>
+        </section>
+
+        <section
+          className="publisher-signal"
+          id="kodex-publishing"
+          aria-label="За Kodex Publishing"
+        >
+          <div className="publisher-signal-copy">
+            <span className="section-label">Kodex Publishing</span>
+            <h2>Малки издания с голям живот у дома.</h2>
+            <p>
+              Мислим за детската книга като за предмет, ритуал и малка семейна
+              сцена. Затова всяко заглавие започва с въпрос: ще поиска ли
+              детето тази книга пак утре вечер?
+            </p>
+          </div>
+          <div className="publisher-signal-stats" aria-label="Издателски ритъм">
+            <div>
+              <strong>1</strong>
+              <span>реално издание, около което градим стандарт</span>
+            </div>
+            <div>
+              <strong>3</strong>
+              <span>неща във всяка книга: образ, ритъм и повод за разговор</span>
+            </div>
+            <div>
+              <strong>10</strong>
+              <span>минути вечерно четене, които остават по-дълго от деня</span>
+            </div>
+          </div>
+        </section>
+
+        <section className="section" aria-labelledby="featured-book">
+          <article className="book-card featured-edition-card">
+            <div className="empty-edition-cover" aria-hidden="true">
+              <span>Скоро</span>
+            </div>
+            <div>
+              <span className="badge">Следващо издание</span>
+              <h2 className="book-title" id="featured-book">
+                Тоби и магията на Миялната
+              </h2>
+              <p className="book-summary">
+                Нова семейна приказка в подготовка: кухнята се превръща в
+                сцена, миялната крие малка магия, а Тоби открива, че понякога
+                най-обикновените неща имат собствено приключение.
+              </p>
+              <span className="edition-meta">
+                В подготовка • нова история от Kodex
+              </span>
+            </div>
+          </article>
+        </section>
+
+        <section className="publishing">
+          <div className="focus-flow">
+            <div className="focus-flow-head">
+              <span className="section-label">Нашият фокус</span>
+              <h2>Книги, които са достатъчно красиви за подарък.</h2>
+            </div>
+            <div className="focus-flow-stack" aria-label="Издателски фокус">
+              <article className="focus-flow-row">
+                <span>01</span>
+                <h3>История, която детето усеща</h3>
+                <p>Започваме от сцена, образ и настроение, а не от урок.</p>
+              </article>
+              <article className="focus-flow-row">
+                <span>02</span>
+                <h3>Корица, която изглежда като подарък</h3>
+                <p>Книгата трябва да стои добре още преди да бъде отворена.</p>
+              </article>
+              <article className="focus-flow-row">
+                <span>03</span>
+                <h3>Свят, към който детето се връща</h3>
+                <p>Илюстрации, фрази и малки детайли, които канят към повторно четене.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="principles">
+          <div className="principles-head">
+            <div>
+              <span className="section-label">Светът на книгите</span>
+              <h2>Малко дом, малко магия, много настроение.</h2>
+            </div>
+          </div>
+          <div className="story-sign-grid">
+            <article className="story-sign is-lamp">
+              <div className="story-sign-mark" aria-hidden="true">
+                <span></span>
+              </div>
+              <h3>Вечерна лампа</h3>
+              <p>Книги за онзи момент, когато денят утихва, а историята започва.</p>
+            </article>
+            <article className="story-sign is-spark">
+              <div className="story-sign-mark" aria-hidden="true">
+                <span></span>
+              </div>
+              <h3>Малко чудо</h3>
+              <p>Обикновените неща изведнъж светват: гора, кухня, чаша, вратичка.</p>
+            </article>
+            <article className="story-sign is-book">
+              <div className="story-sign-mark" aria-hidden="true">
+                <span></span>
+              </div>
+              <h3>След последната страница</h3>
+              <p>Детето пита още нещо. Възрастният остава още малко.</p>
+            </article>
+            <article className="story-sign is-ribbon">
+              <div className="story-sign-mark" aria-hidden="true">
+                <span></span>
+              </div>
+              <h3>Подарък с характер</h3>
+              <p>Не просто нещо за даване, а книга, която детето припознава.</p>
+            </article>
+          </div>
+          <div className="family-note">
+            <div>
+              <span className="section-label">За кого създаваме</span>
+              <h2>За семейства, които избират книгите като преживяване.</h2>
+            </div>
+            <div className="copy">
+              <p>
+                Нашата аудитория са хора, които не купуват просто още една
+                детска книга. Те търсят подарък, вечерен ритуал и история,
+                която детето може да почувства като своя.
+              </p>
+              <p>
+                Затова работим с ярки образи, ясен текст и съвременна визия.
+                Без прах, без музейно усещане, без тежка старинност, а с
+                топлина, стил и малко магия за модерния дом.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="newsletter-cta">
+          <div className="newsletter-cta-copy">
+            <span className="section-label">Следващи истории</span>
+            <h2>Книга, не сувенир.</h2>
+            <p>
+              Ако искате първи да видите новите издания, корици и кратки
+              прегледи, оставете ни имейл. Без шум. Само когато има нова
+              история.
+            </p>
+            <NewsletterSignup />
+          </div>
+          <div className="newsletter-cta-art" aria-hidden="true">
+            <img
+              className="newsletter-monster"
+              src="/assets/books/chudovishtoto-bez-ushi/illustrations/chudovishtoto-bez-ushi-monster.webp"
+              alt=""
+            />
+            <img
+              className="newsletter-owl"
+              src="/assets/books/chudovishtoto-bez-ushi/illustrations/owl.webp"
+              alt=""
+            />
+          </div>
+        </section>
+      </main>
+    </SiteShell>
+  );
+}

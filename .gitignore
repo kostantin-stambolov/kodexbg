@@ -23,5 +23,5 @@ next-env.d.ts
 *.tsbuildinfo
 
 # heavy local-only book export artifacts (not part of the site)
-/books/Claude - Monster Without Ears/
-/books/Чудовището без уши.html
+/books/claude-monster-without-ears/
+/books/chudovishtoto-bez-ushi-export.html

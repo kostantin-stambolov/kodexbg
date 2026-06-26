@@ -338,6 +338,8 @@
 .cb-author-photo span { font-family: ui-monospace, monospace; font-size: 11px; letter-spacing: .04em; color: #a8927a; line-height: 1.6; }
 .cb-author-panel h2 { font-family: var(--cb-font-display); font-weight: 800; font-size: 48px; line-height: 1.02; margin: 12px 0 0; color: var(--cb-ink); }
 .cb-author-panel p { font-size: 19px; line-height: 1.6; color: var(--cb-text); margin: 18px 0 0; max-width: 560px; }
+.cb-author-link { display: inline-flex; margin-top: 18px; color: var(--cb-accent); font-weight: 800; text-decoration: none; }
+.cb-author-link:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 /* Final CTA */
 .cb-final-cta { background: var(--cb-ink-soft); border-radius: 26px; padding: 64px 56px; position: relative; overflow: hidden; }

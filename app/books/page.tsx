@@ -39,6 +39,10 @@ export default function BooksPage() {
         </section>
 
         <section className="section" aria-labelledby="catalog-book">
+          <div className="section-head">
+            <span className="section-label">В продажба</span>
+            <h2 id="catalog-book">Налични книги</h2>
+          </div>
           <a
             className="book-card"
             href="/books/chudovishtoto-bez-ushi"
@@ -53,15 +57,46 @@ export default function BooksPage() {
             />
             <div>
               <span className="badge">Нова книга</span>
-              <h2 className="book-title" id="catalog-book">
-                Чудовището без уши
-              </h2>
+              <h2 className="book-title">Чудовището без уши</h2>
               <p className="book-summary">
                 Приказка за малки и пораснали деца, за доброта, различност и
                 силата на историите да стигат до онзи, който има най-голяма
                 нужда от тях.
               </p>
+              <p className="book-card-meta">
+                За деца 5+ · печатно, дигитално и подаръчен пакет
+              </p>
               <span className="button book-card-button">Виж книгата</span>
+            </div>
+          </a>
+        </section>
+
+        <section className="section" aria-labelledby="catalog-upcoming">
+          <div className="section-head">
+            <span className="section-label">Предстоящи издания</span>
+            <h2 id="catalog-upcoming">Очаквайте скоро</h2>
+            <p>Новите заглавия, по които работим в момента.</p>
+          </div>
+          <a
+            className="book-card is-upcoming"
+            href="/tobi"
+            data-book="tobi"
+            data-cta="upcoming_detail"
+          >
+            <span className="book-cover-thumb placeholder-cover-thumb" aria-hidden="true">
+              <span className="placeholder-tag">Очаквайте</span>
+              <strong>Тоби</strong>
+            </span>
+            <div>
+              <span className="badge is-upcoming">Очаквайте скоро</span>
+              <h2 className="book-title">Тоби и силата на миялната</h2>
+              <p className="book-summary">
+                Втората детска книга на Kodex Publishing е в разработка. Нова
+                история, нови герои и същата топлина преди сън.
+              </p>
+              <span className="button secondary book-card-button">
+                Научи повече
+              </span>
             </div>
           </a>
         </section>
