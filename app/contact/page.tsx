@@ -65,7 +65,12 @@ export default function ContactPage() {
                 Изпращаме с Еконт и Спиди за 1 – 3 работни дни. Подробности за
                 сроковете и цените.
               </p>
-              <a className="contact-aside-link" href="/delivery">
+              <a
+                className="contact-aside-link"
+                href="/delivery"
+                data-cta="contact_to_delivery"
+                data-track-event="contact_to_delivery_click"
+              >
                 Условия за доставка →
               </a>
             </div>

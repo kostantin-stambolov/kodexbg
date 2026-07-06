@@ -97,6 +97,8 @@ export default function ContactForm() {
         className="button copper"
         type="submit"
         disabled={status === "saving"}
+        data-cta="contact_submit"
+        data-track-event="contact_submit_click"
       >
         {status === "saving" ? "Изпращане..." : "Изпрати запитване"}
       </button>

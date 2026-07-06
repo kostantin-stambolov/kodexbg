@@ -47,24 +47,6 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
       <main className="home-visual-v3">
-        <a
-          className="upcoming-peek"
-          href="/tobi"
-          aria-label="Предстоящо издание: Тоби и силата на миялната"
-          data-cta="upcoming_peek"
-          data-book="tobi"
-          data-track-event="upcoming_peek_click"
-        >
-          <span className="upcoming-peek-cover" aria-hidden="true">
-            <span>Тоби</span>
-          </span>
-          <span className="upcoming-peek-text">
-            <span className="upcoming-peek-label">Очаквайте скоро</span>
-            <strong>Тоби и силата на миялната</strong>
-          </span>
-          <span className="upcoming-peek-arrow" aria-hidden="true">→</span>
-        </a>
-
         <section className="home-hero" aria-labelledby="hero-title">
           <div className="home-hero-copy">
             <p className="eyebrow">Нова детска книга · Първо издание</p>

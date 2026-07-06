@@ -63,6 +63,8 @@ export default function NewsletterSignup() {
             className="button copper newsletter-submit"
             type="submit"
             disabled={status === "saving"}
+            data-cta="newsletter_submit"
+            data-track-event="newsletter_submit_click"
           >
             {status === "saving" ? (
               <>

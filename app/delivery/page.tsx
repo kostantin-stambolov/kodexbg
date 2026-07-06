@@ -98,7 +98,12 @@ export default function DeliveryPage() {
           <p>
             За училища, детски градини и подаръци на едро над 10 броя, моля
             свържете се с нас през{" "}
-            <a className="text-link" href="/contact">
+            <a
+              className="text-link"
+              href="/contact"
+              data-cta="delivery_to_contact"
+              data-track-event="delivery_to_contact_click"
+            >
               формата за запитвания
             </a>{" "}
             – ще се върнем с условия и срок.
@@ -106,7 +111,12 @@ export default function DeliveryPage() {
 
           <p className="info-contact">
             Въпрос за конкретна поръчка?{" "}
-            <a className="text-link" href="mailto:kodex@blackrockcapital.bg">
+            <a
+              className="text-link"
+              href="mailto:kodex@blackrockcapital.bg"
+              data-cta="delivery_email"
+              data-track-event="delivery_email_click"
+            >
               kodex@blackrockcapital.bg
             </a>
           </p>

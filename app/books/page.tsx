@@ -66,7 +66,7 @@ export default function BooksPage() {
               <p className="book-card-meta">
                 За деца 5+ · печатно, дигитално и подаръчен пакет
               </p>
-              <span className="button book-card-button">Виж книгата</span>
+              <span className="button copper book-card-button">Виж книгата</span>
             </div>
           </a>
         </section>
@@ -82,6 +82,7 @@ export default function BooksPage() {
             href="/tobi"
             data-book="tobi"
             data-cta="upcoming_detail"
+            data-track-event="upcoming_detail_click"
           >
             <span className="book-cover-thumb placeholder-cover-thumb" aria-hidden="true">
               <span className="placeholder-tag">Очаквайте</span>

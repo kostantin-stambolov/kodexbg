@@ -24,6 +24,22 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                 <span className="brand-note">Publishing House</span>
               </span>
             </a>
+            <a
+              className="upcoming-peek header-peek"
+              href="/tobi"
+              aria-label="Предстоящо издание: Тоби и силата на миялната"
+              data-cta="header_tobi"
+              data-track-event="header_tobi_click"
+            >
+              <span className="upcoming-peek-cover" aria-hidden="true">
+                <span>Тоби</span>
+              </span>
+              <span className="upcoming-peek-text">
+                <span className="upcoming-peek-label">Очаквайте скоро</span>
+                <strong>Тоби и силата на миялната</strong>
+              </span>
+              <span className="upcoming-peek-arrow" aria-hidden="true">→</span>
+            </a>
             <nav className="nav" aria-label="Секции">
               <a href="/books">Каталог</a>
               <a className="nav-cta" href="/contact">
@@ -52,8 +68,8 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                   <a href="/">Начална страница</a>
                 </div>
                 <div>
-                  <h2>Автори</h2>
-                  <a href="/author/kostantin-stambolov">Костантин Стамболов</a>
+                  <h2>Издателство</h2>
+                  <a href="/authors">Автори</a>
                   <a href="/contact">Запитвания</a>
                   <a href="mailto:kodex@blackrockcapital.bg">Имейл</a>
                 </div>

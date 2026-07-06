@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/books", priority: 0.9 },
     { path: "/books/chudovishtoto-bez-ushi", priority: 0.9 },
     { path: "/tobi", priority: 0.7 },
+    { path: "/authors", priority: 0.6 },
     { path: "/author/kostantin-stambolov", priority: 0.6 },
     { path: "/contact", priority: 0.6 },
     { path: "/delivery", priority: 0.5 },
