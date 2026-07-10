@@ -1,26 +1,53 @@
 # Kodex Publishing
 
-Static one-page website for Kodex Publishing.
+Next.js site for Kodex Publishing at `kodexbg.com`.
 
-## Pages
+## Stack
+
+- Next.js App Router
+- React 19
+- TypeScript
+- Drizzle ORM with PostgreSQL
+- Stripe checkout and webhooks
+- Shared CSS design system in `public/assets/site-consent3.css`
+
+## Main Routes
 
 - `/` - publisher homepage
-- `/books.html` - latest books
-- `/books/chudovishtoto-bez-ushi.html` - book page for "Чудовището без уши"
-- `/contact.html` - contact and interest form placeholder
-- `/terms.html` - terms and conditions
-- `/privacy.html` - privacy policy
+- `/books` - catalog
+- `/books/chudovishtoto-bez-ushi` - live book detail and checkout page
+- `/tobi` - upcoming book teaser and notification signup
+- `/contact` - contact form
+- `/delivery` - delivery and payment terms
+- `/terms` - terms and conditions
+- `/privacy` - privacy policy
+- `/design-system` - internal design-system reference
+- `/admin/login` and `/admin/inventory` - inventory admin
+
+## Development
+
+```sh
+npm install
+npm run build
+npm start
+```
+
+For local development with hot reload:
+
+```sh
+npm run dev
+```
+
+## Environment
+
+Dynamic routes and API handlers expect production-style environment variables for:
+
+- `DATABASE_URL`
+- Stripe checkout and webhook configuration
+- Admin authentication secrets
+
+The book page falls back gracefully if the database is unavailable for public availability display, but checkout and admin flows still require the configured services.
 
 ## References
 
-Internal notes and strategy references live in [`references/`](./references/):
-
-- [Alex Hormozi — детска книжка, оферта и канали](./references/hormozi-detska-kniga.md)
-
-## GitHub Pages
-
-The site is ready to publish from the repository root. The custom domain is configured through `CNAME`:
-
-```text
-kodexbg.com
-```
+Internal notes and strategy references live in [`references/`](./references/).

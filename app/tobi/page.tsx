@@ -78,22 +78,19 @@ export default function TobiPage() {
               <strong>Тоби</strong>
               <em>и силата на миялната</em>
             </div>
-            {/* Изображение на героя Тоби – файл: public/assets/books/tobi/tobi-gnome.png */}
-            <img
-              className="tobi-hero-character"
-              src="/assets/books/tobi/tobi-gnome.png"
-              alt="Тоби – героят от книгата"
-            />
+            <span className="tobi-hero-character" aria-hidden="true">
+              <span />
+            </span>
           </div>
         </section>
 
         <section className="tobi-meet" aria-labelledby="tobi-meet-title">
-          <div className="tobi-meet-art">
-            {/* Сцена с Тоби – файл: public/assets/books/tobi/tobi-lentils.png */}
-            <img
-              src="/assets/books/tobi/tobi-lentils.png"
-              alt="Тоби в кухнята до буркан с леща"
-            />
+          <div className="tobi-meet-art" aria-hidden="true">
+            <div className="tobi-kitchen-card">
+              <span className="tobi-kitchen-shelf" />
+              <span className="tobi-kitchen-jar" />
+              <span className="tobi-kitchen-plate" />
+            </div>
           </div>
           <div className="tobi-meet-copy">
             <span className="section-label">Запознай се с Тоби</span>

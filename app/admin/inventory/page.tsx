@@ -59,7 +59,6 @@ async function loadBookRows(): Promise<BookRow[]> {
       const soldLive = await getSoldCount(book.slug, edition, "live");
 
       let stockLimit: number | null = null;
-      let availableLive: number | null = null;
       let adjustment = 0;
       let adjustmentNote: string | null = null;
       let log: InventoryLogEntry[] = [];
@@ -91,7 +90,7 @@ async function loadBookRows(): Promise<BookRow[]> {
         soldLive,
         adjustment,
         adjustmentNote,
-        availableLive,
+        availableLive: null,
         log,
       });
     }

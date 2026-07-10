@@ -2385,11 +2385,18 @@ h3 {
 .legal {
   max-width: 840px;
   padding: 40px 0 76px;
+  overflow-wrap: anywhere;
 }
 
 .legal h2 {
   margin-top: 36px;
   font-size: 30px;
+}
+
+.legal h1,
+.legal h2,
+.legal a {
+  overflow-wrap: anywhere;
 }
 
 .legal p,
@@ -4987,9 +4994,68 @@ h3 {
   right: -6%;
   bottom: -8%;
   z-index: 3;
+  display: block;
   width: clamp(120px, 22vw, 200px);
+  aspect-ratio: 0.78 / 1;
+  border: 8px solid rgba(255, 250, 240, 0.82);
+  border-radius: 42% 44% 36% 38%;
+  background:
+    radial-gradient(circle at 36% 34%, var(--paper-strong) 0 7px, transparent 8px),
+    radial-gradient(circle at 64% 34%, var(--paper-strong) 0 7px, transparent 8px),
+    radial-gradient(circle at 50% 58%, rgba(255, 250, 240, 0.5) 0 18%, transparent 19%),
+    linear-gradient(160deg, var(--sage), var(--blue));
+  box-shadow: 0 24px 46px -28px rgba(43, 37, 33, 0.44);
   filter: drop-shadow(0 14px 18px rgba(43, 37, 33, 0.22));
   animation: cb-floaty 7s ease-in-out infinite;
+}
+
+.tobi-hero-character::before,
+.tobi-hero-character::after,
+.tobi-hero-character span::before,
+.tobi-hero-character span::after {
+  content: "";
+  position: absolute;
+  display: block;
+}
+
+.tobi-hero-character::before {
+  top: -24px;
+  left: 22%;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 42% 58% 45% 55%;
+  background: var(--gold);
+  transform: rotate(-18deg);
+}
+
+.tobi-hero-character::after {
+  top: -18px;
+  right: 16%;
+  width: 28%;
+  aspect-ratio: 1;
+  border-radius: 44% 56% 40% 60%;
+  background: var(--copper);
+  transform: rotate(18deg);
+}
+
+.tobi-hero-character span::before {
+  right: 25%;
+  bottom: 28%;
+  left: 25%;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(255, 250, 240, 0.76);
+}
+
+.tobi-hero-character span::after {
+  right: -14%;
+  bottom: 8%;
+  width: 42%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 250, 240, 0.72) 0 24%, transparent 25%),
+    rgba(215, 169, 61, 0.88);
 }
 
 /* "Запознай се с Тоби" сцена */
@@ -5001,11 +5067,85 @@ h3 {
   padding: 40px 0 48px;
 }
 
-.tobi-meet-art img {
-  display: block;
-  width: 100%;
+.tobi-kitchen-card {
+  position: relative;
+  display: grid;
+  min-height: 420px;
+  overflow: hidden;
   border-radius: 20px;
+  background:
+    radial-gradient(circle at 20% 22%, rgba(215, 169, 61, 0.34), transparent 26%),
+    linear-gradient(90deg, rgba(43, 37, 33, 0.05) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(43, 37, 33, 0.05) 1px, transparent 1px),
+    linear-gradient(145deg, rgba(255, 250, 240, 0.92), rgba(234, 244, 238, 0.78));
+  background-size: auto, 32px 32px, 32px 32px, auto;
   box-shadow: 0 28px 54px -30px rgba(43, 37, 33, 0.4);
+}
+
+.tobi-kitchen-card::before,
+.tobi-kitchen-card::after,
+.tobi-kitchen-shelf,
+.tobi-kitchen-jar,
+.tobi-kitchen-plate {
+  content: "";
+  position: absolute;
+  display: block;
+}
+
+.tobi-kitchen-card::before {
+  right: 12%;
+  bottom: 12%;
+  width: min(42%, 190px);
+  aspect-ratio: 0.76 / 1;
+  border: 10px solid rgba(255, 250, 240, 0.88);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 240, 0.2), rgba(255, 250, 240, 0)),
+    var(--blue);
+  box-shadow: 0 26px 48px rgba(24, 33, 31, 0.2);
+  transform: rotate(2deg);
+}
+
+.tobi-kitchen-card::after {
+  right: 17%;
+  bottom: 37%;
+  width: min(32%, 146px);
+  height: 42px;
+  border: 3px solid rgba(255, 250, 240, 0.48);
+  border-radius: 16px;
+}
+
+.tobi-kitchen-shelf {
+  top: 21%;
+  right: 12%;
+  left: 12%;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(43, 37, 33, 0.16);
+}
+
+.tobi-kitchen-jar {
+  top: 25%;
+  left: 18%;
+  width: 96px;
+  height: 132px;
+  border: 8px solid rgba(255, 250, 240, 0.88);
+  border-radius: 22px 22px 18px 18px;
+  background:
+    radial-gradient(circle at 42% 68%, rgba(195, 91, 58, 0.78) 0 7px, transparent 8px),
+    radial-gradient(circle at 60% 54%, rgba(215, 169, 61, 0.9) 0 6px, transparent 7px),
+    rgba(111, 141, 122, 0.72);
+  box-shadow: 0 18px 34px rgba(24, 33, 31, 0.12);
+}
+
+.tobi-kitchen-plate {
+  left: 16%;
+  bottom: 16%;
+  width: min(42%, 180px);
+  height: 48px;
+  border: 10px solid rgba(255, 250, 240, 0.9);
+  border-radius: 50%;
+  background: rgba(195, 91, 58, 0.2);
 }
 
 .tobi-meet-copy h2 {
@@ -5683,6 +5823,10 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .tobi-hero-character {
+    right: 2%;
+  }
+
   .author-hero {
     grid-template-columns: 1fr;
   }
@@ -5728,6 +5872,20 @@ h3 {
 
   .testimonials-head {
     align-items: flex-start;
+  }
+
+  .tobi-hero-art {
+    min-height: 320px;
+  }
+
+  .tobi-hero-character {
+    right: 4%;
+    bottom: 0;
+    width: 112px;
+  }
+
+  .tobi-kitchen-card {
+    min-height: 300px;
   }
 
   .upcoming-peek {
