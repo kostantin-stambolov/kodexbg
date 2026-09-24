@@ -28,6 +28,10 @@
 
 :root {
   --max: 1120px;
+  /* Below --page-min the page stops shrinking and scrolls sideways instead;
+     full-bleed sections must use --page-vw rather than raw 100vw/50vw. */
+  --page-min: 360px;
+  --page-vw: max(100vw, var(--page-min));
   --ink: #18211f;
   --ink-soft: #39423f;
   --muted: #6e7067;
@@ -39,7 +43,7 @@
    browser can be brittle when page themes rely on implicit scroll defaults. */
 html {
   min-height: 100%;
-  overflow-x: clip;
+  overflow-x: auto;
   overflow-y: auto;
   overscroll-behavior-y: auto;
 }
@@ -49,6 +53,7 @@ html {
    which page-specific stylesheet is also loaded. */
 body {
   margin: 0;
+  min-width: var(--page-min);
   min-height: 100%;
   overflow-x: clip;
   overflow-y: auto;
@@ -70,7 +75,8 @@ body {
   grid-template-columns: minmax(220px, 1fr) auto minmax(220px, 1fr);
   align-items: center;
   gap: 22px;
-  padding: 26px 0;
+  padding: 34px 0;
+  overflow: visible;
   font-family: var(--chrome-font);
 }
 
@@ -88,6 +94,28 @@ body {
   flex: 0 0 auto;
   display: block;
   filter: drop-shadow(0 8px 16px rgba(43, 37, 33, 0.2));
+  transition: transform 200ms ease, filter 200ms ease;
+}
+
+.brand-name,
+.brand-note {
+  transition: color 160ms ease;
+}
+
+.brand:hover .brand-mark,
+.brand:focus-visible .brand-mark {
+  transform: translateY(-2px) rotate(-6deg);
+  filter: drop-shadow(0 12px 18px rgba(43, 37, 33, 0.3));
+}
+
+.brand:hover .brand-name,
+.brand:focus-visible .brand-name {
+  color: var(--ink);
+}
+
+.brand:hover .brand-note,
+.brand:focus-visible .brand-note {
+  color: var(--ink-soft);
 }
 
 .brand-name {
@@ -130,6 +158,19 @@ body {
   text-decoration: none;
 }
 
+/* Plain nav links: copper underline that grows from the centre */
+.nav a:not(.nav-cta) {
+  padding: 4px 0;
+  background: linear-gradient(var(--copper, #c35b3a), var(--copper, #c35b3a)) center bottom / 0 2px no-repeat;
+  transition: color 160ms ease, background-size 220ms ease;
+}
+
+.nav a:not(.nav-cta):hover,
+.nav a:not(.nav-cta):focus-visible {
+  color: var(--ink);
+  background-size: 100% 2px;
+}
+
 .nav-cta {
   display: inline-flex;
   align-items: center;
@@ -157,8 +198,8 @@ body {
 .footer {
   display: grid;
   gap: clamp(30px, 5vw, 54px);
-  margin: 64px calc(50% - 50vw) 0;
-  padding: clamp(42px, 5vw, 62px) max(20px, calc((100vw - var(--max)) / 2)) 34px;
+  margin: 64px calc(50% - var(--page-vw) / 2) 0;
+  padding: clamp(42px, 5vw, 62px) max(20px, calc((var(--page-vw) - var(--max)) / 2)) 34px;
   border-top: 1px solid rgba(255, 250, 240, 0.14);
   background:
     radial-gradient(circle at 86% 18%, rgba(195, 91, 58, 0.18), transparent 30%),

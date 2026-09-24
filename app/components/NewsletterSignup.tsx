@@ -4,7 +4,13 @@ import { FormEvent, useState } from "react";
 
 type Status = "idle" | "saving" | "success" | "error";
 
-export default function NewsletterSignup() {
+export default function NewsletterSignup({
+  source = "home_final_cta",
+  successMessage = "Записани сте успешно.",
+}: {
+  source?: string;
+  successMessage?: string;
+}) {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
 
@@ -17,7 +23,7 @@ export default function NewsletterSignup() {
     const payload = {
       name: String(form.get("name") ?? ""),
       email: String(form.get("email") ?? ""),
-      source: "home_final_cta",
+      source,
     };
 
     try {
@@ -35,7 +41,7 @@ export default function NewsletterSignup() {
       }
 
       setStatus("success");
-      setMessage("Записани сте успешно.");
+      setMessage(successMessage);
       event.currentTarget.reset();
     } catch (error) {
       setStatus("error");

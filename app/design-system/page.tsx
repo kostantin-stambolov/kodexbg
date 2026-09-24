@@ -89,6 +89,39 @@ export default function DesignSystemPage() {
           </div>
         </section>
 
+        {/* Header navigation */}
+        <section className="ds-section">
+          <div className="section-head">
+            <span className="section-label">Компоненти</span>
+            <h2>Навигация в header-а</h2>
+            <p>
+              Hover: логото се повдига и леко завърта, текстът потъмнява.
+              Текстовите линкове получават медна линия, която расте от центъра.
+              Стилове: <code>.brand</code>, <code>.nav a</code>,{" "}
+              <code>.nav-cta</code> в <code>chrome.css</code>.
+            </p>
+          </div>
+          <div className="ds-row" style={{ alignItems: "center", gap: 40 }}>
+            <a className="brand" href="/" aria-label="Kodex Publishing начало">
+              <img
+                className="brand-mark"
+                src="/assets/kodex-icon.svg"
+                alt="Икона Kodex Publishing"
+              />
+              <span>
+                <span className="brand-name">Kodex</span>
+                <span className="brand-note">Publishing House</span>
+              </span>
+            </a>
+            <nav className="nav" aria-label="Примерна навигация">
+              <a href="/books">Каталог</a>
+              <a className="nav-cta" href="/contact">
+                Запитвания
+              </a>
+            </nav>
+          </div>
+        </section>
+
         {/* Icons (story-sign marks) */}
         <section className="ds-section">
           <div className="section-head">
@@ -177,24 +210,44 @@ export default function DesignSystemPage() {
             <span className="section-label">Компоненти</span>
             <h2>Карти</h2>
           </div>
+          <p>
+            Occasion card: цветове <code>is-peach</code> (по подразбиране),{" "}
+            <code>is-sage</code>, <code>is-sky</code>, <code>is-sun</code>,{" "}
+            <code>is-lilac</code> с герой от книгата в ъгъла (
+            <code>.occasion-art</code>) и медна CTA карта <code>is-cta</code>.
+          </p>
           <div className="occasion-grid">
             <article className="occasion-card">
-              <h3>Occasion card</h3>
-              <p>Цветна карта с акцентна лента.</p>
+              <h3>Occasion · peach</h3>
+              <p>Пастелен фон, акцентна лента и илюстрация.</p>
+              <img
+                className="occasion-art"
+                src="/assets/books/chudovishtoto-bez-ushi/illustrations/squirrel.webp"
+                alt=""
+              />
             </article>
-            <article className="occasion-card">
-              <h3>Occasion card</h3>
-              <p>Втори вариант (sage).</p>
+            <article className="occasion-card is-sky">
+              <h3>Occasion · sky</h3>
+              <p>Същата карта в синьо.</p>
+              <img
+                className="occasion-art"
+                src="/assets/books/chudovishtoto-bez-ushi/illustrations/owl.webp"
+                alt=""
+              />
             </article>
+            <a className="occasion-card is-cta" href="#">
+              <h3>Occasion · CTA</h3>
+              <p>Последна карта в мрежата, води към книгата.</p>
+              <span className="occasion-cta-link">
+                Вижте книгата <span aria-hidden="true">→</span>
+              </span>
+            </a>
             <article className="roadmap-card">
               <span className="roadmap-status">В разработка</span>
               <h3>Roadmap card</h3>
               <p>Маркира елемент в разработка.</p>
             </article>
             <article className="testimonial-card">
-              <span className="testimonial-stars" aria-hidden="true">
-                ★★★★★
-              </span>
               <blockquote style={{ margin: 0, fontSize: 17 }}>
                 „Кратък отзив.“
               </blockquote>
@@ -221,7 +274,10 @@ export default function DesignSystemPage() {
             </div>
             <a className="upcoming-peek" href="/tobi">
               <span className="upcoming-peek-cover" aria-hidden="true">
-                <span>Тоби</span>
+                <img
+                  src="/assets/books/tobi/illustrations/tobi-happy-hp-promo.png"
+                  alt=""
+                />
               </span>
               <span className="upcoming-peek-text">
                 <span className="upcoming-peek-label">Очаквайте скоро</span>

@@ -81,10 +81,10 @@
    from chrome.css. Use on sections with a distinct background fill that
    should visually run edge-to-edge. */
 .cb-band {
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
-  padding-left: calc(50vw - min(var(--max), calc(100vw - 40px)) / 2);
-  padding-right: calc(50vw - min(var(--max), calc(100vw - 40px)) / 2);
+  margin-left: calc(50% - var(--page-vw) / 2);
+  margin-right: calc(50% - var(--page-vw) / 2);
+  padding-left: calc(var(--page-vw) / 2 - min(var(--max), calc(var(--page-vw) - 40px)) / 2);
+  padding-right: calc(var(--page-vw) / 2 - min(var(--max), calc(var(--page-vw) - 40px)) / 2);
 }
 .cb-section { padding: 84px 0 30px; position: relative; }
 .cb-section-tight { padding: 60px 0 30px; }

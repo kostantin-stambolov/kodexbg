@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import EditorialFocusTabs from "./components/EditorialFocusTabs";
 import NewsletterSignup from "./components/NewsletterSignup";
 import SiteShell from "./components/SiteShell";
 
@@ -49,58 +48,60 @@ export default function HomePage() {
       <main className="home-visual-v3">
         <section className="home-hero" aria-labelledby="hero-title">
           <div className="home-hero-copy">
-            <p className="eyebrow">Нова детска книга · Първо издание</p>
-            <h1 id="hero-title">Приказка за различността.</h1>
+            <p className="eyebrow">Чудовището без уши · Детска книга за 5+ години</p>
+            <h1 id="hero-title">Приказка за това да бъдеш разбран.</h1>
             <p className="lead">
-              Топла история за доброта и приемане – от онези книги, които детето
-              иска пак и пак. Подарък, който се помни дълго след последната
-              страница.
+              Добродушно чудовище, което обича да слуша приказки, и една фея,
+              която открива защо то стои само в тъмното. Нежна история за
+              приятелството и доброто сърце – с въпроси за разговор накрая.
             </p>
             <div className="hero-actions">
               <a
                 className="button copper"
-                href="/books/chudovishtoto-bez-ushi"
-                data-cta="home_hero_book"
+                href="/books/chudovishtoto-bez-ushi#pricing"
+                data-cta="home_hero_buy"
                 data-book="chudovishtoto-bez-ushi"
-                data-track-event="home_hero_book_click"
+                data-track-event="home_hero_buy_click"
               >
-                Виж книгата
+                Купи сега
               </a>
               <a
                 className="button secondary"
-                href="/books"
-                data-cta="home_hero_catalog"
-                data-track-event="home_hero_catalog_click"
+                href="/books/chudovishtoto-bez-ushi#preview"
+                data-cta="home_hero_preview"
+                data-book="chudovishtoto-bez-ushi"
+                data-track-event="home_hero_preview_click"
               >
-                Целият каталог
+                Разгледай страниците
               </a>
             </div>
-            <p className="hero-proof">
-              <span className="hero-proof-stars" aria-hidden="true">
-                ★★★★★
-              </span>
-              <span>
-                <strong>4.9 от 5</strong> · 128 оценки от родители
-              </span>
-            </p>
+            <ul className="hero-facts">
+              <li>
+                <strong>10 €</strong> печатно издание
+              </li>
+              <li>Доставката е включена</li>
+              <li>Първи тираж от 200 копия</li>
+            </ul>
           </div>
           <div className="home-hero-art" aria-label="Последното издание на Kodex">
-            <img
-              className="hero-character hero-character-owl"
-              src="/assets/books/chudovishtoto-bez-ushi/illustrations/owl.webp"
-              alt=""
-            />
-            <div className="hero-cover-frame">
+            <div className="hero-cover-stage">
+              <div className="hero-cover-frame">
+                <img
+                  src="/assets/books/chudovishtoto-bez-ushi/illustrations/chudovishtoto-bez-ushi-cover.webp"
+                  alt="Корица на Чудовището без уши"
+                />
+              </div>
               <img
-                src="/assets/books/chudovishtoto-bez-ushi/illustrations/chudovishtoto-bez-ushi-cover.webp"
-                alt="Корица на Чудовището без уши"
+                className="hero-character hero-character-owl"
+                src="/assets/books/chudovishtoto-bez-ushi/illustrations/owl.webp"
+                alt=""
+              />
+              <img
+                className="hero-character hero-character-fairy"
+                src="/assets/books/chudovishtoto-bez-ushi/illustrations/fairy.webp"
+                alt=""
               />
             </div>
-            <img
-              className="hero-character hero-character-fairy"
-              src="/assets/books/chudovishtoto-bez-ushi/illustrations/fairy.webp"
-              alt=""
-            />
           </div>
         </section>
 
@@ -111,22 +112,27 @@ export default function HomePage() {
           <div>
             <span>01</span>
             <strong>Готова за подаряване</strong>
-            <p>Красива корица и детайли, които впечатляват още преди разгръщането.</p>
+            <p>
+              32 илюстровани страници на приятна на допир хартия. Изглежда като
+              подарък още преди да я опаковате.
+            </p>
           </div>
           <div>
             <span>02</span>
             <strong>Преглед преди поръчка</strong>
-            <p>Разгръщате първите страници онлайн и решавате спокойно, без изненади.</p>
+            <p>Разгърнете първите страници онлайн и решете спокойно.</p>
           </div>
           <div>
             <span>03</span>
             <strong>Доставка за 1 – 3 дни</strong>
-            <p>С Еконт или Спиди, навреме за повода. Доставката е включена в цената.</p>
+            <p>С Еконт или Спиди, навреме за повода. Доставката е включена.</p>
           </div>
           <div>
             <span>04</span>
             <strong>Сигурна поръчка</strong>
-            <p>Плащане с карта в защитена среда. Бързо, ясно, без излишни стъпки.</p>
+            <p>
+              Плащане с карта в защитена среда. Бързо и без излишни стъпки.
+            </p>
           </div>
         </section>
 
@@ -140,42 +146,90 @@ export default function HomePage() {
             </p>
           </div>
           <div className="occasion-grid">
-            <article className="occasion-card">
+            <article className="occasion-card is-peach">
               <h3>Рожден ден</h3>
               <p>
                 Подарък, който не се губи между играчките и остава дълго след
                 партито.
               </p>
+              <img
+                className="occasion-art"
+                src="/assets/books/chudovishtoto-bez-ushi/illustrations/squirrel.webp"
+                alt=""
+              />
             </article>
-            <article className="occasion-card">
-              <h3>Кръщене и имен ден</h3>
+            <article className="occasion-card is-sage">
+              <h3>Имен ден и празници</h3>
               <p>
-                Книга с дълъг живот за повод, който заслужава нещо смислено.
+                За Коледа, 1 юни или имен ден – подарък с повече смисъл от
+                поредната играчка.
               </p>
+              <img
+                className="occasion-art"
+                src="/assets/books/chudovishtoto-bez-ushi/illustrations/mushrooms.webp"
+                alt=""
+              />
             </article>
-            <article className="occasion-card">
+            <article className="occasion-card is-sky">
+              <h3>От баба, с любов</h3>
+              <p>
+                Книга, която внучето ще свързва с вас всеки път, когато я отвори.
+              </p>
+              <img
+                className="occasion-art"
+                src="/assets/books/chudovishtoto-bez-ushi/illustrations/owl.webp"
+                alt=""
+              />
+            </article>
+            <article className="occasion-card is-sun">
+              <h3>За градината и класната стая</h3>
+              <p>
+                Кратка история за четене на глас и готови въпроси за разговор с
+                групата.
+              </p>
+              <img
+                className="occasion-art"
+                src="/assets/books/chudovishtoto-bez-ushi/illustrations/chudovishtoto-bez-ushi-monster.webp"
+                alt=""
+              />
+            </article>
+            <article className="occasion-card is-lilac">
               <h3>Първи стъпки в четенето</h3>
               <p>
                 За дете, което тъкмо открива колко хубаво е да потънеш в история.
               </p>
+              <img
+                className="occasion-art"
+                src="/assets/books/chudovishtoto-bez-ushi/illustrations/fairy.webp"
+                alt=""
+              />
             </article>
-            <article className="occasion-card">
+            <a
+              className="occasion-card is-cta"
+              href="/books/chudovishtoto-bez-ushi"
+              data-cta="home_occasions_book"
+              data-book="chudovishtoto-bez-ushi"
+            >
               <h3>Просто така</h3>
               <p>
                 Защото някои деца заслужават изненада и без специален повод.
               </p>
-            </article>
+              <span className="occasion-cta-link">
+                Вижте „Чудовището без уши“ <span aria-hidden="true">→</span>
+              </span>
+            </a>
           </div>
         </section>
 
-        <section className="principles">
+        <section className="principles" aria-labelledby="publisher-title">
           <div className="principles-head">
             <div>
-              <span className="section-label">Защо точно тази книга</span>
-              <h2>Малко дом, малко магия, много настроение.</h2>
+              <span className="section-label">Защо точно тези книги</span>
+              <h2 id="publisher-title">Книги, след които разговорът продължава.</h2>
               <p>
-                Книга, създадена да се пази: топла история, корица за рафта и
-                илюстрации, които детето разглежда отново и отново.
+                Kodex издава кратки илюстрирани истории за деца от 5 години
+                нагоре – за четене на глас у дома, в градината и в класната стая.
+                Всяка наша книга следва четири правила.
               </p>
             </div>
           </div>
@@ -184,45 +238,87 @@ export default function HomePage() {
               <div className="story-sign-mark" aria-hidden="true">
                 <span></span>
               </div>
-              <h3>Вечерна лампа</h3>
-              <p>За момента преди сън, когато денят утихва и историята започва.</p>
+              <h3>Чете се за една вечер</h3>
+              <p>
+                Кратка история с ритъм, който звучи добре на глас – преди сън или
+                в кръга на групата.
+              </p>
             </article>
             <article className="story-sign is-spark">
               <div className="story-sign-mark" aria-hidden="true">
                 <span></span>
               </div>
-              <h3>Малко чудо</h3>
-              <p>Една добра книга променя стая, разговор или цял следобед.</p>
+              <h3>Илюстрирана на всяка страница</h3>
+              <p>
+                Цял свят в картини, който детето разглежда и само, още преди да
+                може да чете.
+              </p>
             </article>
             <article className="story-sign is-book">
               <div className="story-sign-mark" aria-hidden="true">
                 <span></span>
               </div>
-              <h3>След последната страница</h3>
-              <p>Остава изречение, образ и причина детето да я отвори пак.</p>
+              <h3>С въпроси за разговор</h3>
+              <p>
+                Накрая има въпроси, с които родител, баба или учителка лесно
+                започват разговор.
+              </p>
             </article>
             <article className="story-sign is-ribbon">
               <div className="story-sign-mark" aria-hidden="true">
                 <span></span>
               </div>
-              <h3>Подарък с характер</h3>
-              <p>Не просто продукт, а издание, което носи внимание и вкус.</p>
+              <h3>Малък първи тираж</h3>
+              <p>
+                Внимателно отпечатана, за да стои на рафта години наред, а не в
+                чекмеджето.
+              </p>
             </article>
           </div>
-        </section>
 
-        <section className="editorial-system" aria-labelledby="editorial-system-title">
-          <div className="editorial-system-intro">
-            <span className="section-label">Какво подарявате всъщност</span>
-            <h2 id="editorial-system-title">
-              Добрата детска книга остава след четенето.
-            </h2>
-            <p>
-              Зад всяка страница стои внимание към това, което има значение за вас
-              и за детето.
-            </p>
+          <div className="publisher-shelf" aria-label="Нашите книги">
+            <span className="section-label">Нашите книги</span>
+            <div className="publisher-shelf-grid">
+              <a
+                className="shelf-book"
+                href="/books/chudovishtoto-bez-ushi"
+                data-cta="home_shelf_book"
+                data-book="chudovishtoto-bez-ushi"
+                data-track-event="home_shelf_book_click"
+              >
+                <img
+                  className="shelf-book-cover"
+                  src="/assets/books/chudovishtoto-bez-ushi/previews/monster-without-ears-cover.jpg"
+                  alt=""
+                />
+                <span className="shelf-book-copy">
+                  <span className="badge">В продажба</span>
+                  <strong>Чудовището без уши</strong>
+                  <span>Приказка за приятелството и доброто сърце.</span>
+                </span>
+                <span className="shelf-book-arrow" aria-hidden="true">→</span>
+              </a>
+              <a
+                className="shelf-book is-upcoming"
+                href="/tobi"
+                data-cta="home_shelf_tobi"
+                data-book="tobi"
+                data-track-event="home_shelf_tobi_click"
+              >
+                <img
+                  className="shelf-book-cover is-character"
+                  src="/assets/books/tobi/illustrations/tobi-happy-hp-promo.png"
+                  alt=""
+                />
+                <span className="shelf-book-copy">
+                  <span className="badge is-upcoming">Очаквайте скоро</span>
+                  <strong>Тоби и силата на миялната</strong>
+                  <span>Втората книга на Kodex е в разработка.</span>
+                </span>
+                <span className="shelf-book-arrow" aria-hidden="true">→</span>
+              </a>
+            </div>
           </div>
-          <EditorialFocusTabs />
         </section>
 
         <section className="testimonials" aria-labelledby="testimonials-title">
@@ -231,20 +327,9 @@ export default function HomePage() {
               <span className="section-label">Отзиви</span>
               <h2 id="testimonials-title">Какво казват родителите.</h2>
             </div>
-            <div className="rating-summary">
-              <span className="rating-stars" aria-hidden="true">
-                ★★★★★
-              </span>
-              <span>
-                <strong>4.9 от 5</strong> · 128 оценки
-              </span>
-            </div>
           </div>
           <div className="testimonial-grid">
             <figure className="testimonial-card">
-              <span className="testimonial-stars" aria-hidden="true">
-                ★★★★★
-              </span>
               <blockquote>
                 „Дъщеря ми поиска да я четем три вечери подред. На четвъртата сама
                 обясни какво значи някой да се чувства различен.“
@@ -260,9 +345,6 @@ export default function HomePage() {
               </figcaption>
             </figure>
             <figure className="testimonial-card">
-              <span className="testimonial-stars" aria-hidden="true">
-                ★★★★★
-              </span>
               <blockquote>
                 „Подарихме я за рожден ден и беше най-харесаният подарък.
                 Илюстрациите са невероятно топли.“
@@ -278,9 +360,6 @@ export default function HomePage() {
               </figcaption>
             </figure>
             <figure className="testimonial-card">
-              <span className="testimonial-stars" aria-hidden="true">
-                ★★★★★
-              </span>
               <blockquote>
                 „Въпросите накрая ни помогнаха да поговорим за неща, които иначе е
                 трудно да започнеш с дете.“
@@ -298,27 +377,32 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="newsletter-cta">
+        <section className="newsletter-cta" aria-labelledby="newsletter-title">
           <div className="newsletter-cta-copy">
-            <span className="section-label">Нови издания</span>
-            <h2>Да ви пишем, когато излезе следващата?</h2>
+            <span className="section-label">Бюлетин на Kodex</span>
+            <h2 id="newsletter-title">Абонирайте се и вземете Тоби за оцветяване.</h2>
             <p>
-              Първи научавате за нови книги и предварителни страници. Без спам –
-              само когато наистина има какво да покажем.
+              Запишете се за нашия бюлетин и ще ви изпратим безплатна страница за
+              оцветяване от новата ни книга.
             </p>
-            <NewsletterSignup />
+            <NewsletterSignup
+              source="home_tobi_coloring"
+              successMessage="Записани сте! Страницата за оцветяване с Тоби ще пристигне на имейла ви."
+            />
+            <p className="newsletter-cta-note">
+              Пишем рядко – само за нови книги. Без реклами.
+            </p>
           </div>
           <div className="newsletter-cta-art" aria-hidden="true">
             <img
-              className="newsletter-monster"
-              src="/assets/books/chudovishtoto-bez-ushi/illustrations/chudovishtoto-bez-ushi-monster.webp"
+              className="newsletter-tobi"
+              src="/assets/books/tobi/illustrations/tobi-happy-hp-promo.png"
               alt=""
             />
-            <img
-              className="newsletter-owl"
-              src="/assets/books/chudovishtoto-bez-ushi/illustrations/owl.webp"
-              alt=""
-            />
+            <span className="newsletter-free-tag">
+              Безплатно
+              <small>по имейл</small>
+            </span>
           </div>
         </section>
 

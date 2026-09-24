@@ -32,7 +32,12 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
               data-track-event="header_tobi_click"
             >
               <span className="upcoming-peek-cover" aria-hidden="true">
-                <span>Тоби</span>
+                <img
+                  src="/assets/books/tobi/illustrations/tobi-happy-hp-promo.png"
+                  alt=""
+                  width={78}
+                  height={104}
+                />
               </span>
               <span className="upcoming-peek-text">
                 <span className="upcoming-peek-label">Очаквайте скоро</span>
@@ -55,8 +60,8 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
               <div className="footer-brand-block">
                 <span className="footer-kicker">Българско издателство</span>
                 <p>
-                  Българско издателство за детски книги, семейно четене и
-                  смислени издания с ясна история, добра форма и дълъг живот.
+                  Книги, които се четат, подаряват и остават на рафта години
+                  наред.
                 </p>
               </div>
               <nav className="footer-nav" aria-label="Footer навигация">
@@ -65,13 +70,11 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
                   <a href="/books">Каталог</a>
                   <a href="/books/chudovishtoto-bez-ushi">Чудовището без уши</a>
                   <a href="/tobi">Тоби и силата на миялната</a>
-                  <a href="/">Начална страница</a>
                 </div>
                 <div>
                   <h2>Издателство</h2>
                   <a href="/authors">Автори</a>
                   <a href="/contact">Запитвания</a>
-                  <a href="mailto:kodex@blackrockcapital.bg">Имейл</a>
                 </div>
                 <div>
                   <h2>Документи</h2>
@@ -83,10 +86,6 @@ export default function SiteShell({ children }: { children: React.ReactNode }) {
             </div>
             <div className="footer-bottom">
               <span>© 2026 Kodex Publishing</span>
-              <span className="footer-bottom-links">
-                <a href="/sitemap.xml">Sitemap</a>
-                <span>kodexbg.com</span>
-              </span>
             </div>
           </footer>
         </div>
