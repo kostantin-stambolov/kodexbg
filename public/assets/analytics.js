@@ -12,7 +12,48 @@
     posthog.init('phc_wXbSUBpPG7ehdUTP8UQ3CbmLv259p77YuDorjr7pbqUW', {
       api_host: 'https://eu.i.posthog.com',
       defaults: '2026-05-30',
-      person_profiles: 'identified_only'
+      person_profiles: 'identified_only',
+      before_send: scrubEvent
+    });
+
+    captureViewEvents();
+  }
+
+  // Stripe session_id and personal download tokens grant access to the paid
+  // PDF, so they must never reach analytics.
+  function scrubUrl(value) {
+    if (typeof value !== 'string') return value;
+    return value
+      .replace(/([?&]session_id=)[^&#]+/g, '$1[redacted]')
+      .replace(/(\/(?:api\/)?downloads?\/)[A-Za-z0-9_-]{20,}/g, '$1[token]');
+  }
+
+  function scrubEvent(event) {
+    if (!event || !event.properties) return event;
+    Object.keys(event.properties).forEach(function (key) {
+      event.properties[key] = scrubUrl(event.properties[key]);
+    });
+    if (event.$set) {
+      Object.keys(event.$set).forEach(function (key) {
+        event.$set[key] = scrubUrl(event.$set[key]);
+      });
+    }
+    return event;
+  }
+
+  // <div data-track-view="event" data-track-key="..."> fires once per key.
+  function captureViewEvents() {
+    document.querySelectorAll('[data-track-view]').forEach(function (el) {
+      var key = 'kodex_view_' + el.dataset.trackView + '_' + (el.dataset.trackKey || location.pathname);
+      try {
+        if (window.localStorage.getItem(key)) return;
+        window.localStorage.setItem(key, '1');
+      } catch (error) {}
+      var props = { page: window.location.pathname };
+      Object.keys(el.dataset).forEach(function (name) {
+        if (name !== 'trackView' && name !== 'trackKey') props[name] = el.dataset[name];
+      });
+      captureKodexEvent(el.dataset.trackView, props);
     });
   }
 
@@ -148,7 +189,7 @@
     captureKodexEvent(eventName, {
       cta: tracked.dataset.cta || tracked.textContent.trim(),
       book: tracked.dataset.book || null,
-      href: tracked.href || null,
+      href: scrubUrl(tracked.href || null),
       page: window.location.pathname
     });
   });

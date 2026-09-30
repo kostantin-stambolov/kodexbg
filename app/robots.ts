@@ -12,6 +12,8 @@ export default function robots(): MetadataRoute.Robots {
         "/design-system",
         "/design-system.html",
         "/books/*/resources/",
+        "/download/",
+        "/success",
       ],
     },
     sitemap: "https://kodexbg.com/sitemap.xml",

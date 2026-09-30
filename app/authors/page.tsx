@@ -1,68 +1,56 @@
-import type { Metadata } from "next";
+import JsonLd from "../components/JsonLd";
 import SiteShell from "../components/SiteShell";
+import { authorPath, getAllAuthors, getBooksByAuthor } from "../../lib/authors";
+import { isUpcoming } from "../../lib/catalog";
+import { absoluteUrl, breadcrumbJsonLd, pageMetadata } from "../../lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Автори",
   description:
-    "Авторите на Kodex Publishing – детски книги с топла история, красива форма и дълъг живот.",
-  alternates: { canonical: "/authors" },
-  openGraph: {
-    url: "https://kodexbg.com/authors",
-    title: "Автори | Kodex Publishing",
-    description:
-      "Авторите на Kodex Publishing – детски книги с топла история, красива форма и дълъг живот.",
-  },
-};
-
-interface Author {
-  name: string;
-  href: string;
-  photo: string;
-  bio: string;
-  books: { title: string; href: string; status: "available" | "upcoming" }[];
-}
-
-const authors: Author[] = [
-  {
-    name: "Костантин Стамболов",
-    href: "/author/kostantin-stambolov",
-    photo:
-      "/assets/books/chudovishtoto-bez-ushi/illustrations/kostantin-stambolov.webp",
-    bio: "Автор на детски истории за малки и пораснали читатели – с внимание към тихите чувства, различността и нуждата да бъдем разбрани.",
-    books: [
-      {
-        title: "Чудовището без уши",
-        href: "/books/chudovishtoto-bez-ushi",
-        status: "available",
-      },
-      {
-        title: "Тоби и силата на миялната",
-        href: "/tobi",
-        status: "upcoming",
-      },
-    ],
-  },
-];
+    "Авторите на Kodex Publishing и техните детски книги – истории за четене на глас, с топла история и красива форма.",
+  path: "/authors",
+});
 
 export default function AuthorsPage() {
+  const authors = getAllAuthors();
+
   return (
     <SiteShell>
+      <JsonLd
+        data={[
+          {
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Автори на Kodex Publishing",
+            itemListElement: authors.map((a, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              url: absoluteUrl(authorPath(a.slug)),
+              name: a.name,
+            })),
+          },
+          breadcrumbJsonLd([
+            { name: "Начало", path: "/" },
+            { name: "Автори", path: "/authors" },
+          ]),
+        ]}
+      />
       <main className="authors-page">
         <section className="page-hero">
           <p className="eyebrow">Издателство</p>
           <h1>Нашите автори</h1>
           <p className="lead">
-            Зад всяка книга стои автор, който вярва, че добрата детска история
+            Зад всяка книга стои човек, който вярва, че добрата детска история
             заслужава внимание към всяка дума и всеки образ.
           </p>
         </section>
 
-        <section className="authors-list">
+        <section className="authors-list" aria-label="Автори">
           {authors.map((author) => (
             <a
-              key={author.href}
+              key={author.slug}
               className="author-card"
-              href={author.href}
+              href={authorPath(author.slug)}
               data-cta="author_listing"
               data-track-event="author_listing_click"
             >
@@ -70,29 +58,24 @@ export default function AuthorsPage() {
                 className="author-card-photo"
                 src={author.photo}
                 alt={author.name}
+                width={140}
+                height={140}
               />
               <div className="author-card-body">
+                <p className="author-card-role">{author.role}</p>
                 <h2>{author.name}</h2>
-                <p>{author.bio}</p>
+                <p>{author.lead}</p>
                 <ul className="author-card-books">
-                  {author.books.map((book) => (
-                    <li key={book.href}>
-                      <span
-                        className={`author-card-book-status${
-                          book.status === "upcoming" ? " is-upcoming" : ""
-                        }`}
-                      >
-                        {book.status === "available"
-                          ? "В продажба"
-                          : "Очаквайте"}
+                  {getBooksByAuthor(author.slug).map((book) => (
+                    <li key={book.slug}>
+                      <span className={`badge${isUpcoming(book) ? " is-upcoming" : ""}`}>
+                        {isUpcoming(book) ? "Скоро" : "В продажба"}
                       </span>
                       {book.title}
                     </li>
                   ))}
                 </ul>
-                <span className="button secondary author-card-cta">
-                  Виж профила →
-                </span>
+                <span className="button secondary author-card-cta">Към профила →</span>
               </div>
             </a>
           ))}

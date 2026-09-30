@@ -48,6 +48,7 @@ async function loadBookRows(): Promise<BookRow[]> {
   const result: BookRow[] = [];
 
   for (const book of getAllBooks()) {
+    if (book.status === "upcoming") continue;
     const editions: EditionRow[] = [];
     // Първото издание, срещнато за даден pool, носи Save/история – останалите
     // (напр. подаръчният пакет) само показват споделената наличност.

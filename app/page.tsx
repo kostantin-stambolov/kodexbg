@@ -1,50 +1,36 @@
-import type { Metadata } from "next";
-import NewsletterSignup from "./components/NewsletterSignup";
+import NewsletterCta from "./components/NewsletterCta";
 import SiteShell from "./components/SiteShell";
-import { CONTACT_EMAIL } from "../lib/contact";
+import JsonLd from "./components/JsonLd";
+import { BookShelfItem } from "./components/BookCards";
+import { getBooksForListing } from "../lib/catalog";
+import { organizationJsonLd, pageMetadata, SITE_NAME, SITE_URL } from "../lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Детски книги, които се подаряват с мисъл",
   description:
     "Kodex Publishing създава детски книги с топла история, красива форма и дълъг живот – подарък, който личи, че е избран с внимание.",
-  alternates: { canonical: "/" },
-  openGraph: {
-    url: "https://kodexbg.com/",
-    title: "Kodex Publishing | Детски книги, които се подаряват с мисъл",
-    description:
-      "Топли детски истории с красива форма – подарък, който детето иска пак и пак.",
-    images: [
-      {
-        url: "/assets/og-image.jpg",
-        alt: "Корица на детската книга Чудовището без уши от Костантин Стамболов",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Kodex Publishing | Детски книги, които се подаряват с мисъл",
-    description:
-      "Топли детски истории с красива форма и дълъг живот.",
-    images: ["/assets/og-image.jpg"],
-  },
-};
-
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "Kodex Publishing",
-  url: "https://kodexbg.com/",
-  email: CONTACT_EMAIL,
-  description:
-    "Българско издателство и модерна онлайн книжарница за детски книги с топла история, красива форма и трайна стойност.",
-};
+  path: "/",
+  shareTitle: "Kodex Publishing | Детски книги, които се подаряват с мисъл",
+  shareDescription:
+    "Топли детски истории с красива форма – подарък, който детето иска пак и пак.",
+});
 
 export default function HomePage() {
   return (
     <SiteShell>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+      <JsonLd
+        data={[
+          organizationJsonLd,
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "@id": `${SITE_URL}/#website`,
+            name: SITE_NAME,
+            url: SITE_URL,
+            inLanguage: "bg",
+            publisher: { "@id": `${SITE_URL}/#organization` },
+          },
+        ]}
       />
       <main className="home-visual-v3">
         <section className="home-hero" aria-labelledby="hero-title">
@@ -280,44 +266,9 @@ export default function HomePage() {
           <div className="publisher-shelf" aria-label="Нашите книги">
             <span className="section-label">Нашите книги</span>
             <div className="publisher-shelf-grid">
-              <a
-                className="shelf-book"
-                href="/books/chudovishtoto-bez-ushi"
-                data-cta="home_shelf_book"
-                data-book="chudovishtoto-bez-ushi"
-                data-track-event="home_shelf_book_click"
-              >
-                <img
-                  className="shelf-book-cover"
-                  src="/assets/books/chudovishtoto-bez-ushi/previews/monster-without-ears-cover.jpg"
-                  alt=""
-                />
-                <span className="shelf-book-copy">
-                  <span className="badge">В продажба</span>
-                  <strong>Чудовището без уши</strong>
-                  <span>Приказка за приятелството и доброто сърце.</span>
-                </span>
-                <span className="shelf-book-arrow" aria-hidden="true">→</span>
-              </a>
-              <a
-                className="shelf-book is-upcoming"
-                href="/tobi"
-                data-cta="home_shelf_tobi"
-                data-book="tobi"
-                data-track-event="home_shelf_tobi_click"
-              >
-                <img
-                  className="shelf-book-cover is-character"
-                  src="/assets/books/tobi/illustrations/tobi-happy-hp-promo.png"
-                  alt=""
-                />
-                <span className="shelf-book-copy">
-                  <span className="badge is-upcoming">Очаквайте скоро</span>
-                  <strong>Тоби и силата на миялната</strong>
-                  <span>Втората книга на Kodex е в разработка.</span>
-                </span>
-                <span className="shelf-book-arrow" aria-hidden="true">→</span>
-              </a>
+              {getBooksForListing().map((book) => (
+                <BookShelfItem key={book.slug} book={book} source="home" />
+              ))}
             </div>
           </div>
         </section>
@@ -378,34 +329,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="newsletter-cta" aria-labelledby="newsletter-title">
-          <div className="newsletter-cta-copy">
-            <span className="section-label">Бюлетин на Kodex</span>
-            <h2 id="newsletter-title">Абонирайте се и вземете Тоби за оцветяване.</h2>
-            <p>
-              Запишете се за нашия бюлетин и ще ви изпратим безплатна страница за
-              оцветяване от новата ни книга.
-            </p>
-            <NewsletterSignup
-              source="home_tobi_coloring"
-              successMessage="Записани сте! Страницата за оцветяване с Тоби ще пристигне на имейла ви."
-            />
-            <p className="newsletter-cta-note">
-              Пишем рядко – само за нови книги. Без реклами.
-            </p>
-          </div>
-          <div className="newsletter-cta-art" aria-hidden="true">
-            <img
-              className="newsletter-tobi"
-              src="/assets/books/tobi/illustrations/tobi-happy-hp-promo.png"
-              alt=""
-            />
-            <span className="newsletter-free-tag">
-              Безплатно
-              <small>по имейл</small>
-            </span>
-          </div>
-        </section>
+        <NewsletterCta source="home_tobi_coloring" />
 
       </main>
     </SiteShell>

@@ -7,11 +7,25 @@ import {
   type Book,
   type Edition,
 } from "../../lib/catalog";
+import { createHash } from "crypto";
 import { CONTACT_EMAIL, CONTACT_MAILTO } from "../../lib/contact";
+import {
+  DOWNLOAD_TTL_DAYS,
+  MAX_DOWNLOADS,
+  downloadFilePath,
+  downloadPagePath,
+  ensureDownloadToken,
+} from "../../lib/downloads";
+import SiteFooter from "../components/SiteFooter";
+import SiteHeader from "../components/SiteHeader";
+import SuccessCleanup from "../components/SuccessCleanup";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Поръчката е завършена",
   robots: { index: false, follow: false },
+  referrer: "no-referrer",
 };
 
 export default async function SuccessPage({
@@ -41,6 +55,8 @@ export default async function SuccessPage({
             : "digital",
       }
     : undefined;
+  let customerEmail: string | null = null;
+  let downloadToken: string | null = null;
 
   if (session_id && !isDevPreview) {
     try {
@@ -58,6 +74,16 @@ export default async function SuccessPage({
       if (paidPriceId) {
         purchasedBook = getBookByPriceId(paidPriceId);
       }
+      customerEmail = session.customer_details?.email ?? null;
+      if (purchasedBook && purchasedBook.book.editions[purchasedBook.edition]?.files?.length) {
+        const token = await ensureDownloadToken({
+          stripeSessionId: session.id,
+          bookSlug: purchasedBook.book.slug,
+          edition: purchasedBook.edition,
+          customerEmail,
+        });
+        downloadToken = token.token;
+      }
     } catch {
       return <ErrorState message="Невалидна или изтекла сесия." />;
     }
@@ -71,11 +97,16 @@ export default async function SuccessPage({
 
   const { book: BOOK, edition } = purchasedBook;
   const isPhysical = !!BOOK.editions[edition]?.physical;
-  const hasFile = !!BOOK.editions[edition]?.file;
+  const editionFiles = BOOK.editions[edition]?.files ?? [];
+  const hasFile = editionFiles.length > 0;
   const isBundle = isPhysical && hasFile;
-  const downloadHref = isDevPreview
-    ? "#"
-    : `/api/download/${BOOK.slug}/${edition}?session_id=${session_id}`;
+  const downloadHref =
+    downloadToken && hasFile ? downloadFilePath(downloadToken, editionFiles[0].key) : "#";
+  const allFilesHref = downloadToken ? downloadPagePath(downloadToken) : "#";
+  const emailPhrase = customerEmail ? `на ${customerEmail}` : "на имейла ви";
+  const trackKey = session_id
+    ? createHash("sha256").update(session_id).digest("hex").slice(0, 16)
+    : "preview";
 
   const title = isBundle
     ? "Подаръчният пакет е на път!"
@@ -84,50 +115,30 @@ export default async function SuccessPage({
     : "Книжката е твоя!";
 
   const subtitle = isBundle
-    ? `„${BOOK.title}" е поръчана. Печатната книга ще пристигне с Еконт или Спиди, а дигиталната версия е готова за сваляне още сега.`
+    ? `„${BOOK.title}“ е поръчана. Печатната книга ще пристигне с Еконт или Спиди, а дигиталната версия е готова за сваляне още сега.`
     : isPhysical
-    ? `„${BOOK.title}" е поръчана. Ще я изпратим до посочения адрес с Еконт или Спиди.`
-    : `„${BOOK.title}" вече те чака – готова за сваляне и за първото прочитане.`;
+    ? `„${BOOK.title}“ е поръчана. Ще я изпратим до посочения адрес с Еконт или Спиди.`
+    : `„${BOOK.title}“ вече те чака – готова за сваляне и за първото прочитане.`;
 
   return (
     <>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin="anonymous"
-      />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;0,800;1,500;1,700&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap"
-      />
       <link rel="stylesheet" href="/assets/styles/childrens-book-theme.css" />
       <link rel="stylesheet" href="/assets/styles/chrome.css" />
       <link rel="stylesheet" href="/assets/site-consent3.css" />
 
       <div className="cb-page">
         <div className="shell">
-          <header className="topbar" aria-label="Основна навигация">
-            <a className="brand" href="/" aria-label="Kodex Publishing начало">
-              <img
-                className="brand-mark"
-                src="/assets/kodex-icon.svg"
-                alt="Икона Kodex Publishing"
-              />
-              <span>
-                <span className="brand-name">Kodex</span>
-                <span className="brand-note">Publishing House</span>
-              </span>
-            </a>
-            <nav className="nav" aria-label="Навигация">
-              <a href="/books">Каталог</a>
-              <a href="/contact" className="nav-cta">
-                Запитвания
-              </a>
-            </nav>
-          </header>
+          <SiteHeader />
 
           <main>
+            <SuccessCleanup />
+            <div
+              hidden
+              data-track-view="purchase_completed"
+              data-track-key={trackKey}
+              data-book={BOOK.slug}
+              data-edition={edition}
+            />
             <section className="cb-success-section">
               <p className="cb-success-eyebrow">
                 <span className="cb-success-check">✓</span> Плащането е
@@ -159,8 +170,11 @@ export default async function SuccessPage({
                   <>
                     <a
                       href={downloadHref}
+                      data-cta="success_cover_pdf"
+                      data-track-event="digital_download_click"
+                      data-book={BOOK.slug}
                       className="cb-cover-frame cb-success-frame"
-                      aria-label={`Свали „${BOOK.title}" като PDF`}
+                      aria-label={`Свали „${BOOK.title}“ като PDF`}
                     >
                       <img src={BOOK.cover} alt={`Корица на ${BOOK.title}`} />
                     </a>
@@ -168,6 +182,9 @@ export default async function SuccessPage({
                     <a
                       className="cb-btn cb-btn-primary cb-btn-lg cb-success-download"
                       href={downloadHref}
+                      data-cta="success_download_pdf"
+                      data-track-event="digital_download_click"
+                      data-book={BOOK.slug}
                     >
                       Свали PDF файла
                     </a>
@@ -179,29 +196,38 @@ export default async function SuccessPage({
                 )}
               </div>
 
+              {editionFiles.length > 1 && (
+                <p className="cb-success-note">
+                  <a href={allFilesHref} data-cta="success_all_materials" data-book={BOOK.slug}>
+                    {`Всички материали към поръчката (${editionFiles.length} файла) →`}
+                  </a>
+                </p>
+              )}
+
               <p className="cb-success-note">
                 {isBundle ? (
                   <>
-                    Изпратихме потвърждение на имейла ти. Доставката на
-                    печатната книга е включена в цената. Линкът за сваляне на
-                    дигиталната версия е свързан с тази поръчка и е валиден за
-                    лично ползване. При въпроси –{" "}
+                    Изпращаме потвърждение и линк за сваляне {emailPhrase}.
+                    Доставката на печатната книга е включена в цената. Линкът
+                    за дигиталната версия е личен и важи {DOWNLOAD_TTL_DAYS} дни,
+                    до {MAX_DOWNLOADS} сваляния. При въпроси –{" "}
                     <a href={CONTACT_MAILTO}>
                       {CONTACT_EMAIL}
                     </a>
                   </>
                 ) : isPhysical ? (
                   <>
-                    Изпратихме потвърждение на имейла ти. Доставката е включена в
-                    цената. При въпроси за поръчката –{" "}
+                    Изпращаме потвърждение {emailPhrase}. Доставката е включена
+                    в цената. При въпроси за поръчката –{" "}
                     <a href={CONTACT_MAILTO}>
                       {CONTACT_EMAIL}
                     </a>
                   </>
                 ) : (
                   <>
-                    Линкът за сваляне е свързан с тази поръчка и е валиден за
-                    лично ползване. При въпроси –{" "}
+                    Линкът е личен и важи {DOWNLOAD_TTL_DAYS} дни, до{" "}
+                    {MAX_DOWNLOADS} сваляния. Изпращаме го и {emailPhrase}. При
+                    въпроси –{" "}
                     <a href={CONTACT_MAILTO}>
                       {CONTACT_EMAIL}
                     </a>
@@ -217,16 +243,7 @@ export default async function SuccessPage({
             </section>
           </main>
 
-          <footer className="footer">
-            <span>
-              Kodex Publishing · kodexbg.com · {new Date().getFullYear()}
-            </span>
-            <span className="footer-links">
-              <a href="/contact">Контакт</a>
-              <a href="/terms">Общи условия</a>
-              <a href="/privacy">Поверителност</a>
-            </span>
-          </footer>
+          <SiteFooter />
         </div>
       </div>
 
@@ -413,25 +430,9 @@ function ErrorState({ message }: { message: string }) {
       <link rel="stylesheet" href="/assets/styles/childrens-book-theme.css" />
       <link rel="stylesheet" href="/assets/styles/chrome.css" />
       <link rel="stylesheet" href="/assets/site-consent3.css" />
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;0,800&family=Alegreya+Sans:wght@400;500;700&display=swap"
-      />
       <div className="cb-page">
         <div className="shell">
-          <header className="topbar" aria-label="Навигация">
-            <a className="brand" href="/" aria-label="Kodex Publishing начало">
-              <img
-                className="brand-mark"
-                src="/assets/kodex-icon.svg"
-                alt="Икона Kodex Publishing"
-              />
-              <span>
-                <span className="brand-name">Kodex</span>
-                <span className="brand-note">Publishing House</span>
-              </span>
-            </a>
-          </header>
+          <SiteHeader />
           <main
             style={{
               maxWidth: 560,
@@ -484,14 +485,7 @@ function ErrorState({ message }: { message: string }) {
               </a>
             </p>
           </main>
-          <footer className="footer">
-            <span>Kodex Publishing · kodexbg.com · 2026</span>
-            <span className="footer-links">
-              <a href="/contact">Контакт</a>
-              <a href="/terms">Общи условия</a>
-              <a href="/privacy">Поверителност</a>
-            </span>
-          </footer>
+          <SiteFooter />
         </div>
       </div>
     </>

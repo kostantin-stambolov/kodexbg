@@ -3,7 +3,6 @@ import SiteShell from "./components/SiteShell";
 
 export const metadata: Metadata = {
   title: "Страницата не е намерена",
-  robots: { index: false, follow: false },
 };
 
 export default function NotFound() {

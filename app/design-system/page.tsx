@@ -275,7 +275,7 @@ export default function DesignSystemPage() {
             <a className="upcoming-peek" href="/tobi">
               <span className="upcoming-peek-cover" aria-hidden="true">
                 <img
-                  src="/assets/books/tobi/illustrations/tobi-happy-hp-promo.png"
+                  src="/assets/books/tobi/illustrations/tobi-happy.webp"
                   alt=""
                 />
               </span>

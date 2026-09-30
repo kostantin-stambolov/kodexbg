@@ -1,5 +1,3 @@
-import { readFileSync } from "fs";
-import { join } from "path";
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "../../../../../lib/stripe";
 import {
@@ -7,7 +5,11 @@ import {
   resolvePriceId,
   type Edition,
 } from "../../../../../lib/catalog";
+import { downloadPagePath, ensureDownloadToken } from "../../../../../lib/downloads";
+import { getBaseUrl } from "../../../../../lib/url";
 
+// Стар адрес за сваляне (по session_id). Пренасочва към личната страница за
+// сваляне, за да важат същите срок и лимит.
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ slug: string; edition: string }> }
@@ -16,7 +18,7 @@ export async function GET(
   const book = getBook(slug);
   const editionCfg = book?.editions[edition as Edition];
 
-  if (!book || !editionCfg || !editionCfg.file) {
+  if (!book || !editionCfg || !editionCfg.files?.length) {
     return NextResponse.json({ error: "Product not found" }, { status: 404 });
   }
 
@@ -39,13 +41,15 @@ export async function GET(
     return NextResponse.json({ error: "Not authorized" }, { status: 403 });
   }
 
-  const filePath = join(process.cwd(), editionCfg.file);
-  const file = readFileSync(filePath);
-
-  return new NextResponse(file, {
-    headers: {
-      "Content-Type": "application/pdf",
-      "Content-Disposition": `attachment; filename="${editionCfg.filename}"`,
-    },
+  const token = await ensureDownloadToken({
+    stripeSessionId: session.id,
+    bookSlug: slug,
+    edition: edition as Edition,
+    customerEmail: session.customer_details?.email,
   });
+
+  return NextResponse.redirect(
+    `${getBaseUrl(request)}${downloadPagePath(token.token)}`,
+    303
+  );
 }

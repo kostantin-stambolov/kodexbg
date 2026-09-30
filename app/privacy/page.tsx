@@ -2,20 +2,14 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import type { Metadata } from "next";
 import SiteShell from "../components/SiteShell";
+import { pageMetadata } from "../../lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Поверителност",
   description:
-    "Политика за поверителност на Kodex Publishing: какви лични данни обработваме, защо, за колко време и какви права имате.",
-  alternates: { canonical: "/privacy" },
-  openGraph: {
-    url: "https://kodexbg.com/privacy",
-    title: "Поверителност | Kodex Publishing",
-    description:
-      "Политика за поверителност на Kodex Publishing: какви лични данни обработваме, защо, за колко време и какви права имате.",
-    images: [{ url: "/assets/og-image.jpg" }],
-  },
-};
+    "Политика за поверителност на Kodex Publishing: какви лични данни обработваме, защо, с кого ги споделяме, колко време ги пазим и какви права имате.",
+  path: "/privacy",
+});
 
 const html = readFileSync(
   join(process.cwd(), "content/privacy-main.html"),

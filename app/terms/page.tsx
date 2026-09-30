@@ -2,20 +2,14 @@ import { readFileSync } from "fs";
 import { join } from "path";
 import type { Metadata } from "next";
 import SiteShell from "../components/SiteShell";
+import { pageMetadata } from "../../lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Общи условия",
   description:
-    "Общи условия за използване на сайта Kodex Publishing, заявки, електронни книги, физически поръчки, доставка, отказ и рекламации.",
-  alternates: { canonical: "/terms" },
-  openGraph: {
-    url: "https://kodexbg.com/terms",
-    title: "Общи условия | Kodex Publishing",
-    description:
-      "Общи условия за използване на сайта Kodex Publishing, заявки, електронни книги, физически поръчки, доставка, отказ и рекламации.",
-    images: [{ url: "/assets/og-image.jpg" }],
-  },
-};
+    "Общи условия на Kodex Publishing: поръчки, дигитални и печатни издания, доставка, право на отказ и рекламации.",
+  path: "/terms",
+});
 
 const html = readFileSync(
   join(process.cwd(), "content/terms-main.html"),

@@ -46,6 +46,21 @@ export default function RootLayout({
   return (
     <html lang="bg">
       <body>
+        <link
+          rel="preload"
+          href="/assets/fonts/alegreya-normal-cyrillic-2.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/assets/fonts/alegreya-sans-normal-cyrillic-6.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link rel="stylesheet" href="/assets/fonts/fonts.css" />
         <link rel="stylesheet" href="/assets/styles/chrome.css" />
         {children}
         <Script src="/assets/analytics-consent3.js" strategy="afterInteractive" />

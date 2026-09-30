@@ -2,32 +2,14 @@ import type { Metadata } from "next";
 import SiteShell from "../components/SiteShell";
 import ContactForm from "../components/ContactForm";
 import { CONTACT_EMAIL, CONTACT_MAILTO } from "../../lib/contact";
+import { pageMetadata } from "../../lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
   title: "Запитвания",
   description:
     "Изпратете запитване до Kodex Publishing относно книги, издания, електронни версии и печатни копия.",
-  alternates: { canonical: "/contact" },
-  openGraph: {
-    url: "https://kodexbg.com/contact",
-    title: "Запитвания | Kodex Publishing",
-    description:
-      "Изпратете запитване до Kodex Publishing относно книги, издания, електронни версии и печатни копия.",
-    images: [
-      {
-        url: "/assets/og-image.jpg",
-        alt: "Корица на детската книга Чудовището без уши от Костантин Стамболов",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Запитвания | Kodex Publishing",
-    description:
-      "Изпратете запитване до Kodex Publishing относно книги, издания, електронни версии и печатни копия.",
-    images: ["/assets/og-image.jpg"],
-  },
-};
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

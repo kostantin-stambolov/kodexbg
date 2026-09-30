@@ -24,6 +24,11 @@ export const orders = pgTable("orders", {
   shipping: jsonb("shipping"),
   amountTotal: integer("amount_total"), // в центове
   currency: text("currency"),
+  // Попълва се, след като Resend приеме имейла с потвърждение – повторен
+  // webhook не праща втори имейл.
+  confirmationEmailSentAt: timestamp("confirmation_email_sent_at", {
+    withTimezone: true,
+  }),
   createdAt: timestamp("created_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
@@ -31,6 +36,30 @@ export const orders = pgTable("orders", {
 
 export type Order = typeof orders.$inferSelect;
 export type NewOrder = typeof orders.$inferInsert;
+
+// Личен линк за сваляне на дигитално издание – по един на платена сесия.
+export const downloadTokens = pgTable("download_tokens", {
+  id: serial("id").primaryKey(),
+  token: text("token").notNull().unique(),
+  stripeSessionId: text("stripe_session_id").notNull().unique(),
+  bookSlug: text("book_slug").notNull(),
+  edition: text("edition").notNull(),
+  customerEmail: text("customer_email"),
+  // Лимитът важи за всеки файл поотделно; броячите са по ключа на файла.
+  maxDownloads: integer("max_downloads").notNull(),
+  downloadCount: integer("download_count").notNull().default(0),
+  downloadCounts: jsonb("download_counts")
+    .$type<Record<string, number>>()
+    .notNull()
+    .default({}),
+  expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+  lastDownloadAt: timestamp("last_download_at", { withTimezone: true }),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
+export type DownloadToken = typeof downloadTokens.$inferSelect;
 
 // Лимит за продажба на физическо издание, редактируем от /admin.
 // Авторитетен източник за наличността вместо хардкодната стойност в кода.

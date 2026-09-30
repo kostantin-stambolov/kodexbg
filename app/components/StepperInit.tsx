@@ -49,10 +49,26 @@ export default function StepperInit({
     const soldOut =
       typeof printAvailable === "number" && printAvailable < 1;
 
+    const printCard = printBtn?.closest<HTMLElement>(".cb-price-card") ?? null;
+    const unitPrice = Number(
+      printCard?.querySelector<HTMLElement>("[data-unit-price]")?.dataset
+        .unitPrice ?? NaN
+    );
+    const totalEl = printCard?.querySelector<HTMLElement>("[data-price-total]");
+
+    const currentQty = () => {
+      const raw = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+      return Math.min(Math.max(1, effectiveMax), Math.max(1, raw));
+    };
+
     const syncPrintHref = () => {
       if (!printBtn || !printCheckoutBase) return;
-      const qty = qtyInput ? parseInt(qtyInput.value, 10) || 1 : 1;
+      const qty = currentQty();
       printBtn.href = `${printCheckoutBase}?qty=${qty}`;
+
+      if (totalEl && Number.isFinite(unitPrice)) {
+        totalEl.textContent = `${qty * unitPrice} €`;
+      }
     };
 
     if (printBtn && soldOut) {
