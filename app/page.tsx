@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import NewsletterSignup from "./components/NewsletterSignup";
 import SiteShell from "./components/SiteShell";
+import { CONTACT_EMAIL } from "../lib/contact";
 
 export const metadata: Metadata = {
   title: "Детски книги, които се подаряват с мисъл",
@@ -33,7 +34,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "Kodex Publishing",
   url: "https://kodexbg.com/",
-  email: "kodex@blackrockcapital.bg",
+  email: CONTACT_EMAIL,
   description:
     "Българско издателство и модерна онлайн книжарница за детски книги с топла история, красива форма и трайна стойност.",
 };
@@ -53,7 +54,7 @@ export default function HomePage() {
             <p className="lead">
               Добродушно чудовище, което обича да слуша приказки, и една фея,
               която открива защо то стои само в тъмното. Нежна история за
-              приятелството и доброто сърце – с въпроси за разговор накрая.
+              приятелството и доброто сърце.
             </p>
             <div className="hero-actions">
               <a

@@ -105,7 +105,7 @@ img {
 .hero-cover-stage {
   position: relative;
   z-index: 2;
-  width: min(90%, 470px);
+  width: min(96%, 540px);
 }
 
 /* White photo-frame cover treatment – matches the book page (.cb-cover-frame) 1:1 */
@@ -136,9 +136,9 @@ img {
 }
 
 .hero-character-owl {
-  top: -70px;
-  left: -58px;
-  width: 124px;
+  top: -58px;
+  left: -62px;
+  width: 132px;
   animation: cb-floaty2 8s ease-in-out infinite;
 }
 
@@ -450,6 +450,11 @@ img {
   font-size: clamp(16px, 1.5vw, 18px);
   font-weight: 400;
   line-height: 1.45;
+}
+
+/* Wide copper card – keep the line intact when there is room */
+.home-visual-v3 .trust-strip div:nth-child(4) p {
+  max-width: none;
 }
 
 .hero + .section {

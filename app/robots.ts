@@ -5,7 +5,14 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/design-system.html"],
+      disallow: [
+        "/admin",
+        "/admin/",
+        "/api/",
+        "/design-system",
+        "/design-system.html",
+        "/books/*/resources/",
+      ],
     },
     sitemap: "https://kodexbg.com/sitemap.xml",
     host: "https://kodexbg.com",

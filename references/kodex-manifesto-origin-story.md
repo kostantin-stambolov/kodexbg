@@ -25,9 +25,9 @@ The name Kodex is rooted in the history of the book itself – the codex, the bo
 We believe publishing is cultural work.
 To publish is to select, shape, protect, and release something into the world that may continue living in other people.
 This is what we stand for:
-Clarity over clutter.
- Meaning over novelty.
- Craft over haste.
- Durability over noise.
- Books as lasting forms of human signal.
+- Clarity over clutter.
+- Meaning over novelty.
+- Craft over haste.
+- Durability over noise.
+- Books as lasting forms of human signal.
 Kodex Publishing exists to build books that stay.

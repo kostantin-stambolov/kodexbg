@@ -162,21 +162,29 @@ export default async function AdminInventoryPage({
           }}
         >
           <h1 style={{ fontSize: 24, margin: 0 }}>Наличност</h1>
-          <form method="POST" action="/api/admin/logout">
-            <button
-              type="submit"
-              style={{
-                background: "none",
-                border: "1px solid #544a40",
-                color: "#cbbfae",
-                borderRadius: 8,
-                padding: "8px 14px",
-                cursor: "pointer",
-              }}
+          <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+            <a
+              href="/admin/newsletter"
+              style={{ color: "#d7a93d", textDecoration: "none", fontSize: 14 }}
             >
-              Изход
-            </button>
-          </form>
+              Бюлетин →
+            </a>
+            <form method="POST" action="/api/admin/logout">
+              <button
+                type="submit"
+                style={{
+                  background: "none",
+                  border: "1px solid #544a40",
+                  color: "#cbbfae",
+                  borderRadius: 8,
+                  padding: "8px 14px",
+                  cursor: "pointer",
+                }}
+              >
+                Изход
+              </button>
+            </form>
+          </div>
         </div>
 
         {saved === "1" && (

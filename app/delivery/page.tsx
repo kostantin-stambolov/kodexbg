@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import SiteShell from "../components/SiteShell";
+import { CONTACT_EMAIL, CONTACT_MAILTO } from "../../lib/contact";
 
 export const metadata: Metadata = {
   title: "Доставка и плащане",
@@ -113,11 +114,11 @@ export default function DeliveryPage() {
             Въпрос за конкретна поръчка?{" "}
             <a
               className="text-link"
-              href="mailto:kodex@blackrockcapital.bg"
+              href={CONTACT_MAILTO}
               data-cta="delivery_email"
               data-track-event="delivery_email_click"
             >
-              kodex@blackrockcapital.bg
+              {CONTACT_EMAIL}
             </a>
           </p>
         </section>

@@ -7,6 +7,7 @@ import {
   type Book,
   type Edition,
 } from "../../lib/catalog";
+import { CONTACT_EMAIL, CONTACT_MAILTO } from "../../lib/contact";
 
 export const metadata: Metadata = {
   title: "Поръчката е завършена",
@@ -185,24 +186,24 @@ export default async function SuccessPage({
                     печатната книга е включена в цената. Линкът за сваляне на
                     дигиталната версия е свързан с тази поръчка и е валиден за
                     лично ползване. При въпроси –{" "}
-                    <a href="mailto:kodex@blackrockcapital.bg">
-                      kodex@blackrockcapital.bg
+                    <a href={CONTACT_MAILTO}>
+                      {CONTACT_EMAIL}
                     </a>
                   </>
                 ) : isPhysical ? (
                   <>
                     Изпратихме потвърждение на имейла ти. Доставката е включена в
                     цената. При въпроси за поръчката –{" "}
-                    <a href="mailto:kodex@blackrockcapital.bg">
-                      kodex@blackrockcapital.bg
+                    <a href={CONTACT_MAILTO}>
+                      {CONTACT_EMAIL}
                     </a>
                   </>
                 ) : (
                   <>
                     Линкът за сваляне е свързан с тази поръчка и е валиден за
                     лично ползване. При въпроси –{" "}
-                    <a href="mailto:kodex@blackrockcapital.bg">
-                      kodex@blackrockcapital.bg
+                    <a href={CONTACT_MAILTO}>
+                      {CONTACT_EMAIL}
                     </a>
                   </>
                 )}
@@ -476,10 +477,10 @@ function ErrorState({ message }: { message: string }) {
             >
               При проблем –{" "}
               <a
-                href="mailto:kodex@blackrockcapital.bg"
+                href={CONTACT_MAILTO}
                 style={{ color: "var(--cb-accent)" }}
               >
-                kodex@blackrockcapital.bg
+                {CONTACT_EMAIL}
               </a>
             </p>
           </main>

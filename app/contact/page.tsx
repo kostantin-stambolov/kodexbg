@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import SiteShell from "../components/SiteShell";
 import ContactForm from "../components/ContactForm";
+import { CONTACT_EMAIL, CONTACT_MAILTO } from "../../lib/contact";
 
 export const metadata: Metadata = {
   title: "Запитвания",
@@ -52,11 +53,11 @@ export default function ContactPage() {
               <p>Предпочитате имейл? Пишете ни директно.</p>
               <a
                 className="contact-aside-link"
-                href="mailto:kodex@blackrockcapital.bg"
+                href={CONTACT_MAILTO}
                 data-cta="email_contact"
                 data-track-event="email_contact_click"
               >
-                kodex@blackrockcapital.bg
+                {CONTACT_EMAIL}
               </a>
             </div>
             <div className="contact-aside-block">
