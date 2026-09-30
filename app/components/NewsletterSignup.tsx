@@ -42,7 +42,6 @@ export default function NewsletterSignup({
 
       setStatus("success");
       setMessage(successMessage);
-      event.currentTarget.reset();
     } catch (error) {
       setStatus("error");
       setMessage(
